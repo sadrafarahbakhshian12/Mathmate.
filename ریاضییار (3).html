@@ -1,0 +1,1803 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>ریاضی‌یار</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;700;800&family=Lalezar&family=STIX+Two+Text:wght@400;600&display=swap">
+<style>
+/* Layout: سربرگ ساده، قهرمان رنگی با نماد دسته‌ها، شبکه‌ی کارت دسته‌ها، صفحه‌ی درس تک‌ستونه با نوار درس‌های همان دسته */
+:root{
+  --bg:#F2F8FF; --surface:#FFFFFF; --fg:#1B2A4E; --muted:#5A6B8F; --line:#DAE5F5;
+  --brand:#3B6EF5; --brand-ink:#FFFFFF; --hero-a:#D9EEFF; --hero-b:#FFE6F1; --soft:#EAF2FF;
+  --good:#0E9F6E; --calc:#0F766E; --calc-ink:#FFFFFF; --bad:#C62828; --warn-bg:#FFF4D6; --warn-fg:#7A5200;
+  --font-body:'Vazirmatn',Tahoma,'Segoe UI',sans-serif; --font-display:'Lalezar','Vazirmatn',Tahoma,sans-serif;
+  --font-math:'STIX Two Text','Vazirmatn','Cambria Math',serif;
+  --c:#3B82F6;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0F1A33; --surface:#16244A; --fg:#E9EFFF; --muted:#9FB1D8; --line:#2A3B6C;
+  --brand:#7FA2FF; --brand-ink:#0F1A33; --hero-a:#1B3A6B; --hero-b:#4A2447; --soft:#1D2D58;
+  --good:#4ADE9B; --calc:#2DD4BF; --calc-ink:#0F1A33; --bad:#FF8A80; --warn-bg:#3D3112; --warn-fg:#FFD97A; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0F1A33; --surface:#16244A; --fg:#E9EFFF; --muted:#9FB1D8; --line:#2A3B6C;
+  --brand:#7FA2FF; --brand-ink:#0F1A33; --hero-a:#1B3A6B; --hero-b:#4A2447; --soft:#1D2D58;
+  --good:#4ADE9B; --calc:#2DD4BF; --calc-ink:#0F1A33; --bad:#FF8A80; --warn-bg:#3D3112; --warn-fg:#FFD97A; color-scheme:dark}
+
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--font-body);font-size:16px;line-height:1.95}
+a{color:inherit;text-decoration:none}
+:focus-visible{outline:3px solid var(--brand);outline-offset:2px;border-radius:6px}
+.wrap{max-width:1240px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+
+/* header */
+.top{background:var(--surface);border-bottom:1px solid var(--line)}
+.top .wrap{display:flex;align-items:center;justify-content:space-between;gap:12px;padding-block:10px;flex-wrap:wrap}
+.brand{display:flex;align-items:center;gap:10px}
+.logo{width:42px;height:42px;border-radius:13px;background:var(--brand);color:var(--brand-ink);display:grid;place-items:center;font-family:var(--font-math);font-size:26px;line-height:1}
+.brand b{font-family:var(--font-display);font-size:24px;font-weight:400;line-height:1.2;display:block}
+.brand small{color:var(--muted);font-size:12px;display:block;line-height:1.4}
+.homelink{padding:6px 14px;border-radius:999px;background:var(--soft);font-weight:700;font-size:14px}
+
+/* hero */
+.hero{margin-top:20px;border-radius:26px;padding:28px 22px;background:linear-gradient(120deg,var(--hero-a),var(--hero-b));border:1px solid var(--line)}
+.hero h1{font-family:var(--font-display);font-weight:400;font-size:clamp(30px,6vw,46px);line-height:1.5;margin:0;text-wrap:balance}
+.hero p{margin:6px 0 0;max-width:60ch;color:var(--fg)}
+.by{display:inline-flex;align-items:center;gap:8px;margin-top:14px;padding:6px 14px;border-radius:999px;background:var(--surface);border:1px solid var(--line);font-size:14px}
+.by b{color:var(--brand)}
+.glyphs{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+.glyphs a{min-width:46px;height:46px;padding:0 10px;border-radius:14px;display:grid;place-items:center;font-family:var(--font-math);font-size:21px;background:color-mix(in srgb,var(--c) 22%,var(--surface));color:color-mix(in srgb,var(--c) 70%,var(--fg));border:1px solid color-mix(in srgb,var(--c) 35%,var(--surface))}
+.searchbox{margin-top:18px;display:flex;gap:8px}
+.searchbox input{flex:1;min-width:0;padding:12px 16px;border-radius:14px;border:1px solid var(--line);background:var(--surface);color:var(--fg);font:inherit}
+#results{margin-top:10px;display:grid;gap:6px}
+#results a{display:block;padding:8px 14px;border-radius:12px;background:var(--surface);border:1px solid var(--line)}
+#results small{color:var(--muted)}
+
+h2.sec{font-size:22px;margin:30px 0 12px;font-weight:800}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:14px}
+.card{display:flex;flex-direction:column;gap:6px;background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:16px;transition:transform .15s,border-color .15s;min-width:0}
+.card:hover{transform:translateY(-2px);border-color:var(--c)}
+.tile{width:52px;height:52px;border-radius:15px;display:grid;place-items:center;font-family:var(--font-math);font-size:25px;background:color-mix(in srgb,var(--c) 18%,var(--surface));color:color-mix(in srgb,var(--c) 72%,var(--fg))}
+.card h3{margin:4px 0 0;font-size:18px;font-weight:800}
+.card p{margin:0;color:var(--muted);font-size:14px;line-height:1.8}
+.meta{display:flex;justify-content:space-between;font-size:13px;color:var(--muted);margin-top:auto;padding-top:6px}
+.bar{height:6px;border-radius:99px;background:var(--soft);overflow:hidden}
+.bar i{display:block;height:100%;background:var(--c);border-radius:99px}
+
+/* category page */
+.crumbs{margin:18px 0 6px;font-size:14px;color:var(--muted)}
+.crumbs a{color:var(--brand);font-weight:500}
+.cathead{display:flex;gap:16px;align-items:center;padding:20px;border-radius:22px;background:color-mix(in srgb,var(--c) 13%,var(--surface));border:1px solid color-mix(in srgb,var(--c) 30%,var(--line))}
+.cathead h1{margin:0;font-family:var(--font-display);font-weight:400;font-size:32px;line-height:1.4}
+.cathead p{margin:0;color:var(--muted)}
+.lrow{display:flex;align-items:center;gap:14px;padding:14px 16px;background:var(--surface);border:1px solid var(--line);border-radius:16px;margin-top:10px}
+.lrow:hover{border-color:var(--c)}
+.num{flex:none;width:36px;height:36px;border-radius:50%;display:grid;place-items:center;font-weight:800;background:color-mix(in srgb,var(--c) 18%,var(--surface));color:color-mix(in srgb,var(--c) 72%,var(--fg))}
+.lrow.done .num{background:var(--good);color:var(--brand-ink)}
+.lrow b{display:block;line-height:1.6}
+.lrow span.s{color:var(--muted);font-size:14px;line-height:1.7;display:block}
+
+/* lesson */
+.chips{display:flex;gap:8px;overflow-x:auto;padding:4px 0 10px;margin-top:6px}
+.chips a{flex:none;padding:5px 14px;border-radius:999px;border:1px solid var(--line);background:var(--surface);font-size:14px;white-space:nowrap}
+.chips a.on{background:var(--c);border-color:var(--c);color:#fff;font-weight:700}
+.lesson{background:var(--surface);border:1px solid var(--line);border-radius:24px;padding:22px 20px;margin-top:6px}
+.lesson h1{font-family:var(--font-display);font-weight:400;font-size:clamp(26px,5vw,36px);line-height:1.5;margin:0 0 4px;text-wrap:balance}
+.lead{color:var(--muted);margin:0 0 10px}
+.lesson h3{font-size:19px;font-weight:800;margin:26px 0 6px;color:color-mix(in srgb,var(--c) 70%,var(--fg))}
+.lesson h4{margin:0 0 8px;font-size:16px}
+.lesson p{margin:8px 0;max-width:70ch}
+.lesson ul,.lesson ol{padding-right:22px;padding-left:0;margin:8px 0}
+.lesson li{margin:4px 0}
+.m{font-family:var(--font-math);direction:ltr;unicode-bidi:isolate;white-space:normal;font-size:1.08em}
+.fb{display:flex;flex-direction:column;align-items:center;gap:6px;margin:12px 0;padding:14px 10px;border-radius:14px;background:var(--soft);overflow-x:auto;font-size:1.25em;line-height:1.7}
+.fb>div{text-align:center;max-width:100%}
+.fb>div.rl{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:.15em .5em;font-family:var(--font-body);font-size:.78em;line-height:1.9;direction:rtl;unicode-bidi:isolate}
+.fb>div.rl .m{font-size:1.28em}
+.fr{display:inline-flex;flex-direction:column;vertical-align:middle;text-align:center;margin:0 .2em;line-height:1.35;font-size:.95em}
+.fr>span:first-child{border-bottom:1.5px solid currentColor;padding:0 .25em}
+.fr>span:last-child{padding:0 .25em}
+.sq{white-space:nowrap}.ov{border-top:1.5px solid currentColor;padding:0 .12em;margin-left:1px}
+.key,.eg,.tip{border-radius:16px;padding:14px 16px;margin:16px 0}
+.key{background:color-mix(in srgb,var(--c) 10%,var(--surface));border:1px solid color-mix(in srgb,var(--c) 32%,var(--line))}
+.eg{background:var(--surface);border:1.5px dashed color-mix(in srgb,var(--c) 45%,var(--line))}
+.tip{background:var(--warn-bg);color:var(--warn-fg)}
+.tag{display:inline-block;font-size:12px;font-weight:800;padding:0 10px;border-radius:99px;background:var(--c);color:#fff;margin-bottom:4px;line-height:1.8}
+.tip .tag{background:var(--warn-fg);color:var(--warn-bg)}
+.eg p:last-child,.key p:last-child,.tip p:last-child{margin-bottom:0}
+.tw{overflow-x:auto;margin:12px 0;border-radius:12px;border:1px solid var(--line)}
+table{border-collapse:collapse;width:100%;font-size:15px}
+th,td{padding:8px 12px;text-align:center;border-bottom:1px solid var(--line);line-height:1.7}
+th{background:var(--soft);font-weight:700}
+tr:last-child td{border-bottom:0}
+td.r{text-align:right}
+.pr{margin:18px 0;border-radius:16px;background:color-mix(in srgb,var(--good) 10%,var(--surface));border:1px solid color-mix(in srgb,var(--good) 35%,var(--line))}
+.pr summary{cursor:pointer;padding:12px 16px;font-weight:700;list-style:none}
+.pr summary::before{content:"تمرین: ";color:var(--good)}
+.pr>div{padding:0 16px 14px}
+.wg{margin:18px 0;padding:16px;border-radius:18px;background:var(--soft);border:1px solid var(--line)}
+.wg .row{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.wg label{display:flex;align-items:center;gap:6px;font-weight:700}
+.wg input{width:92px;padding:8px 10px;border-radius:10px;border:1px solid var(--line);background:var(--surface);color:var(--fg);font:inherit;direction:ltr;text-align:center}
+.wg .out{margin-top:12px;line-height:2}
+.mx{display:inline-block;vertical-align:middle;padding:0 .4em;border-left:2px solid currentColor;border-right:2px solid currentColor;border-radius:5px;margin:0 .25em}
+.mxg{display:grid;gap:.1em 1em;text-align:center}
+.svgbox{max-width:340px;margin:14px auto}
+.svgbox svg{width:100%;height:auto;direction:ltr;color:var(--fg)}
+.svgbox text{fill:var(--fg);font-family:var(--font-math);font-size:13px}
+.donebtn{margin-top:22px;padding:10px 20px;border-radius:999px;border:1.5px solid var(--good);background:transparent;color:var(--good);font:inherit;font-weight:700;cursor:pointer}
+.donebtn.on{background:var(--good);color:var(--brand-ink)}
+.pn{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:16px}
+.pn a{padding:12px 16px;border-radius:16px;background:var(--surface);border:1px solid var(--line);min-width:0}
+.pn a small{display:block;color:var(--muted);font-size:12px}
+.pn a:last-child{text-align:left}
+.pn a:hover{border-color:var(--brand)}
+footer{margin-top:40px;padding-block:24px;border-top:1px solid var(--line);text-align:center;color:var(--muted);font-size:14px}
+footer b{color:var(--fg)}
+/* دسکتاپ و لپ‌تاپ */
+.layout{display:block}.side{display:none}
+.hero-in{display:grid;gap:14px;grid-template-columns:minmax(0,1fr);align-items:center}
+.lrows{display:block}
+.side details{margin:2px 0}
+.side summary{cursor:pointer;padding:8px 10px;border-radius:12px;font-weight:700;list-style:none;display:flex;align-items:center;gap:10px}
+.side summary::-webkit-details-marker{display:none}
+.side summary:hover{background:var(--soft)}
+.dot{min-width:30px;height:30px;padding:0 6px;border-radius:9px;display:grid;place-items:center;font-family:var(--font-math);font-size:14px;background:color-mix(in srgb,var(--c) 18%,var(--surface));color:color-mix(in srgb,var(--c) 72%,var(--fg))}
+.side a.sl{display:block;padding:5px 12px 5px 8px;margin-right:40px;border-radius:10px;font-size:14.5px;line-height:1.7;color:var(--muted)}
+.side a.sl:hover{background:var(--soft)}
+.side a.sl.on{background:color-mix(in srgb,var(--c) 16%,var(--surface));color:var(--fg);font-weight:700}
+.side a.sl.ok::after{content:" ✓";color:var(--good)}
+@media (min-width:900px){
+  body{font-size:17px}
+  .top .wrap{padding-block:14px}
+  .layout{display:grid;grid-template-columns:300px minmax(0,1fr);gap:26px;align-items:start;margin-top:12px}
+  .side{display:block;position:sticky;top:14px;max-height:calc(100vh - 28px);overflow-y:auto;background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:12px}
+  .chips{display:none}
+  .hero{padding:44px 44px 36px;margin-top:26px}
+  .hero-in{grid-template-columns:1.25fr 1fr;gap:30px}
+  .glyphs{margin-top:0;justify-content:center;gap:12px}
+  .glyphs a{min-width:70px;height:70px;font-size:28px;border-radius:20px}
+  .lrows{display:grid;grid-template-columns:1fr 1fr;gap:12px}.lrows .lrow{margin-top:0}
+  .lesson{padding:36px 44px}
+  .lesson p,.lesson li{font-size:17.5px}
+  .cathead{padding:28px}
+}
+@media (max-width:520px){
+  .pn{grid-template-columns:1fr}.pn a:last-child{text-align:right}
+  .lesson{padding:18px 14px;border-radius:20px}
+  .fb{font-size:1.08em;padding:12px 8px}
+  .key,.eg,.tip{padding:12px 12px}
+  table{font-size:13.5px}th,td{padding:6px 7px}
+  .cathead{flex-direction:column;align-items:flex-start}
+  .hero{padding:22px 16px}
+}
+.cathead>div,.lrow>span,.lrow>span>b{min-width:0}
+.lesson,.key,.eg,.tip,.pr{overflow-wrap:anywhere}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+
+.hnav{display:flex;gap:8px;flex-wrap:wrap}
+.hnav a{display:inline-flex;align-items:center;gap:8px;background:var(--soft);color:var(--fg);transition:background .15s,color .15s}
+.hnav a:hover{background:color-mix(in srgb,var(--fg) 12%,var(--soft))}
+.hnav a.calcbtn.on{background:var(--calc);color:var(--calc-ink)}
+.hnav a.lessbtn.on{background:var(--brand);color:var(--brand-ink)}
+.eqs{width:22px;height:22px;border-radius:7px;background:color-mix(in srgb,currentColor 18%,transparent);display:grid;place-items:center;font-family:var(--font-math);font-size:16px;line-height:1}
+.cta{display:inline-flex;align-items:center;gap:10px;margin-top:14px;margin-inline-start:8px;padding:9px 20px;border-radius:999px;background:var(--calc);color:var(--calc-ink);font-weight:800}
+.cta:hover{filter:brightness(1.08)}
+.card.calc{grid-column:1/-1;background:color-mix(in srgb,var(--c) 11%,var(--surface));border-color:color-mix(in srgb,var(--c) 40%,var(--line))}
+.side .sl-calc{display:flex;align-items:center;gap:10px;padding:9px 10px;margin-bottom:6px;border-radius:12px;background:var(--calc);color:var(--calc-ink);font-weight:800}
+#calc-host{display:block;margin-top:6px}
+
+.quiz{margin-top:30px;padding:18px 16px;border-radius:20px;background:color-mix(in srgb,var(--c) 8%,var(--surface));border:1.5px solid color-mix(in srgb,var(--c) 35%,var(--line))}
+.quiz h3{margin:0 0 2px;font-size:21px}
+.quiz .qs{margin:0 0 6px;color:var(--muted);font-size:14.5px}
+.qq{margin-top:16px;padding-top:14px;border-top:1px dashed var(--line)}
+.qq:first-of-type{border-top:0;padding-top:4px}
+.qt{margin:0 0 8px;font-weight:700;max-width:none}
+.qo{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:8px}
+.opt{font:inherit;text-align:right;line-height:1.7;padding:10px 14px;border-radius:14px;border:1.5px solid var(--line);background:var(--surface);color:var(--fg);cursor:pointer;min-width:0;overflow-wrap:anywhere;transition:border-color .15s,background .15s}
+.opt:hover:not(:disabled){border-color:var(--c);background:color-mix(in srgb,var(--c) 10%,var(--surface))}
+.opt:disabled{cursor:default;color:var(--fg)}
+.opt.good{border-color:var(--good);background:color-mix(in srgb,var(--good) 16%,var(--surface));font-weight:700}
+.opt.good::after{content:" ✓";color:var(--good)}
+.opt.bad{border-color:var(--bad);background:color-mix(in srgb,var(--bad) 13%,var(--surface))}
+.opt.bad::after{content:" ✗";color:var(--bad)}
+.qe{margin-top:8px;padding:8px 12px;border-radius:12px;font-size:15px;line-height:1.8}
+.qe.g{background:color-mix(in srgb,var(--good) 12%,var(--surface))}
+.qe.w{background:color-mix(in srgb,var(--bad) 10%,var(--surface))}
+.qr{margin-top:18px;padding:14px 16px;border-radius:16px;background:var(--surface);border:1.5px solid var(--c);display:flex;flex-wrap:wrap;align-items:center;gap:8px 16px}
+.qscore{font-size:20px;font-weight:800}.qscore b{font-size:28px;color:var(--c)}
+.qretry{font:inherit;font-weight:700;padding:7px 18px;border-radius:999px;border:1.5px solid var(--c);background:transparent;color:var(--fg);cursor:pointer;margin-inline-start:auto}
+.qretry:hover{background:color-mix(in srgb,var(--c) 14%,var(--surface))}
+@media (max-width:520px){.quiz{padding:14px 12px}.qo{grid-template-columns:1fr}}
+</style>
+
+<div id="app" dir="rtl" lang="fa">
+  <header class="top"><div class="wrap">
+    <a class="brand" href="#home" aria-label="صفحه‌ی اصلی ریاضی‌یار">
+      <span class="logo">π</span>
+      <span><b>ریاضی‌یار</b><small>آموزش ریاضی از پایه تا حسابان</small></span>
+    </a>
+    <nav class="hnav" aria-label="بخش‌های سایت"><a id="nav-calc" class="homelink calcbtn" href="#calculator"><span class="eqs" aria-hidden="true">=</span>ماشین‌حساب</a><a id="nav-less" class="homelink lessbtn on" href="#home" aria-current="page">فهرست درس‌ها</a></nav>
+  </div></header>
+  <main class="wrap" id="view"></main>
+  <footer><div class="wrap"><span id="by-line">ساخته‌شده توسط <b>صدرا فرح بخشیان</b><br></span>ریاضی‌یار — آموزش ریاضی به زبان فارسی</div></footer>
+</div>
+
+<template id="calc-tpl"><style>
+/* Layout: a rounded hero, a wrapping row of colour-coded topic chips, then one panel of live solver cards per topic. Each topic owns one colour. */
+:host{display:block;
+  --bg:#f4f5fc; --surface:#ffffff; --surface2:#eef0fa; --fg:#1a1d3b; --muted:#585e83; --line:#dde0f1; --on-c:#ffffff; --err:#b42318;
+  --c-arith:#d9363e; --c-alg:#b45309; --c-geo:#047857; --c-trig:#0369a1; --c-stat:#7c3aed; --c-calc:#db2777; --c-comb:#0f766e;
+  --shadow:0 1px 2px rgba(26,29,59,.06),0 10px 28px rgba(26,29,59,.07);
+  --font-display:'Lalezar','Vazirmatn',Tahoma,system-ui,sans-serif;
+  --font-body:'Vazirmatn',Tahoma,system-ui,'Segoe UI',sans-serif;
+  --font-mono:ui-monospace,'Cascadia Mono',Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme: dark){
+  :host(:not([data-theme="light"])){
+    --bg:#0e1023; --surface:#171a35; --surface2:#1f2343; --fg:#eceefc; --muted:#a4aacd; --line:#2b3058; --on-c:#0e1023; --err:#ff9b92;
+    --c-arith:#ff7a80; --c-alg:#fbbf24; --c-geo:#34d399; --c-trig:#38bdf8; --c-stat:#a78bfa; --c-calc:#f472b6; --c-comb:#2dd4bf;
+    --shadow:0 1px 2px rgba(0,0,0,.4),0 10px 28px rgba(0,0,0,.35);
+    color-scheme:dark;
+  }
+}
+:host([data-theme="dark"]){
+  --bg:#0e1023; --surface:#171a35; --surface2:#1f2343; --fg:#eceefc; --muted:#a4aacd; --line:#2b3058; --on-c:#0e1023; --err:#ff9b92;
+  --c-arith:#ff7a80; --c-alg:#fbbf24; --c-geo:#34d399; --c-trig:#38bdf8; --c-stat:#a78bfa; --c-calc:#f472b6; --c-comb:#2dd4bf;
+  --shadow:0 1px 2px rgba(0,0,0,.4),0 10px 28px rgba(0,0,0,.35);
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+.wrapper{color:var(--fg);font-family:var(--font-body);font-size:15px;line-height:1.75}
+.t-arith{--c:var(--c-arith)} .t-alg{--c:var(--c-alg)} .t-geo{--c:var(--c-geo)} .t-trig{--c:var(--c-trig)}
+.t-stat{--c:var(--c-stat)} .t-calc{--c:var(--c-calc)} .t-comb{--c:var(--c-comb)}
+.page{max-width:1080px;margin:0 auto;padding-block:20px 40px}
+
+.hero{position:relative;overflow:hidden;border-radius:28px;padding:30px 26px 24px;background:var(--surface);box-shadow:var(--shadow);border:1px solid var(--line)}
+.hero>*{position:relative;z-index:1}
+.glyph{position:absolute!important;z-index:0!important;font-family:var(--font-display);line-height:1;opacity:.17;pointer-events:none;user-select:none}
+.g1{left:4%;top:-6px;font-size:120px;color:var(--c-stat)}
+.g2{left:22%;bottom:-18px;font-size:110px;color:var(--c-calc)}
+.g3{left:38%;top:6px;font-size:70px;color:var(--c-trig)}
+.g4{left:11%;bottom:6px;font-size:64px;color:var(--c-arith)}
+.g5{left:50%;bottom:-8px;font-size:84px;color:var(--c-alg)}
+.kicker{margin:0;color:var(--muted);font-weight:500}
+.hero h1{font-family:var(--font-display);font-weight:400;font-size:clamp(40px,9vw,68px);line-height:1.15;margin:2px 0 6px;text-wrap:balance}
+.lead{margin:0;max-width:52ch;color:var(--muted);font-size:16px}
+.credit{margin:14px 0 0;color:var(--muted);font-size:14px}
+.credit b{color:var(--fg);font-weight:800}
+.spectrum{display:flex;height:7px;border-radius:99px;overflow:hidden;margin-top:20px}
+.spectrum i{flex:1}
+
+.tabs{display:flex;flex-wrap:wrap;gap:10px;margin:22px 0 20px}
+.tab{
+  appearance:none;border:1.5px solid color-mix(in srgb,var(--c) 38%,var(--line));background:var(--surface);color:var(--fg);
+  font:inherit;font-weight:700;padding:6px 16px 6px 8px;border-radius:999px;display:inline-flex;align-items:center;gap:9px;cursor:pointer;
+  transition:background .15s,color .15s,border-color .15s,transform .15s;
+}
+.tab:hover{transform:translateY(-2px)}
+.tab .g{display:grid;place-items:center;width:30px;height:30px;border-radius:50%;background:color-mix(in srgb,var(--c) 17%,transparent);color:var(--c);font-family:var(--font-display);font-weight:400;font-size:18px;line-height:1;padding-bottom:2px}
+.tab[aria-selected="true"]{background:var(--c);border-color:var(--c);color:var(--on-c)}
+.tab[aria-selected="true"] .g{background:color-mix(in srgb,var(--on-c) 22%,transparent);color:var(--on-c)}
+.tab:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid color-mix(in srgb,var(--c,var(--fg)) 55%,transparent);outline-offset:2px}
+
+.phead{display:flex;align-items:center;gap:14px;margin-bottom:16px}
+.phead .big{flex:none;display:grid;place-items:center;width:54px;height:54px;border-radius:18px;background:var(--c);color:var(--on-c);font-family:var(--font-display);font-size:32px;line-height:1;padding-bottom:4px}
+.phead h2{margin:0;font-family:var(--font-display);font-weight:400;font-size:30px;line-height:1.2;color:var(--c)}
+.phead p{margin:0;color:var(--muted)}
+
+.panel{animation:rise .24s ease-out}
+@keyframes rise{from{transform:translateY(8px)}to{transform:none}}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,330px),1fr));gap:16px}
+.wide{grid-column:1/-1}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:18px;box-shadow:var(--shadow);min-width:0}
+.card h3{margin:0 0 4px;font-size:17px;font-weight:800;color:var(--c)}
+.hint{margin:0 0 12px;color:var(--muted);font-size:13px}
+.sub{margin:8px 0 0;color:var(--muted);font-size:14px}
+
+input,select{font:inherit;color:var(--fg);background:var(--surface2);border:1.5px solid var(--line);border-radius:12px;padding:9px 12px;min-width:0;width:100%}
+input:focus-visible,select:focus-visible{border-color:var(--c)}
+.ltr{direction:ltr;text-align:left;font-family:var(--font-mono);font-size:15px}
+.big{font-size:18px}
+.calc-row{display:grid;grid-template-columns:1fr 110px;gap:10px}
+.frow{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:10px;margin-bottom:6px}
+.fld{display:grid;gap:3px;min-width:0}
+.fld label{font-size:13px;color:var(--muted);font-weight:500}
+.eq{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:8px;direction:ltr;font-family:var(--font-mono);font-size:17px;margin:6px 0}
+.eq input{width:78px;text-align:center;direction:ltr;padding:8px 6px}
+.eq.tight input{width:68px}
+
+.keys{display:grid;grid-template-columns:repeat(auto-fill,minmax(54px,1fr));gap:8px;margin-top:10px}
+.keys button,.chips button{
+  appearance:none;font:inherit;font-weight:700;color:var(--fg);background:var(--surface2);border:1px solid var(--line);border-radius:12px;padding:7px 0;cursor:pointer;direction:ltr;
+  transition:background .12s,transform .12s;
+}
+.keys button:hover,.chips button:hover{background:color-mix(in srgb,var(--c) 16%,var(--surface2))}
+.keys button:active,.chips button:active{transform:scale(.95)}
+.keys button.op{color:var(--c)}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+.chips button{padding:4px 12px;border-radius:999px;font-size:13px}
+
+.res{background:color-mix(in srgb,var(--c) 9%,var(--surface));border:1px solid color-mix(in srgb,var(--c) 22%,var(--line));border-radius:14px;padding:12px 14px;margin-top:12px;min-height:48px}
+.ans{font-size:20px;font-weight:800;color:color-mix(in srgb,var(--c) 78%,var(--fg));line-height:1.7}
+.m{direction:ltr;unicode-bidi:isolate;display:inline-block;font-variant-numeric:tabular-nums}
+.steps{margin:8px 0 0;padding-inline-start:26px;list-style-type:persian}
+.steps li{margin:4px 0}
+.steps li::marker{color:var(--c);font-weight:800}
+.err{color:var(--err);font-weight:500}
+.kv{display:grid;grid-template-columns:repeat(auto-fit,minmax(138px,1fr));gap:10px}
+.kv>div{background:var(--surface);border:1px solid color-mix(in srgb,var(--c) 18%,var(--line));border-radius:12px;padding:8px 12px;min-width:0}
+.kv small{display:block;color:var(--muted);font-size:12px;line-height:1.5}
+.kv b{font-size:17px;font-weight:800;overflow-wrap:anywhere}
+.tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+.tags span{background:color-mix(in srgb,var(--c) 14%,var(--surface));border:1px solid color-mix(in srgb,var(--c) 28%,var(--line));padding:2px 12px;border-radius:999px;font-weight:700;direction:ltr;font-variant-numeric:tabular-nums}
+.plot{width:100%;height:auto;display:block;direction:ltr;margin-top:12px;border-radius:14px;background:var(--surface2);border:1px solid var(--line)}
+.plot .tx{fill:var(--muted);font-size:11px;font-family:var(--font-body)}
+.plot .gl{stroke:var(--line);stroke-width:1}
+.plot .ax{stroke:var(--muted);stroke-width:1.3}
+.split{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:16px;align-items:start}
+@media (max-width:640px){.split{grid-template-columns:minmax(0,1fr)}}
+.foot{margin-top:28px;text-align:center;color:var(--muted);font-size:13px}
+@media (prefers-reduced-motion:reduce){.panel{animation:none}.tab,.keys button,.chips button{transition:none}}
+</style><div class="wrapper"><div class="page" dir="rtl" lang="fa">
+  <header class="hero">
+    <span class="glyph g1" aria-hidden="true">∑</span>
+    <span class="glyph g2" aria-hidden="true">∫</span>
+    <span class="glyph g3" aria-hidden="true">π</span>
+    <span class="glyph g4" aria-hidden="true">√</span>
+    <span class="glyph g5" aria-hidden="true">÷</span>
+    <p class="kicker">حل مسئله‌های ریاضی، قدم‌به‌قدم</p>
+    <h1>ریاضی‌یار</h1>
+    <p class="lead">یک بخش را انتخاب کنید، عددها را بنویسید و همان لحظه جواب را همراه با مراحل حل ببینید.</p>
+    <div class="spectrum" aria-hidden="true">
+      <i style="background:var(--c-arith)"></i><i style="background:var(--c-alg)"></i><i style="background:var(--c-geo)"></i><i style="background:var(--c-trig)"></i><i style="background:var(--c-stat)"></i><i style="background:var(--c-calc)"></i><i style="background:var(--c-comb)"></i>
+    </div>
+  </header>
+
+  <div class="tabs" role="tablist" id="tabs" aria-label="بخش‌های ریاضی"></div>
+  <div class="phead" id="phead"></div>
+
+  <main>
+    <!-- حساب -->
+    <section id="p-arith" class="panel t-arith" hidden>
+      <div class="grid">
+        <article class="card wide">
+          <h3>ماشین‌حساب عبارت</h3>
+          <p class="hint">عبارت کامل را بنویسید. پشتیبانی از + − × ÷ ^ √ ! % و پرانتز، توابع sin cos tan log ln sqrt و ثابت‌های pi و e. اعداد فارسی هم قبول است.</p>
+          <div class="calc-row">
+            <input id="ex" class="ltr big" value="2*(3+4)^2 - sqrt(16)" autocomplete="off" spellcheck="false" aria-label="عبارت ریاضی">
+            <select id="angle" aria-label="واحد زاویه"><option value="1">درجه</option><option value="0">رادیان</option></select>
+          </div>
+          <div class="keys" id="keys"></div>
+          <div class="res" id="ex-res" aria-live="polite"></div>
+        </article>
+
+        <article class="card">
+          <h3>درصد</h3>
+          <p class="hint">سه نوع مسئلهٔ درصد را انتخاب کنید.</p>
+          <div class="fld" style="margin-bottom:10px"><label for="pm">نوع مسئله</label>
+            <select id="pm"><option value="1">x درصدِ y چقدر است؟</option><option value="2">x چند درصدِ y است؟</option><option value="3">درصد تغییر از x به y</option></select></div>
+          <div class="frow">
+            <div class="fld"><label for="pa">x</label><input id="pa" class="ltr" value="15" inputmode="decimal" autocomplete="off"></div>
+            <div class="fld"><label for="pb">y</label><input id="pb" class="ltr" value="240" inputmode="decimal" autocomplete="off"></div>
+          </div>
+          <div class="res" id="pct-res" aria-live="polite"></div>
+        </article>
+
+        <article class="card">
+          <h3>ب.م.م و ک.م.م</h3>
+          <p class="hint">چند عدد صحیح مثبت را با فاصله یا ویرگول جدا کنید.</p>
+          <input id="gl" class="ltr" value="48, 180, 84" autocomplete="off" aria-label="فهرست عددها">
+          <div class="res" id="gcd-res" aria-live="polite"></div>
+        </article>
+
+        <article class="card wide">
+          <h3>تجزیه به عوامل اول</h3>
+          <p class="hint">عدد صحیح بین ۲ تا هزار میلیارد.</p>
+          <input id="pf" class="ltr" value="360" inputmode="numeric" autocomplete="off" aria-label="عدد">
+          <div class="res" id="pf-res" aria-live="polite"></div>
+        </article>
+      </div>
+    </section>
+
+    <!-- جبر -->
+    <section id="p-alg" class="panel t-alg" hidden>
+      <div class="grid">
+        <article class="card">
+          <h3>معادلهٔ درجه اول</h3>
+          <p class="hint">ضریب‌ها می‌توانند منفی یا کسری باشند، مثل ‎-3‎ یا ‎1/2‎.</p>
+          <div class="eq"><input id="la" value="2" aria-label="a" autocomplete="off">x +<input id="lb" value="-3" aria-label="b" autocomplete="off">=<input id="lc" value="7" aria-label="c" autocomplete="off"></div>
+          <div class="res" id="lin-res" aria-live="polite"></div>
+        </article>
+
+        <article class="card">
+          <h3>معادلهٔ درجه دوم</h3>
+          <p class="hint">ریشه‌های حقیقی و مختلط، رأس سهمی و مجموع و حاصل‌ضرب ریشه‌ها.</p>
+          <div class="eq tight"><input id="qa" value="1" aria-label="a" autocomplete="off">x² +<input id="qb" value="-5" aria-label="b" autocomplete="off">x +<input id="qc" value="6" aria-label="c" autocomplete="off">= 0</div>
+          <div class="res" id="quad-res" aria-live="polite"></div>
+        </article>
+
+        <article class="card wide">
+          <h3>دستگاه دو معادلهٔ دو مجهولی</h3>
+          <p class="hint">با روش دترمینان (کرامر) حل می‌شود.</p>
+          <div class="eq tight"><input id="s1a" value="2" aria-label="a1" autocomplete="off">x +<input id="s1b" value="3" aria-label="b1" autocomplete="off">y =<input id="s1c" value="12" aria-label="c1" autocomplete="off"></div>
+          <div class="eq tight"><input id="s2a" value="1" aria-label="a2" autocomplete="off">x +<input id="s2b" value="-1" aria-label="b2" autocomplete="off">y =<input id="s2c" value="1" aria-label="c2" autocomplete="off"></div>
+          <div class="res" id="sys-res" aria-live="polite"></div>
+        </article>
+      </div>
+    </section>
+
+    <!-- هندسه -->
+    <section id="p-geo" class="panel t-geo" hidden>
+      <div class="grid">
+        <article class="card wide">
+          <h3>مساحت، محیط و حجم</h3>
+          <p class="hint">شکل را انتخاب کنید و اندازه‌ها را بنویسید. واحد همهٔ اندازه‌ها یکسان باشد.</p>
+          <div class="fld" style="margin-bottom:10px"><label for="gs">شکل</label><select id="gs"></select></div>
+          <div class="frow" id="gf"></div>
+          <div class="res" id="g-res" aria-live="polite"></div>
+        </article>
+
+        <article class="card wide">
+          <h3>قضیهٔ فیثاغورس</h3>
+          <p class="hint">در مثلث قائم‌الزاویه، وتر یا یکی از ضلع‌های قائمه را پیدا کنید.</p>
+          <div class="fld" style="margin-bottom:10px"><label for="pym">چه چیزی را می‌خواهید؟</label>
+            <select id="pym"><option value="1">پیدا کردن وتر</option><option value="2">پیدا کردن یک ضلع قائمه</option></select></div>
+          <div class="frow">
+            <div class="fld"><label for="pya" id="pya-l">ضلع اول (a)</label><input id="pya" class="ltr" value="3" inputmode="decimal" autocomplete="off"></div>
+            <div class="fld"><label for="pyb" id="pyb-l">ضلع دوم (b)</label><input id="pyb" class="ltr" value="4" inputmode="decimal" autocomplete="off"></div>
+          </div>
+          <div class="res" id="py-res" aria-live="polite"></div>
+        </article>
+      </div>
+    </section>
+
+    <!-- مثلثات -->
+    <section id="p-trig" class="panel t-trig" hidden>
+      <div class="grid">
+        <article class="card wide">
+          <h3>نسبت‌های مثلثاتی و دایرهٔ واحد</h3>
+          <p class="hint">زاویه را بنویسید. خط قرمز سینوس و خط آبی کسینوس است.</p>
+          <div class="calc-row" style="grid-template-columns:1fr 120px">
+            <input id="ta" class="ltr big" value="30" inputmode="decimal" autocomplete="off" aria-label="زاویه">
+            <select id="tu" aria-label="واحد"><option value="d">درجه</option><option value="r">رادیان</option></select>
+          </div>
+          <div class="chips" id="tchips"></div>
+          <div class="split" style="margin-top:12px">
+            <div><svg id="tsvg" class="plot" viewBox="0 0 300 300" role="img" aria-label="دایرهٔ واحد" style="margin-top:0"></svg></div>
+            <div class="res" id="trig-res" aria-live="polite" style="margin-top:0"></div>
+          </div>
+        </article>
+
+        <article class="card wide">
+          <h3>از مقدار به زاویه</h3>
+          <p class="hint">مقدار سینوس، کسینوس یا تانژانت را بدهید تا زاویه‌های بین ۰ تا ۳۶۰ درجه را ببینید.</p>
+          <div class="frow">
+            <div class="fld"><label for="ivf">تابع</label><select id="ivf"><option value="sin">sin</option><option value="cos">cos</option><option value="tan">tan</option></select></div>
+            <div class="fld"><label for="ivv">مقدار</label><input id="ivv" class="ltr" value="1/2" autocomplete="off"></div>
+          </div>
+          <div class="res" id="iv-res" aria-live="polite"></div>
+        </article>
+      </div>
+    </section>
+
+    <!-- آمار -->
+    <section id="p-stat" class="panel t-stat" hidden>
+      <div class="grid">
+        <article class="card wide">
+          <h3>آمار توصیفی</h3>
+          <p class="hint">داده‌ها را با فاصله یا ویرگول جدا کنید.</p>
+          <input id="sl" class="ltr big" value="12, 15, 9, 20, 15, 18, 22, 11" autocomplete="off" aria-label="داده‌ها">
+          <div class="res" id="stat-res" aria-live="polite"></div>
+        </article>
+      </div>
+    </section>
+
+    <!-- حسابان -->
+    <section id="p-calc" class="panel t-calc" hidden>
+      <div class="grid">
+        <article class="card wide">
+          <h3>مشتق و انتگرال چندجمله‌ای</h3>
+          <p class="hint">مثلاً ‎3x^3 - 5x^2 + 2x - 7‎ یا ‎x² + 4‎. توان‌ها صحیح و نامنفی باشند. نمودار در بازهٔ ۵- تا ۵ رسم می‌شود.</p>
+          <input id="cf" class="ltr big" value="x^3 - 3x" autocomplete="off" spellcheck="false" aria-label="تابع">
+          <div class="frow" style="margin-top:10px">
+            <div class="fld"><label for="cx0">محاسبه در x =</label><input id="cx0" class="ltr" value="2" autocomplete="off"></div>
+            <div class="fld"><label for="ca">انتگرال معین از</label><input id="ca" class="ltr" value="0" autocomplete="off"></div>
+            <div class="fld"><label for="cb">تا</label><input id="cb" class="ltr" value="2" autocomplete="off"></div>
+          </div>
+          <div class="res" id="calc-res" aria-live="polite"></div>
+          <svg id="cplot" class="plot" viewBox="0 0 600 300" role="img" aria-label="نمودار تابع و مشتق"></svg>
+        </article>
+      </div>
+    </section>
+
+    <!-- ترکیبیات -->
+    <section id="p-comb" class="panel t-comb" hidden>
+      <div class="grid">
+        <article class="card">
+          <h3>فاکتوریل، جایگشت و ترکیب</h3>
+          <p class="hint">n تا ۱۰۰۰ و r کوچکتر یا مساوی n.</p>
+          <div class="frow">
+            <div class="fld"><label for="cn">n</label><input id="cn" class="ltr" value="10" inputmode="numeric" autocomplete="off"></div>
+            <div class="fld"><label for="cr">r</label><input id="cr" class="ltr" value="3" inputmode="numeric" autocomplete="off"></div>
+          </div>
+          <div class="res" id="comb-res" aria-live="polite"></div>
+        </article>
+
+        <article class="card">
+          <h3>دنبالهٔ فیبوناچی</h3>
+          <p class="hint">تعداد جمله‌ها از ۱ تا ۹۰.</p>
+          <input id="fn" class="ltr" value="14" inputmode="numeric" autocomplete="off" aria-label="تعداد جمله‌ها">
+          <div class="res" id="fib-res" aria-live="polite"></div>
+        </article>
+
+        <article class="card wide">
+          <h3>تبدیل مبنا</h3>
+          <p class="hint">عدد را با مبنای فعلی‌اش بنویسید تا در مبنای ۲، ۸، ۱۰ و ۱۶ ببینید.</p>
+          <div class="calc-row" style="grid-template-columns:1fr 150px">
+            <input id="bv" class="ltr big" value="255" autocomplete="off" aria-label="عدد">
+            <select id="bb" aria-label="مبنا"><option value="10">مبنای ۱۰</option><option value="2">مبنای ۲</option><option value="8">مبنای ۸</option><option value="16">مبنای ۱۶</option></select>
+          </div>
+          <div class="res" id="base-res" aria-live="polite"></div>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <p class="foot">همهٔ محاسبه‌ها در مرورگر شما انجام می‌شود. جواب‌های اعشاری تا حدود ۱۲ رقم معنادار نمایش داده می‌شوند.</p>
+</div></div></template>
+<script>
+
+window.__mountCalc=function(R){
+'use strict';
+var P='۰۱۲۳۴۵۶۷۸۹';
+var fa=function(s){return String(s).replace(/\d/g,function(d){return P[+d];});};
+var $=function(id){return R.getElementById(id);};
+var M=function(s){return '<span class="m">'+s+'</span>';};
+var err=function(s){return '<div class="err">'+s+'</div>';};
+var grp=function(s){return s.replace(/\B(?=(\d{3})+(?!\d))/g,'٬');};
+
+function fmt(x){
+  if(typeof x==='bigint'){var n=x<0n;return (n?'−':'')+fa(grp((n?-x:x).toString()));}
+  if(typeof x!=='number'||!isFinite(x))return 'تعریف‌نشده';
+  if(Math.abs(x)<1e-12)x=0;
+  var s=String(parseFloat(x.toPrecision(12)));var neg=s[0]==='-';if(neg)s=s.slice(1);
+  if(s.indexOf('e')>-1){var t=s.split('e');return (neg?'−':'')+fa(t[0]).replace('.','٫')+'×۱۰<sup>'+fa(t[1].replace('+','').replace('-','−'))+'</sup>';}
+  var p=s.split('.');
+  return (neg?'−':'')+fa(grp(p[0]))+(p[1]?'٫'+fa(p[1]):'');
+}
+function toFrac(x){
+  if(!isFinite(x)||Number.isInteger(x))return null;
+  var h1=1,h0=0,k1=0,k0=1,b=x;
+  for(var i=0;i<24;i++){
+    var a=Math.floor(b),h2=a*h1+h0,k2=a*k1+k0;h0=h1;h1=h2;k0=k1;k1=k2;
+    if(Math.abs(x-h1/k1)<1e-10)break;
+    var fr=b-a;if(fr<1e-12)break;b=1/fr;if(k1>5000)return null;
+  }
+  if(k1>1000||Math.abs(x-h1/k1)>1e-9)return null;
+  return {p:h1,q:k1};
+}
+function fmtF(x){var f=toFrac(x);return f?fmt(f.p)+'/'+fmt(f.q)+' ('+fmt(x)+')':fmt(x);}
+var par=function(n){return n<0?'('+fmt(n)+')':fmt(n);};
+var sg=function(n){return n<0?'− '+fmt(-n):'+ '+fmt(n);};
+var fmtS=function(x){return fmt(x).replace(/<[^>]+>/g,'');};
+
+function norm(s){
+  return String(s).replace(/[۰-۹]/g,function(d){return '۰۱۲۳۴۵۶۷۸۹'.indexOf(d);})
+    .replace(/[٠-٩]/g,function(d){return '٠١٢٣٤٥٦٧٨٩'.indexOf(d);})
+    .replace(/[×✕]/g,'*').replace(/÷/g,'/').replace(/٫/g,'.').replace(/٬/g,'').replace(/[،؛]/g,',')
+    .replace(/[−–—]/g,'-').replace(/π/g,'pi').replace(/√/g,'sqrt').replace(/²/g,'^2').replace(/³/g,'^3').replace(/٪/g,'%');
+}
+
+/* Safe recursive-descent expression evaluator */
+function ev(src,deg){
+  var s=norm(src).replace(/\s+/g,'');
+  if(!s)throw new Error('empty');
+  var i=0;
+  var d2r=function(x){return x*Math.PI/180;},r2d=function(x){return x*180/Math.PI;};
+  var F={sqrt:Math.sqrt,cbrt:Math.cbrt,abs:Math.abs,ln:Math.log,log:Math.log10,exp:Math.exp,
+    sin:function(x){return Math.sin(deg?d2r(x):x);},cos:function(x){return Math.cos(deg?d2r(x):x);},tan:function(x){return Math.tan(deg?d2r(x):x);},
+    asin:function(x){return deg?r2d(Math.asin(x)):Math.asin(x);},acos:function(x){return deg?r2d(Math.acos(x)):Math.acos(x);},atan:function(x){return deg?r2d(Math.atan(x)):Math.atan(x);}};
+  var K={pi:Math.PI,e:Math.E};
+  var isL=function(c){return c!==undefined&&/[a-zA-Z]/.test(c);};
+  var isD=function(c){return c!==undefined&&/[0-9.]/.test(c);};
+  function expr(){var v=term();while(s[i]==='+'||s[i]==='-'){var o=s[i++];var r=term();v=o==='+'?v+r:v-r;}return v;}
+  function term(){var v=unary();for(;;){var c=s[i];if(c==='*'){i++;v*=unary();}else if(c==='/'){i++;v/=unary();}else if(c==='('||isL(c)||isD(c)){v*=unary();}else break;}return v;}
+  function unary(){if(s[i]==='-'){i++;return -unary();}if(s[i]==='+'){i++;return unary();}return power();}
+  function power(){var b=post();if(s[i]==='^'){i++;return Math.pow(b,unary());}return b;}
+  function post(){var v=prim();for(;;){if(s[i]==='!'){i++;v=fct(v);}else if(s[i]==='%'){i++;v/=100;}else break;}return v;}
+  function fct(v){if(!Number.isInteger(v)||v<0||v>170)return NaN;var r=1;for(var k=2;k<=v;k++)r*=k;return r;}
+  function prim(){
+    var c=s[i];
+    if(c==='('){i++;var v=expr();if(s[i]!==')')throw new Error('paren');i++;return v;}
+    if(isD(c)){var m=/^(\d+\.?\d*|\.\d+)/.exec(s.slice(i));if(!m)throw new Error('num');i+=m[0].length;return parseFloat(m[0]);}
+    if(isL(c)){var nm=/^[a-zA-Z]+/.exec(s.slice(i))[0];i+=nm.length;
+      if(F[nm])return F[nm](post());
+      if(K.hasOwnProperty(nm))return K[nm];
+      throw new Error('name');}
+    throw new Error('syntax');
+  }
+  var out=expr();if(i<s.length)throw new Error('extra');return out;
+}
+function val(id){try{return ev($(id).value,true);}catch(e){return NaN;}}
+function bind(ids,fn){ids.forEach(function(id){var e=$(id);e.addEventListener('input',fn);e.addEventListener('change',fn);});fn();}
+function ok(main,steps){return '<div class="ans">'+main+'</div>'+(steps&&steps.length?'<ol class="steps">'+steps.map(function(x){return '<li>'+x+'</li>';}).join('')+'</ol>':'');}
+var NEED='همهٔ عددها را درست وارد کنید.';
+
+/* ---------- حساب ---------- */
+var KEYS=[['(','('],[')',')'],['÷','/','op'],['×','*','op'],['−','-','op'],['+','+','op'],['^','^','op'],['√','sqrt(','op'],['π','pi'],['!','!'],['%','%'],['sin','sin('],['cos','cos('],['tan','tan('],['log','log('],['ln','ln('],['C','C'],['⌫','B']];
+function ins(t){
+  var el=$('ex');
+  if(t==='C'){el.value='';}
+  else if(t==='B'){el.value=el.value.slice(0,-1);}
+  else{
+    var s=typeof el.selectionStart==='number'?el.selectionStart:el.value.length;
+    var e=typeof el.selectionEnd==='number'?el.selectionEnd:s;
+    el.value=el.value.slice(0,s)+t+el.value.slice(e);
+    var p=s+t.length;el.focus();try{el.setSelectionRange(p,p);}catch(x){}
+  }
+  calcEx();
+}
+function calcEx(){
+  var r=$('ex-res'),src=$('ex').value;
+  if(!src.trim()){r.innerHTML='<span class="sub">یک عبارت بنویسید.</span>';return;}
+  try{
+    var v=ev(src,$('angle').value==='1');var f=toFrac(v);
+    r.innerHTML='<div class="ans">'+M('= '+fmt(v))+'</div>'+(f?'<p class="sub">به‌صورت کسر: '+M(fmt(f.p)+'/'+fmt(f.q))+'</p>':'');
+  }catch(e){r.innerHTML=err('عبارت درست نیست. پرانتزها و علامت‌ها را بررسی کنید.');}
+}
+function calcPct(){
+  var m=$('pm').value,x=val('pa'),y=val('pb'),r=$('pct-res');
+  if(isNaN(x)||isNaN(y)){r.innerHTML=err(NEED);return;}
+  var ans,st,a;
+  if(m==='1'){a=x*y/100;ans=M(fmt(a));st=M(fmt(x)+'% × '+fmt(y)+' = '+fmt(x)+' × '+fmt(y)+' ÷ ۱۰۰ = '+fmt(a));}
+  else if(m==='2'){if(y===0){r.innerHTML=err('y نمی‌تواند صفر باشد.');return;}a=x/y*100;ans=M(fmt(a)+'%');st=M(fmt(x)+' ÷ '+fmt(y)+' × ۱۰۰ = '+fmt(a)+'%');}
+  else{if(x===0){r.innerHTML=err('x نمی‌تواند صفر باشد.');return;}a=(y-x)/Math.abs(x)*100;ans=(a>=0?'افزایش ':'کاهش ')+M(fmt(Math.abs(a))+'%');st=M('('+fmt(y)+' − '+par(x)+') ÷ '+fmt(Math.abs(x))+' × ۱۰۰ = '+fmt(a)+'%');}
+  r.innerHTML=ok(ans,[st]);
+}
+function calcGcd(){
+  var r=$('gcd-res');
+  var nums=norm($('gl').value).split(/[,\s]+/).filter(Boolean).map(Number);
+  if(nums.length<2||nums.some(function(n){return !Number.isInteger(n)||n<=0||n>1e12;})){r.innerHTML=err('دست‌کم دو عدد صحیح مثبت (حداکثر هزار میلیارد) وارد کنید.');return;}
+  var B=nums.map(function(n){return BigInt(n);});
+  var g2=function(a,b){while(b){var t=a%b;a=b;b=t;}return a;};
+  var g=B.reduce(g2),l=B.reduce(function(a,b){return a/g2(a,b)*b;});
+  var a=B[0],b=B[1];if(a<b){var t=a;a=b;b=t;}
+  var st=[];
+  while(b>0n){var q=a/b,rem=a%b;st.push(M(fmt(a)+' = '+fmt(b)+' × '+fmt(q)+' + '+fmt(rem)));a=b;b=rem;}
+  r.innerHTML='<div class="kv"><div><small>ب.م.م</small><b>'+M(fmt(g))+'</b></div><div><small>ک.م.م</small><b>'+M(fmt(l))+'</b></div></div>'+
+    (g===1n?'<p class="sub">عددها نسبت به هم اول‌اند.</p>':'')+
+    '<p class="sub">الگوریتم اقلیدس برای دو عدد اول:</p><ol class="steps">'+st.map(function(x){return '<li>'+x+'</li>';}).join('')+'</ol>';
+}
+function calcPf(){
+  var r=$('pf-res'),n=val('pf');
+  if(!Number.isInteger(n)||n<2||n>1e12){r.innerHTML=err('یک عدد صحیح بین ۲ تا هزار میلیارد وارد کنید.');return;}
+  var m=n,f=[];
+  for(var p=2;p*p<=m;p+=(p===2?1:2)){var e=0;while(m%p===0){m/=p;e++;}if(e)f.push([p,e]);}
+  if(m>1)f.push([m,1]);
+  var cnt=1,sum=1;
+  f.forEach(function(x){cnt*=x[1]+1;sum*=(Math.pow(x[0],x[1]+1)-1)/(x[0]-1);});
+  var str=f.map(function(x){return fa(String(x[0]))+(x[1]>1?'<sup>'+fa(x[1])+'</sup>':'');}).join(' × ');
+  var prime=f.length===1&&f[0][1]===1;
+  r.innerHTML='<div class="ans">'+M(fmt(n)+' = '+str)+'</div>'+
+    '<div class="kv" style="margin-top:10px"><div><small>اول است؟</small><b>'+(prime?'بله':'خیر')+'</b></div><div><small>تعداد مقسوم‌علیه‌ها</small><b>'+M(fmt(cnt))+'</b></div><div><small>مجموع مقسوم‌علیه‌ها</small><b>'+M(fmt(Math.round(sum)))+'</b></div></div>';
+}
+
+/* ---------- جبر ---------- */
+function calcLin(){
+  var a=val('la'),b=val('lb'),c=val('lc'),r=$('lin-res');
+  if([a,b,c].some(isNaN)){r.innerHTML=err(NEED);return;}
+  var eq=M(fmt(a)+'x '+sg(b)+' = '+fmt(c));
+  if(a===0){r.innerHTML=ok(b===c?'بی‌شمار جواب دارد':'جواب ندارد',[eq,'چون ضریب x صفر است، فقط برابری '+M(fmt(b)+' = '+fmt(c))+' بررسی می‌شود.']);return;}
+  var x=(c-b)/a;
+  r.innerHTML=ok(M('x = '+fmtF(x)),[eq,M(fmt(a)+'x = '+fmt(c)+' − '+par(b)+' = '+fmt(c-b)),M('x = '+fmt(c-b)+' ÷ '+par(a)+' = '+fmtF(x))]);
+}
+function calcQuad(){
+  var a=val('qa'),b=val('qb'),c=val('qc'),r=$('quad-res');
+  if([a,b,c].some(isNaN)){r.innerHTML=err(NEED);return;}
+  if(a===0){r.innerHTML=err('اگر a صفر باشد معادله درجه دوم نیست. از کارت درجه اول استفاده کنید.');return;}
+  var d=b*b-4*a*c,tol=1e-12*Math.max(1,b*b,Math.abs(4*a*c));
+  var st=[M('Δ = b² − 4ac = '+par(b)+'² − 4 × '+par(a)+' × '+par(c)+' = '+fmt(d))],ans;
+  if(d>tol){
+    var sq=Math.sqrt(d),x1=(-b+sq)/(2*a),x2=(-b-sq)/(2*a);
+    st.push('Δ مثبت است، پس دو ریشهٔ حقیقی داریم.');
+    st.push(M('x = (−b ± √Δ) ÷ 2a = ('+fmt(-b)+' ± '+fmt(sq)+') ÷ '+fmt(2*a)));
+    ans=M('x₁ = '+fmtF(x1))+'<br>'+M('x₂ = '+fmtF(x2));
+  }else if(Math.abs(d)<=tol){
+    var x0=-b/(2*a);st.push('Δ صفر است، پس یک ریشهٔ مضاعف داریم.');st.push(M('x = −b ÷ 2a = '+fmt(-b)+' ÷ '+fmt(2*a)));
+    ans=M('x = '+fmtF(x0));
+  }else{
+    var re=-b/(2*a),im=Math.sqrt(-d)/(2*Math.abs(a));
+    st.push('Δ منفی است، پس ریشه‌ها مختلط‌اند.');
+    ans=M('x = '+fmt(re)+' ± '+fmt(im)+'i');
+  }
+  var xv=-b/(2*a),yv=c-b*b/(4*a);
+  st.push('رأس سهمی: '+M('( '+fmtF(xv)+' , '+fmtF(yv)+' )'));
+  st.push('مجموع ریشه‌ها '+M(fmtF(-b/a))+' و حاصل‌ضرب ریشه‌ها '+M(fmtF(c/a)));
+  r.innerHTML=ok(ans,st);
+}
+function calcSys(){
+  var a1=val('s1a'),b1=val('s1b'),c1=val('s1c'),a2=val('s2a'),b2=val('s2b'),c2=val('s2c'),r=$('sys-res');
+  if([a1,b1,c1,a2,b2,c2].some(isNaN)){r.innerHTML=err(NEED);return;}
+  var D=a1*b2-a2*b1,Dx=c1*b2-c2*b1,Dy=a1*c2-a2*c1;
+  var st=[M('D = '+par(a1)+' × '+par(b2)+' − '+par(a2)+' × '+par(b1)+' = '+fmt(D)),M('Dx = '+par(c1)+' × '+par(b2)+' − '+par(c2)+' × '+par(b1)+' = '+fmt(Dx)),M('Dy = '+par(a1)+' × '+par(c2)+' − '+par(a2)+' × '+par(c1)+' = '+fmt(Dy))];
+  if(Math.abs(D)<1e-12){
+    var inf=Math.abs(Dx)<1e-12&&Math.abs(Dy)<1e-12;
+    st.push('D صفر است، پس دستگاه جواب یکتا ندارد.');
+    r.innerHTML=ok(inf?'بی‌شمار جواب دارد':'جواب ندارد',st);return;
+  }
+  var x=Dx/D,y=Dy/D;
+  st.push(M('x = Dx ÷ D = '+fmtF(x)));st.push(M('y = Dy ÷ D = '+fmtF(y)));
+  r.innerHTML=ok(M('x = '+fmtF(x))+'<br>'+M('y = '+fmtF(y)),st);
+}
+
+/* ---------- هندسه ---------- */
+var PI=Math.PI;
+var SH={
+  square:{n:'مربع',f:[['a','ضلع']],d:[5],c:function(v){return [['مساحت',v.a*v.a,'a²'],['محیط',4*v.a,'4a'],['قطر',v.a*Math.SQRT2,'a√2']];}},
+  rect:{n:'مستطیل',f:[['a','طول'],['b','عرض']],d:[8,5],c:function(v){return [['مساحت',v.a*v.b,'a × b'],['محیط',2*(v.a+v.b),'2(a + b)'],['قطر',Math.hypot(v.a,v.b),'√(a² + b²)']];}},
+  tri:{n:'مثلث (قاعده و ارتفاع)',f:[['b','قاعده'],['h','ارتفاع']],d:[6,4],c:function(v){return [['مساحت',v.b*v.h/2,'½ × b × h']];}},
+  heron:{n:'مثلث (سه ضلع)',f:[['a','ضلع اول'],['b','ضلع دوم'],['c','ضلع سوم']],d:[3,4,5],c:function(v){
+    var a=v.a,b=v.b,c=v.c;if(a+b<=c||a+c<=b||b+c<=a)return null;
+    var s=(a+b+c)/2,A=Math.sqrt(s*(s-a)*(s-b)*(s-c));
+    var q=[a*a,b*b,c*c].sort(function(x,y){return x-y;}),e=1e-9*q[2];
+    var kind=Math.abs(q[0]+q[1]-q[2])<e?'قائم‌الزاویه':(q[0]+q[1]>q[2]?'حاده':'منفرجه');
+    var sides=(a===b&&b===c)?'متساوی‌الاضلاع':((a===b||b===c||a===c)?'متساوی‌الساقین':'مختلف‌الاضلاع');
+    return [['مساحت',A,'فرمول هرون'],['محیط',a+b+c,'a + b + c'],['نوع مثلث',sides+'، '+kind]];}},
+  circle:{n:'دایره',f:[['r','شعاع']],d:[5],c:function(v){return [['مساحت',PI*v.r*v.r,'πr²'],['محیط',2*PI*v.r,'2πr'],['قطر',2*v.r,'2r']];}},
+  trap:{n:'ذوزنقه',f:[['a','قاعدهٔ بزرگ'],['b','قاعدهٔ کوچک'],['h','ارتفاع']],d:[10,6,4],c:function(v){return [['مساحت',(v.a+v.b)*v.h/2,'(a + b) × h ÷ 2']];}},
+  rhomb:{n:'لوزی',f:[['p','قطر اول'],['q','قطر دوم']],d:[8,6],c:function(v){var s=Math.hypot(v.p/2,v.q/2);return [['مساحت',v.p*v.q/2,'p × q ÷ 2'],['ضلع',s,'√((p÷2)² + (q÷2)²)'],['محیط',4*s,'4 × ضلع']];}},
+  para:{n:'متوازی‌الاضلاع',f:[['b','قاعده'],['h','ارتفاع']],d:[7,4],c:function(v){return [['مساحت',v.b*v.h,'b × h']];}},
+  cube:{n:'مکعب',f:[['a','یال']],d:[3],c:function(v){return [['حجم',v.a*v.a*v.a,'a³'],['مساحت کل',6*v.a*v.a,'6a²'],['قطر فضایی',v.a*Math.sqrt(3),'a√3']];}},
+  box:{n:'مکعب مستطیل',f:[['a','طول'],['b','عرض'],['c','ارتفاع']],d:[5,4,3],c:function(v){return [['حجم',v.a*v.b*v.c,'a × b × c'],['مساحت کل',2*(v.a*v.b+v.b*v.c+v.a*v.c),'2(ab + bc + ac)'],['قطر فضایی',Math.sqrt(v.a*v.a+v.b*v.b+v.c*v.c),'√(a² + b² + c²)']];}},
+  sphere:{n:'کره',f:[['r','شعاع']],d:[3],c:function(v){return [['حجم',4/3*PI*Math.pow(v.r,3),'4⁄3 πr³'],['مساحت سطح',4*PI*v.r*v.r,'4πr²']];}},
+  cyl:{n:'استوانه',f:[['r','شعاع قاعده'],['h','ارتفاع']],d:[3,7],c:function(v){return [['حجم',PI*v.r*v.r*v.h,'πr²h'],['مساحت جانبی',2*PI*v.r*v.h,'2πrh'],['مساحت کل',2*PI*v.r*(v.r+v.h),'2πr(r + h)']];}},
+  cone:{n:'مخروط',f:[['r','شعاع قاعده'],['h','ارتفاع']],d:[3,4],c:function(v){var l=Math.hypot(v.r,v.h);return [['حجم',PI*v.r*v.r*v.h/3,'πr²h ÷ 3'],['مولد',l,'√(r² + h²)'],['مساحت کل',PI*v.r*(v.r+l),'πr(r + مولد)']];}}
+};
+function buildShape(){
+  var s=SH[$('gs').value];
+  $('gf').innerHTML=s.f.map(function(f,i){return '<div class="fld"><label for="gv'+i+'">'+f[1]+'</label><input id="gv'+i+'" class="ltr" inputmode="decimal" value="'+s.d[i]+'" autocomplete="off"></div>';}).join('');
+  calcShape();
+}
+function calcShape(){
+  var s=SH[$('gs').value],v={},bad=false,r=$('g-res');
+  s.f.forEach(function(f,i){var x=val('gv'+i);v[f[0]]=x;if(!(x>0))bad=true;});
+  if(bad){r.innerHTML=err('همهٔ اندازه‌ها باید عددی مثبت باشند.');return;}
+  var rows=s.c(v);
+  if(!rows){r.innerHTML=err('این سه ضلع مثلث نمی‌سازند. مجموع هر دو ضلع باید از ضلع سوم بزرگ‌تر باشد.');return;}
+  r.innerHTML='<div class="kv">'+rows.map(function(x){return '<div><small>'+x[0]+(x[2]?' · '+M(x[2]):'')+'</small><b>'+(typeof x[1]==='string'?x[1]:M(fmt(x[1])))+'</b></div>';}).join('')+'</div>';
+}
+function calcPy(){
+  var m=$('pym').value,a=val('pya'),b=val('pyb'),r=$('py-res');
+  $('pya-l').textContent=m==='1'?'ضلع اول (a)':'وتر (c)';
+  $('pyb-l').textContent=m==='1'?'ضلع دوم (b)':'یک ضلع قائمه (a)';
+  if(!(a>0&&b>0)){r.innerHTML=err('هر دو اندازه باید مثبت باشند.');return;}
+  if(m==='1'){
+    var c=Math.hypot(a,b);
+    r.innerHTML=ok(M('c = '+fmt(c)),[M('c² = a² + b² = '+fmt(a*a)+' + '+fmt(b*b)+' = '+fmt(a*a+b*b)),M('c = √'+fmt(a*a+b*b)+' = '+fmt(c))]);
+  }else{
+    if(a<=b){r.innerHTML=err('وتر باید از ضلع قائمه بلندتر باشد.');return;}
+    var x=Math.sqrt(a*a-b*b);
+    r.innerHTML=ok(M('b = '+fmt(x)),[M('b² = c² − a² = '+fmt(a*a)+' − '+fmt(b*b)+' = '+fmt(a*a-b*b)),M('b = √'+fmt(a*a-b*b)+' = '+fmt(x))]);
+  }
+}
+
+/* ---------- مثلثات ---------- */
+var EX={0:['0','1'],30:['1/2','√3/2'],45:['√2/2','√2/2'],60:['√3/2','1/2'],90:['1','0']};
+function exact(deg){
+  if(!Number.isInteger(deg))return null;
+  var d=((deg%360)+360)%360,ref=d<=90?d:(d<=180?180-d:(d<=270?d-180:360-d));
+  if(!EX.hasOwnProperty(ref))return null;
+  var sn=d>180?'−':'',cs=(d>90&&d<270)?'−':'';
+  var sv=EX[ref][0],cv=EX[ref][1];
+  return {s:(sv==='0'?'0':sn+sv),c:(cv==='0'?'0':cs+cv)};
+}
+function drawCircle(rad){
+  var R=100,cx=150,cy=150,px=cx+R*Math.cos(rad),py=cy-R*Math.sin(rad);
+  var a=((rad%(2*PI))+2*PI)%(2*PI),g='';
+  var f=function(n){return n.toFixed(1);};
+  g+='<line class="gl" x1="10" y1="'+cy+'" x2="290" y2="'+cy+'"/><line class="gl" x1="'+cx+'" y1="10" x2="'+cx+'" y2="290"/>';
+  g+='<circle cx="'+cx+'" cy="'+cy+'" r="'+R+'" fill="none" stroke="var(--muted)" stroke-width="1.5"/>';
+  g+='<line class="ax" x1="10" y1="'+cy+'" x2="290" y2="'+cy+'"/><line class="ax" x1="'+cx+'" y1="10" x2="'+cx+'" y2="290"/>';
+  if(a>1e-9&&a<2*PI-1e-9){var ex=cx+32*Math.cos(a),ey=cy-32*Math.sin(a);g+='<path d="M '+(cx+32)+' '+cy+' A 32 32 0 '+(a>PI?1:0)+' 0 '+f(ex)+' '+f(ey)+'" fill="none" stroke="var(--c-alg)" stroke-width="2.5"/>';}
+  g+='<line x1="'+f(px)+'" y1="'+cy+'" x2="'+f(px)+'" y2="'+f(py)+'" stroke="var(--c-arith)" stroke-width="4" stroke-linecap="round"/>';
+  g+='<line x1="'+cx+'" y1="'+cy+'" x2="'+f(px)+'" y2="'+cy+'" stroke="var(--c-trig)" stroke-width="4" stroke-linecap="round"/>';
+  g+='<line x1="'+cx+'" y1="'+cy+'" x2="'+f(px)+'" y2="'+f(py)+'" stroke="var(--fg)" stroke-width="2"/>';
+  g+='<circle cx="'+f(px)+'" cy="'+f(py)+'" r="6" fill="var(--c-calc)" stroke="var(--surface)" stroke-width="2"/>';
+  g+='<text class="tx" x="283" y="'+(cy-6)+'" text-anchor="end">'+fa(1)+'</text><text class="tx" x="'+(cx+6)+'" y="22">'+fa(1)+'</text>';
+  $('tsvg').innerHTML=g;
+}
+function calcTrig(){
+  var x=val('ta'),u=$('tu').value,r=$('trig-res');
+  if(isNaN(x)){r.innerHTML=err('زاویه را درست وارد کنید.');return;}
+  var rad=u==='d'?x*PI/180:x,deg=u==='d'?x:x*180/PI;
+  var s=Math.sin(rad),c=Math.cos(rad),z=function(v){return Math.abs(v)<1e-12?0:v;};
+  s=z(s);c=z(c);
+  var inv=function(v){return v===0?NaN:1/v;};
+  var t=c===0?NaN:s/c,cot=s===0?NaN:c/s;
+  var tile=function(l,v){return '<div><small>'+l+'</small><b>'+M(fmt(v))+'</b></div>';};
+  var fr=toFrac(deg/180),radTxt;
+  if(Number.isInteger(deg/180))radTxt=(deg/180===0?'۰':(Math.abs(deg/180)===1?'':fmt(deg/180))+'π');
+  else if(fr)radTxt=(Math.abs(fr.p)===1?(fr.p<0?'−':''):fmt(fr.p))+'π/'+fmt(fr.q);
+  else radTxt=fmt(deg*PI/180);
+  var ex=exact(deg),exTxt='';
+  if(ex)exTxt='<p class="sub">مقدار دقیق: '+M('sin = '+ex.s)+' و '+M('cos = '+ex.c)+'</p>';
+  r.innerHTML='<div class="kv">'+tile('sin',s)+tile('cos',c)+tile('tan',t)+tile('cot',cot)+tile('sec',inv(c))+tile('csc',inv(s))+'</div>'+exTxt+
+    '<p class="sub">این زاویه برابر است با '+M(fmt(deg)+'°')+' یا '+M(radTxt+' rad')+'.</p>';
+  drawCircle(rad);
+}
+function calcInv(){
+  var f=$('ivf').value,v=val('ivv'),r=$('iv-res');
+  if(isNaN(v)){r.innerHTML=err('مقدار را درست وارد کنید.');return;}
+  if(f!=='tan'&&Math.abs(v)>1){r.innerHTML=err('مقدار sin و cos باید بین ۱- و ۱ باشد.');return;}
+  var t0=(f==='sin'?Math.asin(v):(f==='cos'?Math.acos(v):Math.atan(v)))*180/PI;
+  var cand=f==='sin'?[t0,180-t0]:(f==='cos'?[t0,360-t0]:[t0,t0+180]);
+  var out=[];
+  cand.forEach(function(a){a=((a%360)+360)%360;if(!out.some(function(o){return Math.abs(o-a)<1e-9||Math.abs(Math.abs(o-a)-360)<1e-9;}))out.push(a);});
+  out.sort(function(a,b){return a-b;});
+  r.innerHTML='<div class="ans">'+M(f+' θ = '+fmt(v))+'</div><div class="tags">'+out.map(function(a){return '<span>'+fmt(a)+'°</span>';}).join('')+'</div>'+
+    '<p class="sub">زاویهٔ اصلی '+M(fmt(t0)+'°')+' است. جواب‌های دیگر با افزودن مضرب‌های ۳۶۰ درجه به‌دست می‌آیند.</p>';
+}
+
+/* ---------- آمار ---------- */
+function median(a){var n=a.length,h=Math.floor(n/2);return n%2?a[h]:(a[h-1]+a[h])/2;}
+function barChart(a,mean){
+  var W=600,H=230,pl=14,pr=14,pt=22,pb=22,n=a.length;
+  var lo=Math.min.apply(null,a.concat(0)),hi=Math.max.apply(null,a.concat(0)),rng=(hi-lo)||1;
+  var y=function(v){return pt+(H-pt-pb)*(1-(v-lo)/rng);};
+  var bw=(W-pl-pr)/n,cols=['--c-arith','--c-alg','--c-geo','--c-trig','--c-stat','--c-calc','--c-comb'],g='';
+  g+='<line class="ax" x1="'+pl+'" y1="'+y(0).toFixed(1)+'" x2="'+(W-pr)+'" y2="'+y(0).toFixed(1)+'"/>';
+  a.forEach(function(v,k){
+    var x=pl+k*bw+bw*0.15,w=bw*0.7,y1=y(Math.max(v,0)),y2=y(Math.min(v,0));
+    g+='<rect x="'+x.toFixed(1)+'" y="'+y1.toFixed(1)+'" width="'+w.toFixed(1)+'" height="'+Math.max(1,y2-y1).toFixed(1)+'" rx="5" fill="var('+cols[k%7]+')"/>';
+    if(n<=16)g+='<text class="tx" x="'+(x+w/2).toFixed(1)+'" y="'+(y1-5).toFixed(1)+'" text-anchor="middle">'+fmtS(v)+'</text>';
+  });
+  var ym=y(mean).toFixed(1);
+  g+='<line x1="'+pl+'" y1="'+ym+'" x2="'+(W-pr)+'" y2="'+ym+'" stroke="var(--fg)" stroke-width="1.5" stroke-dasharray="6 5"/>';
+  g+='<text class="tx" x="'+(W-pr)+'" y="'+(parseFloat(ym)-5)+'" text-anchor="end">میانگین '+fmtS(mean)+'</text>';
+  return '<svg class="plot" viewBox="0 0 '+W+' '+H+'" role="img" aria-label="نمودار میله‌ای داده‌ها">'+g+'</svg>';
+}
+function calcStat(){
+  var r=$('stat-res');
+  var a=norm($('sl').value).split(/[,\s]+/).filter(Boolean).map(Number);
+  if(a.length<2||a.some(isNaN)){r.innerHTML=err('دست‌کم دو عدد وارد کنید و آن‌ها را با فاصله یا ویرگول جدا کنید.');return;}
+  var n=a.length,sum=a.reduce(function(p,q){return p+q;},0),mean=sum/n;
+  var s=a.slice().sort(function(p,q){return p-q;}),h=Math.floor(n/2);
+  var med=median(s),q1=median(s.slice(0,h)),q3=median(s.slice(n%2?h+1:h));
+  var cnt={},mx=0;s.forEach(function(v){cnt[v]=(cnt[v]||0)+1;if(cnt[v]>mx)mx=cnt[v];});
+  var modes=mx>1?Object.keys(cnt).filter(function(k){return cnt[k]===mx;}).map(Number).sort(function(p,q){return p-q;}):[];
+  var ss=a.reduce(function(p,v){return p+(v-mean)*(v-mean);},0);
+  var vp=ss/n,vs=ss/(n-1);
+  var tile=function(l,v){return '<div><small>'+l+'</small><b>'+(typeof v==='string'?v:M(fmt(v)))+'</b></div>';};
+  r.innerHTML='<div class="kv">'+tile('تعداد',n)+tile('مجموع',sum)+tile('میانگین',mean)+tile('میانه',med)+
+    tile('نما',modes.length?M(modes.map(fmt).join(' ، ')):'ندارد')+tile('کمترین',s[0])+tile('بیشترین',s[n-1])+tile('دامنهٔ تغییرات',s[n-1]-s[0])+
+    tile('چارک اول',q1)+tile('چارک سوم',q3)+tile('واریانس (جامعه)',vp)+tile('انحراف معیار (جامعه)',Math.sqrt(vp))+
+    tile('واریانس (نمونه)',vs)+tile('انحراف معیار (نمونه)',Math.sqrt(vs))+'</div>'+
+    '<p class="sub">داده‌های مرتب‌شده: '+M(s.map(fmt).join(' ، '))+'</p>'+
+    (n<=40?barChart(a,mean):'<p class="sub">برای رسم نمودار حداکثر ۴۰ داده لازم است.</p>');
+}
+
+/* ---------- حسابان ---------- */
+function parsePoly(src){
+  var s=norm(src).replace(/\s+/g,'').replace(/X/g,'x');
+  if(!s)throw new Error('تابع را بنویسید.');
+  if(/[()]/.test(s))throw new Error('پرانتز پشتیبانی نمی‌شود. عبارت را بازنویسی کنید.');
+  if(/\^-/.test(s))throw new Error('توان منفی پشتیبانی نمی‌شود.');
+  var co=[],parts=s.split(/(?=[+-])/);
+  parts.forEach(function(t){
+    if(t==='')return;
+    var m=/^([+-]?)(\d*\.?\d*)(\*?x(?:\^(\d+))?)?$/.exec(t);
+    if(!m||(m[2]===''&&!m[3])||m[2]==='.')throw new Error('«'+t+'» قابل فهم نیست. از قالبی مثل 3x^2 - 5x + 2 استفاده کنید.');
+    var c=m[2]===''?1:parseFloat(m[2]);if(m[1]==='-')c=-c;
+    var k=m[3]?(m[4]!==undefined?parseInt(m[4],10):1):0;
+    if(k>20)throw new Error('بیشترین توان مجاز ۲۰ است.');
+    while(co.length<=k)co.push(0);co[k]+=c;
+  });
+  return co;
+}
+function polyHTML(co,tail){
+  var out='';
+  for(var k=co.length-1;k>=0;k--){
+    var c=co[k];if(Math.abs(c)<1e-12)continue;
+    var neg=c<0,ac=Math.abs(c),f=toFrac(ac),cs;
+    if(k>0&&Math.abs(ac-1)<1e-12)cs='';else cs=f?fmt(f.p)+'/'+fmt(f.q):fmt(ac);
+    var xs=k>0?'x'+(k>1?'<sup>'+fa(k)+'</sup>':''):'';
+    out+=(out?(neg?' − ':' + '):(neg?'−':''))+cs+xs;
+  }
+  if(!out)out='۰';
+  return out+(tail||'');
+}
+var ep=function(c,x){var r=0;for(var k=c.length-1;k>=0;k--)r=r*x+c[k];return r;};
+function niceStep(r){var e=Math.pow(10,Math.floor(Math.log10(r))),f=r/e;return (f<1.5?1:f<3.5?2:f<7.5?5:10)*e;}
+function plot(co,dco,a,b){
+  var W=600,H=300,pl=40,pr=12,pt=12,pb=24,X0=-5,X1=5,N=240,i;
+  var xs=[],fy=[],dy=[],all=[0];
+  for(i=0;i<=N;i++){var x=X0+(X1-X0)*i/N;xs.push(x);var u=ep(co,x),w=ep(dco,x);fy.push(u);dy.push(w);if(Math.abs(u)<1e6)all.push(u);if(Math.abs(w)<1e6)all.push(w);}
+  var lo=Math.max(-30,Math.min.apply(null,all)),hi=Math.min(30,Math.max.apply(null,all));
+  if(hi-lo<1){lo=-1;hi=1;}
+  var pad=(hi-lo)*0.08;lo-=pad;hi+=pad;
+  var sx=function(x){return pl+(W-pl-pr)*(x-X0)/(X1-X0);},sy=function(y){return pt+(H-pt-pb)*(1-(y-lo)/(hi-lo));};
+  var f1=function(n){return n.toFixed(1);},g='';
+  for(i=X0;i<=X1;i++){g+='<line class="gl" x1="'+f1(sx(i))+'" y1="'+pt+'" x2="'+f1(sx(i))+'" y2="'+(H-pb)+'"/><text class="tx" x="'+f1(sx(i))+'" y="'+(H-8)+'" text-anchor="middle">'+fa(String(i)).replace('-','−')+'</text>';}
+  var st=niceStep((hi-lo)/5);
+  for(var yv=Math.ceil(lo/st)*st;yv<=hi;yv+=st){var yy=Math.abs(yv)<st/1000?0:yv;g+='<line class="gl" x1="'+pl+'" y1="'+f1(sy(yy))+'" x2="'+(W-pr)+'" y2="'+f1(sy(yy))+'"/><text class="tx" x="'+(pl-5)+'" y="'+f1(sy(yy)+4)+'" text-anchor="end">'+fmtS(yy)+'</text>';}
+  g+='<line class="ax" x1="'+f1(sx(0))+'" y1="'+pt+'" x2="'+f1(sx(0))+'" y2="'+(H-pb)+'"/><line class="ax" x1="'+pl+'" y1="'+f1(sy(0))+'" x2="'+(W-pr)+'" y2="'+f1(sy(0))+'"/>';
+  var A=Math.max(Math.min(a,b),X0),B=Math.min(Math.max(a,b),X1);
+  if(isFinite(A)&&isFinite(B)&&B>A){
+    var pts=[],K=60;
+    for(i=0;i<=K;i++){var xx=A+(B-A)*i/K;pts.push(f1(sx(xx))+','+f1(sy(ep(co,xx))));}
+    g+='<polygon points="'+f1(sx(A))+','+f1(sy(0))+' '+pts.join(' ')+' '+f1(sx(B))+','+f1(sy(0))+'" fill="var(--c-calc)" fill-opacity="0.2"/>';
+  }
+  var path=function(ys,col,wd,dash){var d='',pen=false;ys.forEach(function(v,k){if(!isFinite(v)){pen=false;return;}d+=(pen?'L':'M')+f1(sx(xs[k]))+' '+f1(sy(v))+' ';pen=true;});return '<path d="'+d+'" fill="none" stroke="var('+col+')" stroke-width="'+wd+'" stroke-linejoin="round"'+(dash?' stroke-dasharray="'+dash+'"':'')+'/>';};
+  g+=path(dy,'--c-trig',2.2,'7 5')+path(fy,'--c-calc',3);
+  g+='<text class="tx" x="'+(W-pr-4)+'" y="'+(pt+12)+'" text-anchor="end" style="fill:var(--c-calc);font-weight:700">f(x)</text><text class="tx" x="'+(W-pr-4)+'" y="'+(pt+27)+'" text-anchor="end" style="fill:var(--c-trig);font-weight:700">f′(x)</text>';
+  $('cplot').innerHTML=g;
+}
+function calcCalc(){
+  var r=$('calc-res'),co;
+  try{co=parsePoly($('cf').value);}catch(e){r.innerHTML=err(e.message);$('cplot').innerHTML='';return;}
+  var x0=val('cx0'),a=val('ca'),b=val('cb');
+  var dco=[],ico=[0],k;
+  for(k=1;k<co.length;k++)dco.push(co[k]*k);
+  if(!dco.length)dco=[0];
+  for(k=0;k<co.length;k++)ico.push(co[k]/(k+1));
+  var rows='<div class="ans">'+M("f(x) = "+polyHTML(co))+'</div>'+
+    '<div class="kv" style="margin-top:10px">'+
+    '<div style="grid-column:1/-1"><small>مشتق</small><b>'+M("f′(x) = "+polyHTML(dco))+'</b></div>'+
+    '<div style="grid-column:1/-1"><small>انتگرال نامعین</small><b>'+M('∫f(x)dx = '+polyHTML(ico,' + C'))+'</b></div>';
+  if(!isNaN(x0))rows+='<div><small>مقدار تابع در x = '+fmt(x0)+'</small><b>'+M(fmtF(ep(co,x0)))+'</b></div><div><small>شیب (مشتق) در همان نقطه</small><b>'+M(fmtF(ep(dco,x0)))+'</b></div>';
+  if(!isNaN(a)&&!isNaN(b)){var I=ep(ico,b)-ep(ico,a);rows+='<div style="grid-column:1/-1"><small>انتگرال معین از '+fmt(a)+' تا '+fmt(b)+' (ناحیهٔ رنگی روی نمودار)</small><b>'+M(fmtF(I))+'</b></div>';}
+  r.innerHTML=rows+'</div>';
+  plot(co,dco,isNaN(a)?NaN:a,isNaN(b)?NaN:b);
+}
+
+/* ---------- ترکیبیات ---------- */
+function bigFmt(v){
+  var s=v.toString();
+  if(s.length<=22)return fmt(v);
+  return fa(s[0])+'٫'+fa(s.slice(1,6))+' × ۱۰<sup>'+fa(s.length-1)+'</sup> ('+fa(s.length)+' رقمی)';
+}
+function bfact(n){var r=1n;for(var i=2n;i<=BigInt(n);i++)r*=i;return r;}
+function ncr(n,r){r=Math.min(r,n-r);var res=1n;for(var i=1;i<=r;i++)res=res*BigInt(n-r+i)/BigInt(i);return res;}
+function npr(n,r){var res=1n;for(var i=0;i<r;i++)res*=BigInt(n-i);return res;}
+function calcComb(){
+  var n=val('cn'),r0=val('cr'),el=$('comb-res');
+  if(!Number.isInteger(n)||n<0||n>1000||!Number.isInteger(r0)||r0<0||r0>n){el.innerHTML=err('n باید صحیح بین ۰ تا ۱۰۰۰ و r صحیح بین ۰ و n باشد.');return;}
+  el.innerHTML='<div class="kv"><div style="grid-column:1/-1"><small>'+M('n!')+' فاکتوریل n</small><b>'+M(bigFmt(bfact(n)))+'</b></div>'+
+    '<div style="grid-column:1/-1"><small>جایگشت '+M('P(n,r) = n! ÷ (n−r)!')+'</small><b>'+M(bigFmt(npr(n,r0)))+'</b></div>'+
+    '<div style="grid-column:1/-1"><small>ترکیب '+M('C(n,r) = n! ÷ (r!(n−r)!)')+'</small><b>'+M(bigFmt(ncr(n,r0)))+'</b></div></div>';
+}
+function calcFib(){
+  var n=val('fn'),el=$('fib-res');
+  if(!Number.isInteger(n)||n<1||n>90){el.innerHTML=err('تعداد جمله‌ها باید صحیح بین ۱ تا ۹۰ باشد.');return;}
+  var a=0n,b=1n,list=[];
+  for(var i=0;i<n;i++){list.push(a);var t=a+b;a=b;b=t;}
+  var ratio=n>=3&&list[n-2]>0n?Number(list[n-1])/Number(list[n-2]):null;
+  el.innerHTML='<div class="tags">'+list.map(function(v){return '<span>'+fmt(v)+'</span>';}).join('')+'</div>'+
+    (ratio?'<p class="sub">نسبت دو جملهٔ آخر '+M(fmt(ratio))+' است و به نسبت طلایی نزدیک می‌شود.</p>':'');
+}
+function calcBase(){
+  var el=$('base-res'),base=parseInt($('bb').value,10),s=norm($('bv').value).trim().toLowerCase();
+  var digits='0123456789abcdef'.slice(0,base);
+  var okd=s.length>0&&s.split('').every(function(ch){return digits.indexOf(ch)>-1;});
+  if(!okd){el.innerHTML=err('این عدد در مبنای '+fmt(base)+' معتبر نیست. رقم‌های مجاز: '+M(digits.toUpperCase().split('').join(' '))+'.');return;}
+  var v=parseInt(s,base);
+  if(v>Number.MAX_SAFE_INTEGER){el.innerHTML=err('عدد بیش از حد بزرگ است.');return;}
+  var tile=function(l,t){return '<div><small>'+l+'</small><b>'+M(t)+'</b></div>';};
+  el.innerHTML='<div class="kv">'+tile('مبنای ۲',v.toString(2))+tile('مبنای ۸',v.toString(8))+tile('مبنای ۱۰',fmt(v))+tile('مبنای ۱۶',v.toString(16).toUpperCase())+'</div>';
+}
+
+/* ---------- ساختار صفحه ---------- */
+var SEC=[
+  {id:'arith',n:'حساب',g:'÷',t:'حساب و اعداد',s:'ماشین‌حساب، درصد، ب.م.م، ک.م.م و عوامل اول'},
+  {id:'alg',n:'جبر',g:'x',t:'جبر',s:'معادلهٔ درجه اول و دوم و دستگاه دو معادله، با مراحل حل'},
+  {id:'geo',n:'هندسه',g:'△',t:'هندسه',s:'مساحت، محیط و حجم شکل‌ها و قضیهٔ فیثاغورس'},
+  {id:'trig',n:'مثلثات',g:'θ',t:'مثلثات',s:'نسبت‌های مثلثاتی روی دایرهٔ واحد'},
+  {id:'stat',n:'آمار',g:'σ',t:'آمار',s:'میانگین، میانه، نما، واریانس و انحراف معیار'},
+  {id:'calc',n:'حسابان',g:'∫',t:'حسابان',s:'مشتق، انتگرال و نمودار چندجمله‌ای'},
+  {id:'comb',n:'ترکیبیات',g:'!',t:'ترکیبیات و مبنا',s:'فاکتوریل، جایگشت، ترکیب، فیبوناچی و تبدیل مبنا'}
+];
+function show(id){
+  SEC.forEach(function(s){
+    var on=s.id===id;$('p-'+s.id).hidden=!on;
+    var t=$('tab-'+s.id);t.setAttribute('aria-selected',on?'true':'false');t.tabIndex=on?0:-1;
+  });
+  var s=SEC.filter(function(x){return x.id===id;})[0],h=$('phead');
+  h.className='phead t-'+id;
+  h.innerHTML='<span class="big" aria-hidden="true">'+s.g+'</span><div><h2>'+s.t+'</h2><p>'+s.s+'</p></div>';
+}
+function init(){
+  var tabs=$('tabs');
+  tabs.innerHTML=SEC.map(function(s){return '<button type="button" role="tab" class="tab t-'+s.id+'" id="tab-'+s.id+'" aria-controls="p-'+s.id+'" aria-selected="false"><span class="g" aria-hidden="true">'+s.g+'</span>'+s.n+'</button>';}).join('');
+  SEC.forEach(function(s){$('tab-'+s.id).addEventListener('click',function(){show(s.id);});});
+  tabs.addEventListener('keydown',function(e){
+    var k=e.key;if(k!=='ArrowLeft'&&k!=='ArrowRight')return;
+    var idx=SEC.map(function(s){return s.id;}).indexOf((R.activeElement?R.activeElement.id:'').replace('tab-',''));
+    if(idx<0)return;
+    idx=(idx+(k==='ArrowLeft'?1:-1)+SEC.length)%SEC.length;
+    show(SEC[idx].id);$('tab-'+SEC[idx].id).focus();e.preventDefault();
+  });
+
+  $('keys').innerHTML=KEYS.map(function(k){return '<button type="button" class="'+(k[2]||'')+'" data-k="'+k[1]+'" aria-label="'+k[0]+'">'+k[0]+'</button>';}).join('');
+  $('keys').addEventListener('click',function(e){var b=e.target.closest('button');if(b)ins(b.getAttribute('data-k'));});
+  $('ex').addEventListener('keydown',function(e){if(e.key==='Enter')calcEx();});
+  bind(['ex','angle'],calcEx);
+  bind(['pm','pa','pb'],calcPct);
+  bind(['gl'],calcGcd);
+  bind(['pf'],calcPf);
+  bind(['la','lb','lc'],calcLin);
+  bind(['qa','qb','qc'],calcQuad);
+  bind(['s1a','s1b','s1c','s2a','s2b','s2c'],calcSys);
+
+  var gs=$('gs');gs.innerHTML=Object.keys(SH).map(function(k){return '<option value="'+k+'">'+SH[k].n+'</option>';}).join('');
+  gs.addEventListener('change',buildShape);$('gf').addEventListener('input',calcShape);buildShape();
+  bind(['pym','pya','pyb'],calcPy);
+
+  $('tchips').innerHTML=[0,30,45,60,90,120,180,270,360].map(function(d){return '<button type="button" data-d="'+d+'">'+fa(d)+'°</button>';}).join('');
+  $('tchips').addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;$('tu').value='d';$('ta').value=b.getAttribute('data-d');calcTrig();});
+  bind(['ta','tu'],calcTrig);
+  bind(['ivf','ivv'],calcInv);
+  bind(['sl'],calcStat);
+  bind(['cf','cx0','ca','cb'],calcCalc);
+  bind(['cn','cr'],calcComb);
+  bind(['fn'],calcFib);
+  bind(['bv','bb'],calcBase);
+
+  show('arith');
+}
+init();
+};
+
+</script>
+
+<script>
+document.documentElement.setAttribute('dir','rtl');
+document.documentElement.setAttribute('lang','fa');
+
+/* ---------- کمکی‌های نوشتن ریاضی ---------- */
+const m=s=>`<span class="m">${s}</span>`;
+const F=(a,b)=>`<span class="fr"><span>${a}</span><span>${b}</span></span>`;
+const S=x=>`<span class="sq">√<span class="ov">${x}</span></span>`;
+const R=(pre,f,post='')=>`<div class="rl" dir="rtl"><span>${pre}</span><span class="m">${f}</span>${post?`<span>${post}</span>`:''}</div>`;
+const B=(...ls)=>`<div class="fb m">${ls.map(l=>l.startsWith('<div')?l:`<div>${l}</div>`).join('')}</div>`;
+const key=(t,h)=>`<div class="key"><span class="tag">${t}</span>${h}</div>`;
+const eg=h=>`<div class="eg"><span class="tag">مثال</span>${h}</div>`;
+const tip=h=>`<div class="tip"><span class="tag">نکته</span>${h}</div>`;
+const pr=(q,a)=>`<details class="pr"><summary>${q}</summary><div>${a}</div></details>`;
+const tb=(head,rows)=>`<div class="tw"><table><thead><tr>${head.map(h=>`<th>${h}</th>`).join('')}</tr></thead><tbody>${rows.map(r=>`<tr>${r.map(c=>`<td>${c}</td>`).join('')}</tr>`).join('')}</tbody></table></div>`;
+const MX=rows=>`<span class="mx"><span class="mxg" style="grid-template-columns:repeat(${rows[0].length},auto)">${rows.flat().map(v=>`<span>${v}</span>`).join('')}</span></span>`;
+
+function parabolaSvg(){
+  const X=x=>30+(x+1)*45, Y=y=>230-(y+2)*27, pts=[];
+  for(let x=-0.6;x<=4.6001;x+=0.1)pts.push(X(x).toFixed(1)+','+Y(x*x-4*x+3).toFixed(1));
+  let ticks='';
+  [1,2,3,4].forEach(t=>{ticks+=`<line x1="${X(t)}" y1="172" x2="${X(t)}" y2="180" stroke="currentColor"/><text x="${X(t)-4}" y="194">${t}</text>`});
+  return `<div class="svgbox"><svg viewBox="0 0 320 250" role="img" aria-label="نمودار سهمی y = x² − 4x + 3">
+  <line x1="30" y1="176" x2="305" y2="176" stroke="currentColor"/><line x1="75" y1="14" x2="75" y2="236" stroke="currentColor"/>
+  <line x1="${X(2)}" y1="14" x2="${X(2)}" y2="236" stroke="currentColor" stroke-dasharray="4 4" opacity=".45"/>
+  ${ticks}
+  <polyline points="${pts.join(' ')}" fill="none" stroke="#EC4899" stroke-width="3" stroke-linecap="round"/>
+  <circle cx="${X(2)}" cy="${Y(-1)}" r="5" fill="#EC4899"/><circle cx="${X(1)}" cy="176" r="4.5" fill="#0E9F6E"/><circle cx="${X(3)}" cy="176" r="4.5" fill="#0E9F6E"/><circle cx="75" cy="${Y(3)}" r="4.5" fill="#F59E0B"/>
+  <text x="${X(2)+8}" y="${Y(-1)+16}">(2, −1)</text><text x="${X(1)-30}" y="166">(1, 0)</text><text x="${X(3)+6}" y="166">(3, 0)</text><text x="82" y="${Y(3)+4}">(0, 3)</text>
+  <text x="${X(2)+6}" y="28">x = 2</text><text x="296" y="190">x</text><text x="80" y="22">y</text></svg></div>`;
+}
+const circleSvg=`<div class="svgbox"><svg viewBox="0 0 260 260" role="img" aria-label="دایره‌ی مثلثاتی و زاویه‌ی ۶۰ درجه">
+  <line x1="12" y1="130" x2="248" y2="130" stroke="currentColor"/><line x1="130" y1="12" x2="130" y2="248" stroke="currentColor"/>
+  <circle cx="130" cy="130" r="100" fill="none" stroke="currentColor" stroke-width="1.5"/>
+  <line x1="130" y1="130" x2="180" y2="43.4" stroke="#F59E0B" stroke-width="3"/>
+  <line x1="180" y1="43.4" x2="180" y2="130" stroke="#3B82F6" stroke-width="2.5" stroke-dasharray="5 4"/>
+  <line x1="130" y1="43.4" x2="180" y2="43.4" stroke="currentColor" stroke-dasharray="3 4" opacity=".5"/>
+  <path d="M160 130 A30 30 0 0 0 145 104" fill="none" stroke="#F59E0B" stroke-width="2"/>
+  <circle cx="180" cy="43.4" r="5" fill="#F59E0B"/>
+  <text x="163" y="122">θ</text><text x="186" y="92">sin θ</text><text x="140" y="146">cos θ</text>
+  <text x="150" y="36">(cos θ , sin θ)</text><text x="238" y="124">x</text><text x="135" y="22">y</text><text x="232" y="146">1</text></svg></div>`;
+
+/* ---------- محتوای درس‌ها ---------- */
+const CATS=[
+{id:'arith',t:'حساب و اعداد',d:'اعداد، کسرها، درصد، توان و ریشه؛ پایه‌ی همه‌ی ریاضیات.',c:'#3B82F6',g:'÷',lessons:[
+{id:'arith-1',t:'دسته‌بندی اعداد',s:'از اعداد طبیعی تا اعداد حقیقی',h:`
+<p>اعداد را بر اساس ویژگی‌هایشان در خانواده‌هایی دسته‌بندی می‌کنیم. هر خانواده درون خانواده‌ی بزرگ‌تری جا می‌گیرد.</p>
+${tb(['نام','نماد','توضیح','نمونه'],[
+['طبیعی',m('ℕ'),'اعداد شمارش',m('1, 2, 3, …')],
+['حسابی','—','اعداد طبیعی همراه با صفر',m('0, 1, 2, 3, …')],
+['صحیح',m('ℤ'),'طبیعی‌ها، صفر و قرینه‌ی طبیعی‌ها',m('…, −2, −1, 0, 1, 2, …')],
+['گویا',m('ℚ'),'عددی که بتوان آن را به‌صورت '+m(F('p','q'))+' نوشت ('+m('q ≠ 0')+' و '+m('p, q')+' صحیح)',m(F('3','4')+', −5, 0.25')],
+['گنگ','—','عدد حقیقی که گویا نباشد؛ نمایش اعشاری آن نه پایان‌پذیر است و نه تکرارشونده',m(S('2')+', π')],
+['حقیقی',m('ℝ'),'اجتماع گویاها و گنگ‌ها؛ همه‌ی نقطه‌های محور اعداد','همه‌ی موارد بالا']])}
+${B('ℕ ⊂ ℤ ⊂ ℚ ⊂ ℝ')}
+${tip('هر عدد اعشاری پایان‌پذیر یا متناوب گویاست. مثلاً '+m('0.333… = '+F('1','3'))+'. ریشه‌ی دوم عددی که مربع کامل نیست (مانند '+m(S('2'))+' و '+m(S('5'))+') گنگ است.')}
+${eg('<p>'+m('0.25 = '+F('1','4'))+' گویاست. '+m(S('9')+' = 3')+' هم گویاست. اما '+m(S('2')+' ≈ 1.41421…')+' هیچ‌گاه تکرار نمی‌شود و گنگ است.</p>')}
+${pr('آیا عدد '+m('0.75')+' گویاست؟','بله. '+m('0.75 = '+F('3','4'))+' و می‌توان آن را به‌صورت کسر نوشت.')}`},
+
+{id:'arith-2',t:'بخش‌پذیری و اعداد اول',s:'تشخیص مقسوم‌علیه‌ها و تجزیه به عامل‌های اول',h:`
+<p>گفته می‌شود عدد <b>a</b> بر <b>b</b> بخش‌پذیر است، اگر باقیمانده‌ی تقسیم a بر b صفر باشد. قاعده‌های زیر کمک می‌کنند بدون تقسیم، بخش‌پذیری را تشخیص دهیم.</p>
+${tb(['بر','شرط بخش‌پذیری'],[
+['2','رقم یکان زوج باشد'],['3','مجموع ارقام بر 3 بخش‌پذیر باشد'],['4','عدد دو رقم آخر بر 4 بخش‌پذیر باشد'],['5','رقم یکان 0 یا 5 باشد'],['6','هم بر 2 و هم بر 3 بخش‌پذیر باشد'],['9','مجموع ارقام بر 9 بخش‌پذیر باشد'],['10','رقم یکان 0 باشد'],['11','تفاضل مجموع ارقام جایگاه‌های فرد و زوج، صفر یا مضرب 11 باشد']])}
+${key('عدد اول','<p>عدد طبیعی بزرگ‌تر از 1 که فقط دو مقسوم‌علیه دارد: 1 و خودش. اعداد اول: '+m('2, 3, 5, 7, 11, 13, 17, 19, …')+' عدد 2 تنها عدد اول زوج است و عدد 1 اول نیست.</p><p>هر عدد طبیعی بزرگ‌تر از 1 را می‌توان به‌صورت یکتا (جدا از ترتیب) حاصل‌ضرب عامل‌های اول نوشت.</p>')}
+${tip('برای تشخیص اول بودن عدد n کافی است بخش‌پذیری آن را بر اعداد اولی که از '+m(S('n'))+' بیشتر نیستند بررسی کنید.')}
+${eg('<p>تجزیه‌ی 84: '+m('84 = 2 × 42 = 2 × 2 × 21 = 2<sup>2</sup> × 3 × 7')+'</p><p>عدد 123456: مجموع ارقام 21 است. چون 21 بر 3 بخش‌پذیر است و بر 9 نه، عدد بر 3 بخش‌پذیر است ولی بر 9 نه.</p><p>عدد 1001: '+m('(1 + 0) − (0 + 1) = 0')+' پس بر 11 بخش‌پذیر است. در واقع '+m('1001 = 7 × 11 × 13')+'.</p>')}
+${pr('آیا 91 عدد اول است؟','خیر. '+m(S('91')+' ≈ 9.5')+' و اعداد اول 2، 3، 5 و 7 را آزمایش می‌کنیم. 91 بر 7 بخش‌پذیر است: '+m('91 = 7 × 13')+'.')}`},
+
+{id:'arith-3',t:'ب.م.م و ک.م.م',s:'بزرگ‌ترین مقسوم‌علیه و کوچک‌ترین مضرب مشترک',h:`
+<p><b>ب.م.م</b> (بزرگ‌ترین مقسوم‌علیه مشترک) بزرگ‌ترین عددی است که هر دو عدد را می‌شمارد. <b>ک.م.م</b> (کوچک‌ترین مضرب مشترک) کوچک‌ترین عدد مثبتی است که مضرب هر دو عدد باشد.</p>
+<h3>روش تجزیه</h3>
+<ul><li>ب.م.م: عامل‌های اول مشترک، با <b>کمترین</b> توان.</li><li>ک.م.م: همه‌ی عامل‌های اول، با <b>بیشترین</b> توان.</li></ul>
+${B(R('حاصل‌ضرب ب.م.م و ک.م.م برابر حاصل‌ضرب دو عدد است:','gcd(a, b) × lcm(a, b) = a × b'))}
+<h3>الگوریتم اقلیدس</h3>
+<p>با تقسیم‌های متوالی، تا رسیدن به باقیمانده‌ی صفر؛ آخرین باقیمانده‌ی غیرصفر، ب.م.م است.</p>
+${B('gcd(a, b) = gcd(b, a mod b)')}
+${eg('<p>برای 12 و 18: '+m('12 = 2<sup>2</sup> × 3')+' و '+m('18 = 2 × 3<sup>2</sup>')+'. ب.م.م = '+m('2 × 3 = 6')+' و ک.م.م = '+m('2<sup>2</sup> × 3<sup>2</sup> = 36')+'. بررسی: '+m('6 × 36 = 216 = 12 × 18')+'.</p><p>اقلیدس برای 48 و 18: '+m('48 = 2×18 + 12')+'، '+m('18 = 1×12 + 6')+'، '+m('12 = 2×6 + 0')+'. پس ب.م.م برابر 6 است.</p><p>کاربرد: دو اتوبوس که هر 12 و هر 18 دقیقه حرکت می‌کنند، بعد از ک.م.م = 36 دقیقه دوباره با هم حرکت می‌کنند.</p>')}
+<div class="widget" data-w="gcd"></div>
+${pr('ب.م.م و ک.م.م اعداد 84 و 36 را پیدا کنید.',m('84 = 2<sup>2</sup>×3×7')+' و '+m('36 = 2<sup>2</sup>×3<sup>2</sup>')+'. ب.م.م = '+m('2<sup>2</sup>×3 = 12')+'، ک.م.م = '+m('2<sup>2</sup>×3<sup>2</sup>×7 = 252')+'. (بررسی: '+m('12 × 252 = 3024 = 84 × 36')+')')}`},
+
+{id:'arith-4',t:'کسرها',s:'جمع، ضرب، تقسیم و مقایسه‌ی کسرها',h:`
+<p>کسر ${m(F('a','b'))} یعنی چیزی به b بخش برابر تقسیم شده و a بخش از آن در نظر گرفته شده است. مخرج هرگز صفر نیست.</p>
+${key('قاعده‌های چهار عمل',B(F('a','b')+' + '+F('c','d')+' = '+F('ad + bc','bd'),F('a','b')+' × '+F('c','d')+' = '+F('ac','bd'),F('a','b')+' ÷ '+F('c','d')+' = '+F('a','b')+' × '+F('d','c')+' = '+F('ad','bc')+'     (c ≠ 0)'))}
+<h3>ساده کردن و مقایسه</h3>
+<p>برای ساده کردن، صورت و مخرج را بر ب.م.م آن‌ها تقسیم کنید. برای مقایسه‌ی دو کسر مثبت ${m(F('a','b'))} و ${m(F('c','d'))} متقاطع ضرب کنید: اگر ${m('ad > bc')} باشد، کسر اول بزرگ‌تر است.</p>
+<p>عدد مخلوط: ${m('2'+F('1','3')+' = '+F('2×3 + 1','3')+' = '+F('7','3'))}</p>
+${tip('جمع کسرها یعنی هم‌مخرج کردن، نه جمع صورت‌ها و مخرج‌ها. '+m(F('1','2')+' + '+F('1','3')+' ≠ '+F('2','5'))+' ولی درست آن '+m(F('5','6'))+' است.')}
+${eg('<p>'+m(F('1','2')+' + '+F('1','3')+' = '+F('3','6')+' + '+F('2','6')+' = '+F('5','6'))+'</p><p>'+m(F('2','3')+' ÷ '+F('4','5')+' = '+F('2','3')+' × '+F('5','4')+' = '+F('10','12')+' = '+F('5','6'))+'</p><p>مقایسه‌ی '+m(F('3','4'))+' و '+m(F('5','7'))+': '+m('3 × 7 = 21')+' و '+m('5 × 4 = 20')+'، پس '+m(F('3','4')+' > '+F('5','7'))+'.</p><p>تبدیل به اعشار: '+m(F('3','8')+' = 3 ÷ 8 = 0.375')+'</p>')}
+${pr(m(F('3','4')+' − '+F('1','6'))+' را حساب کنید.',m(F('9','12')+' − '+F('2','12')+' = '+F('7','12')))}`},
+
+{id:'arith-5',t:'نسبت، تناسب و درصد',s:'تناسب مستقیم و معکوس، تخفیف و افزایش',h:`
+<h3>درصد</h3>
+<p>x درصد از y برابر ${m(F('x','100')+' × y')} است. اگر مقداری p درصد زیاد شود، در ${m('1 + '+F('p','100'))} ضرب می‌شود و اگر p درصد کم شود، در ${m('1 − '+F('p','100'))} ضرب می‌شود.</p>
+<h3>نسبت و تناسب</h3>
+${key('تناسب',`<p>اگر ${m(F('a','b')+' = '+F('c','d'))} باشد، آن‌گاه ${m('ad = bc')} (ضرب طرفین در وسطین).</p><ul><li><b>تناسب مستقیم:</b> با زیاد شدن یک کمیت، دیگری هم به همان نسبت زیاد می‌شود؛ ${m(F('y','x'))} ثابت است.</li><li><b>تناسب معکوس:</b> با زیاد شدن یک کمیت، دیگری به همان نسبت کم می‌شود؛ ${m('x × y')} ثابت است.</li></ul>`)}
+${eg('<p><b>تخفیف:</b> قیمت 800٬000 تومان با 15٪ تخفیف: '+m('800000 × 0.85 = 680000')+' تومان.</p><p><b>تغییر پی‌درپی:</b> 20٪ افزایش و بعد 20٪ کاهش: '+m('1.2 × 0.8 = 0.96')+'، یعنی در نهایت 4٪ کم شده است، نه این‌که قیمت به حالت اول برگردد.</p><p><b>مستقیم:</b> 3 کیلوگرم میوه 240٬000 تومان است. هر کیلو '+m('240000 ÷ 3 = 80000')+' تومان و 5 کیلو '+m('5 × 80000 = 400000')+' تومان.</p><p><b>معکوس:</b> 4 کارگر کاری را در 12 روز انجام می‌دهند. حجم کار '+m('4 × 12 = 48')+' کارگر-روز است. با 6 کارگر: '+m('48 ÷ 6 = 8')+' روز.</p>')}
+${pr('25٪ از 360 چقدر است؟',m(F('25','100')+' × 360 = 90'))}`},
+
+{id:'arith-6',t:'توان، ریشه و نماد علمی',s:'قاعده‌های توان و ریشه‌گیری',h:`
+<p>توان یعنی ضرب مکرر: ${m('a<sup>n</sup> = a × a × … × a')} (n بار). قاعده‌های زیر برای ${m('a ≠ 0')} برقرارند.</p>
+${key('قاعده‌های توان',B('a<sup>m</sup> × a<sup>n</sup> = a<sup>m+n</sup>','a<sup>m</sup> ÷ a<sup>n</sup> = a<sup>m−n</sup>','(a<sup>m</sup>)<sup>n</sup> = a<sup>mn</sup>','(ab)<sup>n</sup> = a<sup>n</sup> b<sup>n</sup>','a<sup>0</sup> = 1','a<sup>−n</sup> = '+F('1','a<sup>n</sup>'),'a<sup>1/n</sup> = <sup>n</sup>√a'))}
+<p>برای ریشه‌ی دوم: ${m(S('ab')+' = '+S('a')+' × '+S('b'))} (وقتی ${m('a, b ≥ 0')}) و ${m(S('a<sup>2</sup>')+' = |a|')}.</p>
+<h3>نماد علمی</h3>
+<p>هر عدد را به‌شکل ${m('a × 10<sup>n</sup>')} می‌نویسیم که ${m('1 ≤ a < 10')} و n صحیح است.</p>
+${eg('<p>'+m('2<sup>3</sup> × 2<sup>4</sup> = 2<sup>7</sup> = 128')+'</p><p>'+m(S('50')+' = '+S('25 × 2')+' = 5'+S('2'))+'</p><p>گویا کردن مخرج: '+m(F('1',S('2'))+' = '+F(S('2'),'2'))+'</p><p>'+m('4500 = 4.5 × 10<sup>3</sup>')+' و '+m('0.00032 = 3.2 × 10<sup>−4</sup>')+'</p>')}
+${tip('توان روی جمع پخش نمی‌شود: '+m('(3 + 4)<sup>2</sup> = 49')+' ولی '+m('3<sup>2</sup> + 4<sup>2</sup> = 25')+'.')}
+${pr(m('2<sup>−3</sup>')+' چند است؟',m('2<sup>−3</sup> = '+F('1','2<sup>3</sup>')+' = '+F('1','8')))}`}
+]},
+
+{id:'algebra',t:'جبر',d:'عبارت‌ها، معادله‌ها، نامعادله‌ها، دنباله‌ها و لگاریتم.',c:'#8B5CF6',g:'x',lessons:[
+{id:'algebra-1',t:'عبارت‌های جبری و اتحادها',s:'اتحادهای مهم و فاکتورگیری',h:`
+<p>عبارت جبری ترکیبی از عدد و متغیر است. جمله‌های متشابه (با بخش متغیر یکسان) جمع می‌شوند: ${m('3x + 5x = 8x')}. خاصیت پخشی: ${m('a(b + c) = ab + ac')}.</p>
+${key('اتحادهای مهم',B('(a + b)<sup>2</sup> = a<sup>2</sup> + 2ab + b<sup>2</sup>','(a − b)<sup>2</sup> = a<sup>2</sup> − 2ab + b<sup>2</sup>','a<sup>2</sup> − b<sup>2</sup> = (a − b)(a + b)','(x + a)(x + b) = x<sup>2</sup> + (a + b)x + ab','(a + b)<sup>3</sup> = a<sup>3</sup> + 3a<sup>2</sup>b + 3ab<sup>2</sup> + b<sup>3</sup>','a<sup>3</sup> + b<sup>3</sup> = (a + b)(a<sup>2</sup> − ab + b<sup>2</sup>)','a<sup>3</sup> − b<sup>3</sup> = (a − b)(a<sup>2</sup> + ab + b<sup>2</sup>)'))}
+<h3>فاکتورگیری</h3>
+<p>فاکتورگیری یعنی نوشتن عبارت به‌صورت حاصل‌ضرب. اول عامل مشترک را بیرون می‌کشیم، بعد از اتحادها کمک می‌گیریم.</p>
+${eg('<p>'+m('6x<sup>2</sup> + 9x = 3x(2x + 3)')+'</p><p>'+m('x<sup>2</sup> − 9 = (x − 3)(x + 3)')+'</p><p>'+m('x<sup>2</sup> + 5x + 6 = (x + 2)(x + 3)')+' (دو عدد که حاصل‌ضربشان 6 و حاصل‌جمعشان 5 است: 2 و 3)</p><p>محاسبه‌ی ذهنی: '+m('99<sup>2</sup> = (100 − 1)<sup>2</sup> = 10000 − 200 + 1 = 9801')+' و '+m('51 × 49 = (50 + 1)(50 − 1) = 2500 − 1 = 2499')+'.</p>')}
+${pr(m('101<sup>2</sup>')+' را با اتحاد حساب کنید.',m('(100 + 1)<sup>2</sup> = 10000 + 200 + 1 = 10201'))}`},
+
+{id:'algebra-2',t:'معادله‌ی درجه اول',s:'حل معادله‌ی خطی و مسئله‌های کلامی',h:`
+<p>معادله‌ی درجه اول (خطی) با یک مجهول به‌شکل ${m('ax + b = 0')} است. هر کاری که روی یک طرف انجام می‌دهیم، باید روی طرف دیگر هم انجام شود.</p>
+${key('جواب',B('ax + b = 0  ⇒  x = '+F('−b','a')+'     (a ≠ 0)'))}
+<h3>گام‌های حل</h3>
+<ol><li>پرانتزها را باز کنید و در صورت وجود کسر، طرفین را در مخرج مشترک ضرب کنید تا کسرها حذف شوند.</li><li>جمله‌های مجهول را یک طرف و عددها را طرف دیگر ببرید (با عوض شدن علامت).</li><li>طرفین را بر ضریب مجهول تقسیم کنید و جواب را در معادله‌ی اول بیازمایید.</li></ol>
+${eg('<p>'+m('3x + 7 = 22 ⇒ 3x = 15 ⇒ x = 5')+'</p><p>'+m('5x + 2 = 3x + 10 ⇒ 2x = 8 ⇒ x = 4')+'</p><p>'+m(F('x','2')+' + 1 = 4 ⇒ '+F('x','2')+' = 3 ⇒ x = 6')+'</p><p><b>مسئله:</b> مجموع سه عدد متوالی 72 است. عددها را '+m('x, x + 1, x + 2')+' می‌گیریم: '+m('3x + 3 = 72 ⇒ x = 23')+'. عددها 23، 24 و 25 هستند و مجموعشان 72 است.</p>')}
+${pr(m('2(x − 3) = 10')+' را حل کنید.',m('x − 3 = 5 ⇒ x = 8'))}`},
+
+{id:'algebra-3',t:'معادله‌ی درجه دوم',s:'مبین، فرمول ریشه‌ها و روابط ریشه‌ها',h:`
+<p>معادله‌ی درجه دوم به‌شکل ${m('ax<sup>2</sup> + bx + c = 0')} با ${m('a ≠ 0')} است. مقدار ${m('Δ = b<sup>2</sup> − 4ac')} که «مبین» نام دارد، تعداد ریشه‌های حقیقی را تعیین می‌کند.</p>
+${key('فرمول ریشه‌ها',B('Δ = b<sup>2</sup> − 4ac','x = '+F('−b ± '+S('Δ'),'2a')))}
+${tb(['مبین','نتیجه'],[[m('Δ > 0'),'دو ریشه‌ی حقیقی متمایز'],[m('Δ = 0'),'یک ریشه‌ی مضاعف: '+m('x = '+F('−b','2a'))],[m('Δ < 0'),'ریشه‌ی حقیقی ندارد']])}
+<h3>رابطه‌ی ریشه‌ها و ضریب‌ها</h3>
+<p>اگر ${m('x<sub>1</sub>')} و ${m('x<sub>2</sub>')} ریشه‌ها باشند:</p>
+${B('x<sub>1</sub> + x<sub>2</sub> = '+F('−b','a'),'x<sub>1</sub> · x<sub>2</sub> = '+F('c','a'))}
+${eg('<p>'+m('x<sup>2</sup> − 5x + 6 = 0')+': '+m('Δ = 25 − 24 = 1')+' و '+m('x = '+F('5 ± 1','2'))+' پس '+m('x = 3')+' یا '+m('x = 2')+'. بررسی: مجموع 5 و حاصل‌ضرب 6 است.</p><p>'+m('x<sup>2</sup> + 2x + 5 = 0')+': '+m('Δ = 4 − 20 = −16 < 0')+' پس ریشه‌ی حقیقی ندارد.</p>')}
+<div class="widget" data-w="quad"></div>
+${pr(m('2x<sup>2</sup> − 8 = 0')+' را حل کنید.',m('x<sup>2</sup> = 4')+' پس '+m('x = ±2')+'. (نیازی به فرمول نیست.)')}`},
+
+{id:'algebra-4',t:'دستگاه معادله‌ها',s:'روش جانشینی و حذفی',h:`
+<p>دستگاه دو معادله‌ی دو مجهولی، یعنی دو شرط هم‌زمان روی x و y. هر جواب باید در هر دو معادله صدق کند.</p>
+<h3>روش حذفی</h3>
+<p>معادله‌ها را طوری در عدد ضرب می‌کنیم که ضریب یکی از مجهول‌ها قرینه شود، سپس معادله‌ها را جمع می‌کنیم.</p>
+<h3>روش جانشینی</h3>
+<p>یک مجهول را از یک معادله بر حسب دیگری می‌نویسیم و در معادله‌ی دوم قرار می‌دهیم.</p>
+${eg('<p>'+m('x + y = 10')+' و '+m('x − y = 4')+': با جمع کردن '+m('2x = 14')+' پس '+m('x = 7')+' و '+m('y = 3')+'.</p><p>'+m('2x + 3y = 12')+' و '+m('x − y = 1')+': از معادله‌ی دوم '+m('x = y + 1')+'. جانشینی: '+m('2(y + 1) + 3y = 12 ⇒ 5y = 10 ⇒ y = 2')+' و '+m('x = 3')+'. بررسی: '+m('2×3 + 3×2 = 12')+'.</p>')}
+${tip('هر معادله‌ی خطی یک خط است. اگر خط‌ها یکدیگر را در یک نقطه قطع کنند، دستگاه یک جواب دارد. اگر موازی باشند، جواب ندارد و اگر بر هم منطبق باشند، بی‌شمار جواب دارد.')}
+${pr('دستگاه '+m('x + 2y = 8')+' و '+m('3x − 2y = 0')+' را حل کنید.','جمع دو معادله: '+m('4x = 8 ⇒ x = 2')+'. سپس '+m('2 + 2y = 8 ⇒ y = 3')+'. بررسی معادله‌ی دوم: '+m('6 − 6 = 0')+'.')}`},
+
+{id:'algebra-5',t:'نامعادله‌ها',s:'نامعادله‌ی خطی، درجه دوم و قدر مطلق',h:`
+<p>نامعادله مانند معادله است، اما به‌جای «=» از نمادهای ${m('< , > , ≤ , ≥')} استفاده می‌کند و جواب آن معمولاً یک بازه است.</p>
+${key('قاعده‌ی مهم',`<ul><li>جمع یا تفریق یک عدد از دو طرف، جهت نامساوی را تغییر نمی‌دهد.</li><li>ضرب یا تقسیم دو طرف بر عدد <b>مثبت</b>، جهت را حفظ می‌کند.</li><li>ضرب یا تقسیم دو طرف بر عدد <b>منفی</b>، جهت را <b>برعکس</b> می‌کند.</li></ul>`)}
+<h3>قدر مطلق</h3>
+${B('|x| < a  ⇔  −a < x < a','|x| > a  ⇔  (x < −a  ∨  x > a)')}<p>در هر دو رابطه ${m('a > 0')} است.</p>
+${eg('<p>'+m('−2x + 3 > 7 ⇒ −2x > 4 ⇒ x < −2')+' (جهت برعکس شد).</p><p>درجه دوم: '+m('x<sup>2</sup> − 4x + 3 < 0 ⇒ (x − 1)(x − 3) < 0')+'. سهمی رو به بالاست و بین دو ریشه منفی است، پس '+m('1 < x < 3')+'.</p><p>'+m('|x − 2| < 3 ⇒ −3 < x − 2 < 3 ⇒ −1 < x < 5')+'.</p>')}
+${pr(m('3x − 5 ≤ 10')+' را حل کنید.',m('3x ≤ 15 ⇒ x ≤ 5')+'، یعنی بازه‌ی '+m('(−∞, 5]')+'.')}`},
+
+{id:'algebra-6',t:'دنباله‌ها',s:'دنباله‌ی حسابی و هندسی',h:`
+<p>دنباله فهرستی مرتب از عددهاست. دو نوع مهم آن را می‌شناسیم.</p>
+<h3>دنباله‌ی حسابی (اختلاف ثابت d)</h3>
+${B('a<sub>n</sub> = a<sub>1</sub> + (n − 1)d','S<sub>n</sub> = '+F('n','2')+'(a<sub>1</sub> + a<sub>n</sub>) = '+F('n','2')+'(2a<sub>1</sub> + (n − 1)d)')}
+<h3>دنباله‌ی هندسی (نسبت ثابت r)</h3>
+${B('a<sub>n</sub> = a<sub>1</sub> · r<sup>n−1</sup>','S<sub>n</sub> = a<sub>1</sub> · '+F('r<sup>n</sup> − 1','r − 1')+'     (r ≠ 1)','S<sub>∞</sub> = '+F('a<sub>1</sub>','1 − r')+'     (|r| < 1)')}
+${eg('<p>دنباله‌ی '+m('3, 7, 11, …')+': '+m('a<sub>1</sub> = 3')+' و '+m('d = 4')+'. جمله‌ی دهم '+m('3 + 9×4 = 39')+' و مجموع ده جمله '+m(F('10','2')+'(3 + 39) = 210')+'.</p><p>دنباله‌ی '+m('2, 6, 18, …')+': '+m('r = 3')+'. جمله‌ی پنجم '+m('2 × 3<sup>4</sup> = 162')+' و مجموع چهار جمله '+m('2 · '+F('3<sup>4</sup> − 1','3 − 1')+' = 80')+' (بررسی: '+m('2 + 6 + 18 + 54 = 80')+').</p><p>'+m('1 + '+F('1','2')+' + '+F('1','4')+' + … = '+F('1','1 − '+F('1','2'))+' = 2')+'</p>')}
+${pr('مجموع اعداد 1 تا 100 چقدر است؟','دنباله‌ی حسابی با '+m('a<sub>1</sub> = 1')+' و '+m('a<sub>100</sub> = 100')+': '+m(F('100','2')+'(1 + 100) = 5050')+'.')}`},
+
+{id:'algebra-7',t:'نمایی و لگاریتم',s:'تعریف لگاریتم و قاعده‌های آن',h:`
+<p>لگاریتم، عکس عمل توان است. ${m('log<sub>a</sub> x')} یعنی «a را به چه توانی برسانیم تا x شود؟».</p>
+${key('تعریف',B('log<sub>a</sub> x = y  ⇔  a<sup>y</sup> = x','(a > 0 ,  a ≠ 1 ,  x > 0)'))}
+${key('قاعده‌ها',B('log<sub>a</sub> (xy) = log<sub>a</sub> x + log<sub>a</sub> y','log<sub>a</sub> ('+F('x','y')+') = log<sub>a</sub> x − log<sub>a</sub> y','log<sub>a</sub> (x<sup>n</sup>) = n · log<sub>a</sub> x','log<sub>a</sub> a = 1 ,   log<sub>a</sub> 1 = 0',R('تغییر مبنا:','log<sub>a</sub> b = '+F('ln b','ln a'))))}
+${eg('<p>'+m('log<sub>2</sub> 8 = 3')+' چون '+m('2<sup>3</sup> = 8')+'. همچنین '+m('log<sub>10</sub> 1000 = 3')+'.</p><p>'+m('log<sub>2</sub> 4 + log<sub>2</sub> 8 = 2 + 3 = 5 = log<sub>2</sub> 32')+'.</p><p>معادله‌ی '+m('2<sup>x</sup> = 32')+' جواب '+m('x = 5')+' دارد. برای '+m('2<sup>x</sup> = 7')+' لگاریتم می‌گیریم: '+m('x = log<sub>2</sub> 7 = '+F('ln 7','ln 2')+' ≈ 2.807')+'.</p>')}
+${pr(m('log<sub>3</sub> 81')+' چند است؟',m('3<sup>4</sup> = 81')+' پس جواب 4 است.')}`}
+]},
+
+{id:'geometry',t:'هندسه',d:'مثلث، چهارضلعی، دایره، تشابه و حجم جسم‌ها.',c:'#10B981',g:'△',lessons:[
+{id:'geometry-1',t:'مثلث',s:'زاویه‌ها، مساحت و فرمول هرون',h:`
+<p>مثلث سه ضلع و سه زاویه دارد. مجموع زاویه‌های داخلی هر مثلث ${m('180°')} است و هر زاویه‌ی خارجی برابر مجموع دو زاویه‌ی داخلی غیرمجاور با آن است.</p>
+<p>شرط وجود مثلث: هر ضلع از مجموع دو ضلع دیگر کوچک‌تر و از تفاضل آن‌ها بزرگ‌تر است.</p>
+${tb(['نوع','ویژگی'],[['متساوی‌الاضلاع','سه ضلع و سه زاویه (هر کدام 60°) برابر'],['متساوی‌الساقین','دو ضلع و دو زاویه‌ی روبه‌رو برابر'],['قائم‌الزاویه','یک زاویه‌ی 90°'],['مختلف‌الاضلاع','هیچ ضلعی برابر نیست']])}
+${key('مساحت',B(R('مساحت مثلث:','S = '+F('1','2')+' × a × h'),R('فرمول هرون:','p = '+F('a + b + c','2')+' ,   S = '+S('p(p − a)(p − b)(p − c)')))+'<p>در این‌جا a یک ضلع و h ارتفاع وارد بر آن ضلع است.</p>')}
+${eg('<p>مثلث با ضلع‌های 3 و 4 و 5: '+m('p = 6')+' و '+m('S = '+S('6 × 3 × 2 × 1')+' = '+S('36')+' = 6')+'.</p><p>اگر دو زاویه‌ی مثلث 50° و 60° باشد، زاویه‌ی سوم '+m('180° − 110° = 70°')+' است.</p>')}
+${pr('آیا مثلثی با ضلع‌های 2 و 3 و 6 وجود دارد؟','خیر. '+m('2 + 3 = 5 < 6')+' و شرط نامساوی مثلث برقرار نیست.')}`},
+
+{id:'geometry-2',t:'قضیه‌ی فیثاغورس',s:'رابطه‌ی ضلع‌ها در مثلث قائم‌الزاویه',h:`
+<p>در مثلث قائم‌الزاویه، مربع وتر (ضلع روبه‌رو به زاویه‌ی قائمه) برابر مجموع مربع‌های دو ضلع دیگر است. عکس آن هم درست است: اگر در مثلثی این رابطه برقرار باشد، مثلث قائم‌الزاویه است.</p>
+${B('a<sup>2</sup> + b<sup>2</sup> = c<sup>2</sup>')}
+<p>سه‌تایی‌های فیثاغورسی معروف:</p>
+${B('(3, 4, 5)    (5, 12, 13)    (8, 15, 17)    (7, 24, 25)')}
+${eg('<p>دو ضلع قائمه 6 و 8: '+m('c<sup>2</sup> = 36 + 64 = 100')+' پس '+m('c = 10')+'.</p><p>قطر مستطیل '+m('3 × 4')+': '+m(S('9 + 16')+' = 5')+'.</p><p>قطر مربع به ضلع a: '+m(S('a<sup>2</sup> + a<sup>2</sup>')+' = a'+S('2'))+'.</p>')}
+${pr('وتر 13 و یک ضلع 5 است. ضلع دیگر چند است؟',m('b<sup>2</sup> = 169 − 25 = 144')+' پس '+m('b = 12')+'.')}`},
+
+{id:'geometry-3',t:'چهارضلعی‌ها و چندضلعی‌ها',s:'مساحت و مجموع زاویه‌ها',h:`
+${tb(['شکل','مساحت'],[['مستطیل',m('S = ab')],['مربع',m('S = a<sup>2</sup>')],['متوازی‌الاضلاع',m('S = a × h')+' (قاعده × ارتفاع)'],['لوزی',m('S = '+F('d<sub>1</sub> d<sub>2</sub>','2'))],['ذوزنقه',m('S = '+F('(a + b) h','2'))]])}
+${key('چندضلعی n ضلعی',B(R('مجموع زاویه‌های داخلی:','(n − 2) × 180°'),R('هر زاویه‌ی داخلی (چندضلعی منتظم):',F('(n − 2) × 180°','n')),R('تعداد قطرها:',F('n(n − 3)','2')),R('مجموع زاویه‌های خارجی:','360°')))}
+${eg('<p>ذوزنقه با قاعده‌های 6 و 10 و ارتفاع 4: '+m('S = '+F('(6 + 10) × 4','2')+' = 32')+'.</p><p>شش‌ضلعی منتظم: مجموع زاویه‌ها '+m('4 × 180° = 720°')+'، هر زاویه '+m('720° ÷ 6 = 120°')+' و تعداد قطرها '+m(F('6 × 3','2')+' = 9')+'.</p>')}
+${pr('مجموع زاویه‌های داخلی پنج‌ضلعی چقدر است؟',m('(5 − 2) × 180° = 540°'))}`},
+
+{id:'geometry-4',t:'دایره',s:'محیط، مساحت، کمان و زاویه‌ها',h:`
+${key('فرمول‌ها (شعاع r)',B(R('محیط:','2πr'),R('مساحت:','πr<sup>2</sup>'),R('طول کمان:',F('θ','360°')+' × 2πr'),R('مساحت قطاع:',F('θ','360°')+' × πr<sup>2</sup>')))}
+<ul><li>زاویه‌ی مرکزی برابر کمان روبه‌رویش است.</li><li>زاویه‌ی محاطی نصف کمان روبه‌رویش است.</li><li>مماس بر دایره بر شعاع در نقطه‌ی تماس عمود است.</li><li>زاویه‌ی محاطی روبه‌رو به قطر، 90° است.</li></ul>
+${eg('<p>دایره‌ای به شعاع 7: محیط '+m('14π ≈ 43.98')+' و مساحت '+m('49π ≈ 153.94')+'.</p><p>قطاع با '+m('r = 6')+' و '+m('θ = 60°')+': '+m(F('60','360')+' × 36π = 6π ≈ 18.85')+'.</p>')}
+${pr('مساحت دایره‌ای به شعاع 10 چقدر است؟',m('π × 10<sup>2</sup> = 100π ≈ 314.16'))}`},
+
+{id:'geometry-5',t:'تشابه و قضیه‌ی تالس',s:'مثلث‌های متشابه و نسبت‌ها',h:`
+<p>دو مثلث متشابه‌اند اگر زاویه‌های متناظرشان برابر باشد. در این صورت ضلع‌های متناظر متناسب‌اند.</p>
+${key('نسبت‌ها',B(R('نسبت طول‌ها و محیط‌ها:','k'),R('نسبت مساحت‌ها:','k<sup>2</sup>'),R('نسبت حجم‌ها:','k<sup>3</sup>'))+'<p>در این‌جا k نسبت تشابه دو شکل است.</p>')}
+<h3>قضیه‌ی تالس</h3>
+<p>اگر خطی موازی ضلع BC از مثلث ABC، ضلع‌های AB و AC را در D و E قطع کند، آن‌گاه:</p>
+${B(F('AD','DB')+' = '+F('AE','EC'))}
+${eg('<p>اگر '+m('AD = 4')+'، '+m('DB = 6')+' و '+m('AE = 2')+' باشد، '+m(F('4','6')+' = '+F('2','EC'))+' پس '+m('EC = 3')+'.</p><p>اگر نسبت تشابه دو مثلث 1 به 3 باشد، نسبت مساحت‌ها 1 به 9 است.</p>')}
+${pr('چوبی به طول 2 متر سایه‌ای به طول 3 متر دارد. هم‌زمان درختی سایه‌ای 15 متری دارد. ارتفاع درخت؟',m(F('2','3')+' = '+F('h','15')+' ⇒ h = 10')+' متر.')}`},
+
+{id:'geometry-6',t:'حجم و مساحت جسم‌ها',s:'مکعب، استوانه، مخروط و کره',h:`
+${tb(['جسم','حجم','مساحت'],[
+['مکعب (ضلع a)',m('a<sup>3</sup>'),m('6a<sup>2</sup>')],
+['مکعب مستطیل',m('abc'),m('2(ab + bc + ac)')],
+['استوانه',m('πr<sup>2</sup>h'),m('2πr(r + h)')+' (کل)'],
+['مخروط',m(F('1','3')+'πr<sup>2</sup>h'),m('πr(r + l)')+' (کل)، '+m('l = '+S('r<sup>2</sup> + h<sup>2</sup>'))],
+['هرم',m(F('1','3')+' S h')+' (S مساحت قاعده)','مجموع وجه‌ها'],
+['کره',m(F('4','3')+'πr<sup>3</sup>'),m('4πr<sup>2</sup>')]])}
+${eg('<p>استوانه با '+m('r = 3')+' و '+m('h = 10')+': '+m('V = 90π ≈ 282.74')+'.</p><p>کره‌ی '+m('r = 3')+': '+m('V = '+F('4','3')+' × 27π = 36π ≈ 113.10')+'.</p><p>مخروط با '+m('r = 3')+' و '+m('h = 4')+': مولد '+m('l = 5')+'، حجم '+m(F('1','3')+' × 9π × 4 = 12π')+' و مساحت جانبی '+m('πrl = 15π')+'.</p>')}
+${pr('حجم و مساحت کل مکعبی به ضلع 4 چقدر است؟',m('V = 4<sup>3</sup> = 64')+' و '+m('S = 6 × 16 = 96')+'.')}`}
+]},
+
+{id:'trig',t:'مثلثات',d:'سینوس، کسینوس، تانژانت، رادیان و اتحادهای مثلثاتی.',c:'#F59E0B',g:'sin',lessons:[
+{id:'trig-1',t:'نسبت‌های مثلثاتی',s:'سینوس، کسینوس و تانژانت در مثلث قائم‌الزاویه',h:`
+<p>در مثلث قائم‌الزاویه، برای زاویه‌ی حاده‌ی θ سه نسبت اصلی را به این شکل تعریف می‌کنیم:</p>
+${key('تعریف',B('sin θ = '+F('ضلع روبه‌رو','وتر'),'cos θ = '+F('ضلع مجاور','وتر'),'tan θ = '+F('ضلع روبه‌رو','ضلع مجاور')+' = '+F('sin θ','cos θ'),'sin<sup>2</sup>θ + cos<sup>2</sup>θ = 1'))}
+${tb(['θ','0°','30°','45°','60°','90°'],[
+['sin',m('0'),m(F('1','2')),m(F(S('2'),'2')),m(F(S('3'),'2')),m('1')],
+['cos',m('1'),m(F(S('3'),'2')),m(F(S('2'),'2')),m(F('1','2')),m('0')],
+['tan',m('0'),m(F(S('3'),'3')),m('1'),m(S('3')),'تعریف نشده']])}
+${eg('<p>مثلثی با ضلع‌های 3 و 4 و وتر 5: برای زاویه‌ی روبه‌رو به ضلع 3: '+m('sin θ = '+F('3','5'))+'، '+m('cos θ = '+F('4','5'))+'، '+m('tan θ = '+F('3','4'))+'. با ماشین‌حساب '+m('θ = arctan('+F('3','4')+') ≈ 36.87°')+'.</p><p>نردبانی به طول 5 متر با زمین زاویه‌ی 60° می‌سازد. ارتفاع رسیدن آن به دیوار '+m('5 sin 60° = '+F('5'+S('3'),'2')+' ≈ 4.33')+' متر است.</p>')}
+${pr('اگر وتر 10 و زاویه‌ی 30° باشد، ضلع روبه‌رو به زاویه چند است؟',m('10 × sin 30° = 10 × '+F('1','2')+' = 5'))}`},
+
+{id:'trig-2',t:'رادیان و دایره‌ی مثلثاتی',s:'تبدیل درجه به رادیان و علامت نسبت‌ها',h:`
+<p>رادیان واحد دیگری برای اندازه‌ی زاویه است. زاویه‌ی نیم‌دایره برابر π رادیان است.</p>
+${B('π rad = 180°',R('برای تبدیل درجه به رادیان، درجه را در این کسر ضرب کنید:',F('π','180')))}
+${tb(['درجه','30°','45°','60°','90°','180°','360°'],[['رادیان',m(F('π','6')),m(F('π','4')),m(F('π','3')),m(F('π','2')),m('π'),m('2π')]])}
+<p>روی دایره‌ی مثلثاتی (شعاع 1)، نقطه‌ی متناظر با زاویه‌ی θ مختصات ${m('(cos θ , sin θ)')} دارد.</p>
+${circleSvg}
+${tb(['ناحیه','sin','cos','tan'],[['اول (0° تا 90°)','+','+','+'],['دوم (90° تا 180°)','+','−','−'],['سوم (180° تا 270°)','−','−','+'],['چهارم (270° تا 360°)','−','+','−']])}
+${key('زاویه‌های مرتبط',B('sin(π − θ) = sin θ','cos(π − θ) = −cos θ','sin(−θ) = −sin θ','cos(−θ) = cos θ'))}
+${eg('<p>'+m('sin 150° = sin(180° − 30°) = sin 30° = '+F('1','2'))+'.</p><p>'+m('cos 120° = −cos 60° = −'+F('1','2'))+'.</p>')}
+${pr('135° را به رادیان تبدیل کنید.',m('135 × '+F('π','180')+' = '+F('3π','4')))}`},
+
+{id:'trig-3',t:'اتحادها و قضیه‌های مثلثاتی',s:'جمع زاویه‌ها، قضیه‌ی سینوس‌ها و کسینوس‌ها',h:`
+${key('اتحادهای اصلی',B('sin<sup>2</sup>θ + cos<sup>2</sup>θ = 1','1 + tan<sup>2</sup>θ = '+F('1','cos<sup>2</sup>θ'),'sin 2θ = 2 sin θ cos θ','cos 2θ = cos<sup>2</sup>θ − sin<sup>2</sup>θ = 1 − 2sin<sup>2</sup>θ = 2cos<sup>2</sup>θ − 1','sin(α ± β) = sin α cos β ± cos α sin β','cos(α ± β) = cos α cos β ∓ sin α sin β'))}
+${key('در هر مثلث دلخواه ABC',B(R('قضیه‌ی سینوس‌ها:',F('a','sin A')+' = '+F('b','sin B')+' = '+F('c','sin C')+' = 2R'),R('قضیه‌ی کسینوس‌ها:','c<sup>2</sup> = a<sup>2</sup> + b<sup>2</sup> − 2ab cos C')))}
+<p>قضیه‌ی کسینوس‌ها حالت کلی فیثاغورس است؛ برای ${m('C = 90°')} داریم ${m('cos C = 0')} و به ${m('c<sup>2</sup> = a<sup>2</sup> + b<sup>2</sup>')} می‌رسیم.</p>
+${eg('<p>'+m('sin 75° = sin(45° + 30°) = '+F(S('2'),'2')+' · '+F(S('3'),'2')+' + '+F(S('2'),'2')+' · '+F('1','2')+' = '+F(S('6')+' + '+S('2'),'4')+' ≈ 0.966')+'.</p><p>اگر '+m('sin θ = '+F('3','5'))+' باشد، '+m('cos 2θ = 1 − 2 × '+F('9','25')+' = '+F('7','25'))+'.</p><p>کسینوس‌ها: '+m('a = 5')+'، '+m('b = 7')+' و '+m('C = 60°')+': '+m('c<sup>2</sup> = 25 + 49 − 2 × 35 × '+F('1','2')+' = 39')+' پس '+m('c = '+S('39')+' ≈ 6.24')+'.</p><p>سینوس‌ها: '+m('A = 30°')+'، '+m('B = 45°')+' و '+m('a = 5')+': '+m('b = '+F('5 sin 45°','sin 30°')+' = 5'+S('2')+' ≈ 7.07')+'.</p>')}
+${pr('اگر θ حاده و '+m('sin θ = '+F('3','5'))+' باشد، cos θ چند است؟',m('cos<sup>2</sup>θ = 1 − '+F('9','25')+' = '+F('16','25'))+' و چون θ حاده است '+m('cos θ = '+F('4','5'))+'.')}`}
+]},
+
+{id:'functions',t:'تابع‌ها',d:'مفهوم تابع، خط، سهمی و تابع‌های نمایی و لگاریتمی.',c:'#EC4899',g:'f(x)',lessons:[
+{id:'functions-1',t:'مفهوم تابع',s:'دامنه، برد، ترکیب و وارون',h:`
+<p><b>تابع</b> قاعده‌ای است که به هر عضو دامنه دقیقاً یک خروجی نسبت می‌دهد. مجموعه‌ی ورودی‌های مجاز <b>دامنه</b> و مجموعه‌ی خروجی‌ها <b>برد</b> نام دارد. در نمودار، هر خط قائم نمودار را حداکثر در یک نقطه قطع می‌کند.</p>
+<h3>دامنه‌های رایج</h3>
+<ul><li>${m('f(x) = '+F('1','x − 2'))}: مخرج صفر نشود، ${m('x ≠ 2')}.</li><li>${m('f(x) = '+S('x − 1'))}: زیر رادیکال نامنفی باشد، ${m('x ≥ 1')}.</li></ul>
+<h3>ترکیب و وارون</h3>
+${B('(f ∘ g)(x) = f(g(x))','y = f(x)  ⇒  x = f<sup>−1</sup>(y)')}
+<p>وارون فقط برای تابع یک‌به‌یک وجود دارد و نمودار آن قرینه‌ی نمودار تابع نسبت به خط ${m('y = x')} است.</p>
+${eg('<p>'+m('f(x) = x<sup>2</sup>')+' و '+m('g(x) = x + 1')+': '+m('(f ∘ g)(x) = (x + 1)<sup>2</sup>')+' و '+m('(g ∘ f)(x) = x<sup>2</sup> + 1')+'. در '+m('x = 2')+' مقدارها 9 و 5 می‌شوند؛ پس ترکیب جابه‌جایی ندارد.</p><p>وارون '+m('f(x) = 2x + 3')+': از '+m('y = 2x + 3')+' نتیجه می‌شود '+m('x = '+F('y − 3','2'))+' پس '+m('f<sup>−1</sup>(x) = '+F('x − 3','2'))+'.</p>')}
+${pr('اگر '+m('f(x) = 3x − 1')+' باشد، f(4) چند است؟',m('3 × 4 − 1 = 11'))}`},
+
+{id:'functions-2',t:'تابع خطی و شیب',s:'معادله‌ی خط، فاصله و نقطه‌ی وسط',h:`
+${key('خط',B('y = mx + b','m = '+F('y<sub>2</sub> − y<sub>1</sub>','x<sub>2</sub> − x<sub>1</sub>'),'y − y<sub>1</sub> = m(x − x<sub>1</sub>)'))}
+<p>m شیب خط و b عرض از مبدأ است. خط‌های موازی شیب برابر دارند و برای خط‌های عمود بر هم ${m('m<sub>1</sub> m<sub>2</sub> = −1')} است.</p>
+${key('فاصله و نقطه‌ی وسط',B('d = '+S('(x<sub>2</sub> − x<sub>1</sub>)<sup>2</sup> + (y<sub>2</sub> − y<sub>1</sub>)<sup>2</sup>'),'M = ('+F('x<sub>1</sub> + x<sub>2</sub>','2')+' , '+F('y<sub>1</sub> + y<sub>2</sub>','2')+')'))}
+${eg('<p>خط گذرنده از '+m('(1, 2)')+' و '+m('(3, 8)')+': '+m('m = '+F('8 − 2','3 − 1')+' = 3')+' پس '+m('y − 2 = 3(x − 1) ⇒ y = 3x − 1')+'. بررسی: '+m('3(3) − 1 = 8')+'.</p><p>فاصله‌ی '+m('(0, 0)')+' تا '+m('(3, 4)')+': '+m(S('9 + 16')+' = 5')+'.</p>')}
+${pr('خط گذرنده از '+m('(0, 1)')+' و '+m('(2, 5)')+' را بنویسید.',m('m = '+F('5 − 1','2 − 0')+' = 2')+' و عرض از مبدأ 1 است: '+m('y = 2x + 1')+'.')}`},
+
+{id:'functions-3',t:'سهمی',s:'رأس، محور تقارن و نمودار تابع درجه دوم',h:`
+<p>نمودار ${m('y = ax<sup>2</sup> + bx + c')} یک سهمی است. اگر ${m('a > 0')} رو به بالا و اگر ${m('a < 0')} رو به پایین باز می‌شود.</p>
+${key('ویژگی‌ها',B(R('مختصات رأس:','x = '+F('−b','2a')+' ,   y = f('+F('−b','2a')+')'),R('فرم رأسی:','y = a(x − h)<sup>2</sup> + k'),R('عرض از مبدأ:','y = c')))}
+${eg('<p>'+m('y = x<sup>2</sup> − 4x + 3')+': رأس در '+m('x = '+F('4','2')+' = 2')+' و '+m('y = 4 − 8 + 3 = −1')+' یعنی '+m('(2, −1)')+'. ریشه‌ها 1 و 3 و عرض از مبدأ 3 است. فرم رأسی: '+m('y = (x − 2)<sup>2</sup> − 1')+'.</p>')}
+${parabolaSvg()}
+${pr(m('y = −x<sup>2</sup> + 6x')+' چه مقدار بیشینه‌ای دارد؟',m('x = '+F('−6','−2')+' = 3')+' و '+m('y = −9 + 18 = 9')+'. رأس '+m('(3, 9)')+' بالاترین نقطه است.')}`},
+
+{id:'functions-4',t:'تابع نمایی و لگاریتمی',s:'رشد، نیمه‌عمر و نمودارها',h:`
+<ul><li>${m('y = a<sup>x</sup>')} ${m('(a > 0 , a ≠ 1)')}: از نقطه‌ی ${m('(0, 1)')} می‌گذرد و محور x مجانب آن است. اگر ${m('a > 1')} صعودی و اگر ${m('0 < a < 1')} نزولی است.</li><li>${m('y = log<sub>a</sub> x')}: وارون تابع نمایی است، دامنه‌اش ${m('x > 0')} است و از ${m('(1, 0)')} می‌گذرد.</li></ul>
+${key('کاربردها',B(R('رشد مرکب:','A = P(1 + r)<sup>n</sup>'),R('نیمه‌عمر:','N = N<sub>0</sub> · ('+F('1','2')+')<sup>t/T</sup>')))}
+${eg('<p>سرمایه‌ی 1٬000٬000 تومان با سود مرکب 10٪ سالانه بعد از 3 سال: '+m('1000000 × 1.1<sup>3</sup> = 1331000')+' تومان.</p><p>80 گرم ماده با نیمه‌عمر 5 روز بعد از 15 روز: '+m('80 × ('+F('1','2')+')<sup>3</sup> = 10')+' گرم.</p>')}
+${pr('معادله‌ی '+m('2<sup>x</sup> = '+F('1','8'))+' را حل کنید.',m(F('1','8')+' = 2<sup>−3</sup>')+' پس '+m('x = −3')+'.')}`}
+]},
+
+{id:'stats',t:'آمار و احتمال',d:'میانگین، پراکندگی، احتمال و شمارش.',c:'#06B6D4',g:'σ',lessons:[
+{id:'stats-1',t:'میانگین، میانه و مد',s:'معیارهای مرکزی داده‌ها',h:`
+${key('تعریف',`<ul><li><b>میانگین:</b> مجموع داده‌ها تقسیم بر تعداد آن‌ها.</li><li><b>میانه:</b> داده‌ی وسط پس از مرتب کردن؛ برای تعداد زوج، میانگین دو داده‌ی وسط.</li><li><b>مد:</b> داده‌ای که بیشترین فراوانی را دارد.</li></ul>`)}
+${B('x̄ = '+F('x<sub>1</sub> + x<sub>2</sub> + … + x<sub>n</sub>','n'))}
+${eg('<p>داده‌ها: '+m('4, 8, 6, 5, 3, 8, 9')+'. مرتب: '+m('3, 4, 5, 6, 8, 8, 9')+'.</p><p>میانگین '+m(F('43','7')+' ≈ 6.14')+'، میانه 6 (داده‌ی چهارم از هفت داده) و مد 8.</p>')}
+${tip('میانگین به داده‌های پرت حساس است، ولی میانه کمتر. برای درآمد افراد یک شهر معمولاً میانه گزارش مناسب‌تری است.')}
+${pr('میانگین و میانه‌ی '+m('2, 4, 6, 8')+' چند است؟','میانگین '+m(F('20','4')+' = 5')+' و میانه '+m(F('4 + 6','2')+' = 5')+'.')}`},
+
+{id:'stats-2',t:'واریانس و انحراف معیار',s:'سنجش پراکندگی داده‌ها',h:`
+<p>دو مجموعه داده با میانگین یکسان می‌توانند پراکندگی کاملاً متفاوتی داشته باشند. برای سنجش پراکندگی از دامنه‌ی تغییرات (بزرگ‌ترین منهای کوچک‌ترین)، واریانس و انحراف معیار استفاده می‌کنیم.</p>
+${key('فرمول‌ها (جامعه)',B('σ<sup>2</sup> = '+F('Σ (x<sub>i</sub> − μ)<sup>2</sup>','n'),'σ = '+S('σ<sup>2</sup>')))}
+<p>اگر داده‌ها نمونه‌ای از یک جامعه‌ی بزرگ‌تر باشند، معمولاً مخرج واریانس به‌جای n برابر ${m('n − 1')} گرفته می‌شود.</p>
+${eg('<p>داده‌ها: '+m('2, 4, 4, 4, 5, 5, 7, 9')+'. میانگین '+m(F('40','8')+' = 5')+'.</p><p>مربع انحراف‌ها: '+m('9, 1, 1, 1, 0, 0, 4, 16')+' با مجموع 32. واریانس '+m(F('32','8')+' = 4')+' و انحراف معیار '+m('σ = 2')+'.</p>')}
+${pr('واریانس جامعه‌ی '+m('1, 3, 5')+' را حساب کنید.','میانگین 3 و مربع انحراف‌ها '+m('4, 0, 4')+'. پس '+m('σ<sup>2</sup> = '+F('8','3')+' ≈ 2.67')+' و '+m('σ ≈ 1.63')+'.')}`},
+
+{id:'stats-3',t:'احتمال',s:'پیشامدها، مکمل، اجتماع و احتمال شرطی',h:`
+${key('احتمال کلاسیک',B('P(A) = '+F('تعداد حالت‌های مطلوب','تعداد کل حالت‌های هم‌شانس'),'0 ≤ P(A) ≤ 1','P(A′) = 1 − P(A)','P(A ∪ B) = P(A) + P(B) − P(A ∩ B)'))}
+<p>اگر دو پیشامد مستقل باشند، ${m('P(A ∩ B) = P(A) · P(B)')}. احتمال شرطی A به شرط B:</p>
+${B('P(A | B) = '+F('P(A ∩ B)','P(B)'))}
+${eg('<p>پرتاب یک تاس، عدد زوج: '+m(F('3','6')+' = '+F('1','2'))+'.</p><p>دو تاس با مجموع 7: شش حالت (1,6)، (2,5)، (3,4)، (4,3)، (5,2)، (6,1) از 36 حالت، پس '+m(F('6','36')+' = '+F('1','6'))+'.</p><p>حداقل یک شیر در سه پرتاب سکه: '+m('1 − '+F('1','8')+' = '+F('7','8'))+'.</p><p>تاس زوج به شرط بزرگ‌تر از 3: حالت‌های '+m('{4, 5, 6}')+' و زوج‌ها '+m('{4, 6}')+' پس '+m(F('2','3'))+'.</p>')}
+${pr('احتمال آمدن آس از یک دسته‌ی 52‌تایی ورق چقدر است؟',m(F('4','52')+' = '+F('1','13')))}`},
+
+{id:'stats-4',t:'شمارش و ترکیبیات',s:'اصل ضرب، جایگشت و ترکیب',h:`
+<p><b>اصل ضرب:</b> اگر کاری در دو مرحله انجام شود و مرحله‌ی اول به m روش و مرحله‌ی دوم به n روش، کل روش‌ها ${m('m × n')} است.</p>
+${key('فرمول‌ها',B('n! = n × (n − 1) × … × 2 × 1 ,   0! = 1',R('جایگشت (ترتیب مهم است):','P(n, r) = '+F('n!','(n − r)!')),R('ترکیب (ترتیب مهم نیست):','C(n, r) = '+F('n!','r!(n − r)!')),'C(n, r) = C(n, n − r)'))}
+<h3>بسط دوجمله‌ای</h3>
+${B('(a + b)<sup>n</sup> = Σ C(n, k) a<sup>n−k</sup> b<sup>k</sup>',R('ضریب‌های بسط '+'(a + b)<sup>4</sup>'+':','1, 4, 6, 4, 1'))}
+${eg('<p>چیدن 5 نفر در یک صف: '+m('5! = 120')+'.</p><p>ساخت عدد سه‌رقمی با ارقام متمایز از '+m('{1, 2, 3, 4, 5}')+': '+m('P(5, 3) = 60')+'.</p><p>انتخاب 3 نفر از 5 نفر: '+m('C(5, 3) = 10')+'. انتخاب کمیته‌ای دونفره از 6 نفر: '+m('C(6, 2) = 15')+'.</p>')}
+<div class="widget" data-w="comb"></div>
+${pr(m('C(8, 2)')+' را حساب کنید.',m(F('8 × 7','2')+' = 28'))}`}
+]},
+
+{id:'calculus',t:'حسابان',d:'حد، مشتق، کاربرد مشتق و انتگرال.',c:'#F97316',g:'∫',lessons:[
+{id:'calculus-1',t:'حد و پیوستگی',s:'رفتار تابع نزدیک یک نقطه',h:`
+<p>${m('lim<sub>x→a</sub> f(x) = L')} یعنی وقتی x به a نزدیک می‌شود (بدون این‌که لزوماً برابر a شود)، مقدار تابع به L نزدیک می‌شود.</p>
+<h3>روش‌های محاسبه</h3>
+<ol><li>اول جای‌گذاری مستقیم را امتحان کنید.</li><li>اگر به شکل ${m(F('0','0'))} رسیدید، فاکتورگیری و ساده کردن یا گویا کردن را به کار ببرید.</li><li>برای حد در بی‌نهایت، صورت و مخرج را بر بزرگ‌ترین توان x تقسیم کنید.</li></ol>
+${key('حدهای مهم',B('lim<sub>x→0</sub> '+F('sin x','x')+' = 1','lim<sub>x→∞</sub> '+F('1','x')+' = 0')+'<p>در حد اول، x برحسب رادیان است.</p>')}
+${eg('<p>'+m('lim<sub>x→2</sub> '+F('x<sup>2</sup> − 4','x − 2')+' = lim<sub>x→2</sub> (x + 2) = 4')+'.</p><p>'+m('lim<sub>x→∞</sub> '+F('3x<sup>2</sup> + 1','x<sup>2</sup> + 5')+' = 3')+' (تقسیم بر '+m('x<sup>2</sup>')+').</p>')}
+<p>تابع f در a <b>پیوسته</b> است اگر f(a) تعریف شده باشد، حد در a وجود داشته باشد و این دو برابر باشند.</p>
+${pr(m('lim<sub>x→3</sub> '+F('x<sup>2</sup> − 9','x − 3'))+' را حساب کنید.',m('lim (x + 3) = 6'))}`},
+
+{id:'calculus-2',t:'مشتق',s:'تعریف و قاعده‌های مشتق‌گیری',h:`
+<p>مشتق، شیب خط مماس بر نمودار و آهنگ لحظه‌ای تغییر تابع است.</p>
+${B('f′(x) = lim<sub>h→0</sub> '+F('f(x + h) − f(x)','h'))}
+${key('قاعده‌های مشتق‌گیری',B('(c)′ = 0','(x<sup>n</sup>)′ = n x<sup>n−1</sup>','(f ± g)′ = f′ ± g′','(f g)′ = f′ g + f g′','('+F('f','g')+')′ = '+F('f′ g − f g′','g<sup>2</sup>'),'(f(g(x)))′ = f′(g(x)) · g′(x)'))}
+${tb(['تابع','مشتق'],[[m('sin x'),m('cos x')],[m('cos x'),m('−sin x')],[m('tan x'),m(F('1','cos<sup>2</sup>x'))],[m('e<sup>x</sup>'),m('e<sup>x</sup>')],[m('a<sup>x</sup>'),m('a<sup>x</sup> ln a')],[m('ln x'),m(F('1','x'))]])}
+${eg('<p>'+m('(x<sup>3</sup> − 5x<sup>2</sup> + 4x)′ = 3x<sup>2</sup> − 10x + 4')+'.</p><p>ضرب: '+m('(x<sup>2</sup> sin x)′ = 2x sin x + x<sup>2</sup> cos x')+'.</p><p>زنجیره‌ای: '+m('((3x + 1)<sup>5</sup>)′ = 15(3x + 1)<sup>4</sup>')+'.</p><p>خارج‌قسمت: '+m('('+F('x','x + 1')+')′ = '+F('(x + 1) − x','(x + 1)<sup>2</sup>')+' = '+F('1','(x + 1)<sup>2</sup>'))+'.</p><p>خط مماس بر '+m('y = x<sup>2</sup>')+' در '+m('x = 3')+': شیب '+m('f′(3) = 6')+' و نقطه '+m('(3, 9)')+' پس '+m('y = 6x − 9')+'.</p>')}
+${pr('مشتق '+m('5x<sup>2</sup> − 3x')+' در '+m('x = 2')+' چند است؟',m('f′(x) = 10x − 3')+' پس '+m('f′(2) = 17')+'.')}`},
+
+{id:'calculus-3',t:'کاربرد مشتق',s:'اکسترمم‌ها و مسئله‌های بهینه‌سازی',h:`
+<ul><li>اگر ${m('f′(x) > 0')} روی یک بازه باشد، f روی آن بازه صعودی است و اگر ${m('f′(x) < 0')} باشد، نزولی.</li><li>نقطه‌های بحرانی: جایی که ${m('f′(x) = 0')} یا f′ وجود ندارد.</li><li>آزمون مشتق دوم: اگر ${m('f′(c) = 0')} و ${m('f″(c) > 0')} باشد، c مینیمم موضعی است. اگر ${m('f″(c) < 0')} باشد، ماکزیمم موضعی.</li></ul>
+${eg('<p>'+m('f(x) = x<sup>3</sup> − 3x')+': '+m('f′(x) = 3x<sup>2</sup> − 3 = 0')+' پس '+m('x = ±1')+'. '+m('f″(x) = 6x')+': در '+m('x = 1')+' مثبت است و مینیمم با '+m('f(1) = −2')+'؛ در '+m('x = −1')+' منفی است و ماکزیمم با '+m('f(−1) = 2')+'.</p><p><b>بهینه‌سازی:</b> مستطیلی با محیط 40، بیشترین مساحت را چقدر دارد؟ ضلع‌ها x و '+m('20 − x')+': '+m('A = x(20 − x)')+'، '+m('A′ = 20 − 2x = 0')+' پس '+m('x = 10')+'. مستطیل مربعی با ضلع 10 است و مساحت بیشینه 100 است.</p>')}
+${pr('مینیمم '+m('f(x) = x<sup>2</sup> − 6x + 5')+' چقدر است؟',m('f′(x) = 2x − 6 = 0 ⇒ x = 3')+' و '+m('f(3) = 9 − 18 + 5 = −4')+'.')}`},
+
+{id:'calculus-4',t:'انتگرال',s:'پادمشتق، انتگرال معین و مساحت',h:`
+<p>انتگرال نامعین عکس مشتق است. اگر ${m('F′(x) = f(x)')} باشد، ${m('∫ f(x) dx = F(x) + C')}.</p>
+${key('انتگرال‌های پایه',B('∫ x<sup>n</sup> dx = '+F('x<sup>n+1</sup>','n + 1')+' + C     (n ≠ −1)','∫ '+F('1','x')+' dx = ln|x| + C','∫ e<sup>x</sup> dx = e<sup>x</sup> + C','∫ cos x dx = sin x + C','∫ sin x dx = −cos x + C'))}
+${key('قضیه‌ی اساسی حسابان',B('∫<sub>a</sub><sup>b</sup> f(x) dx = F(b) − F(a)'))}
+<p>انتگرال معین، مساحت علامت‌دار بین نمودار و محور x را می‌دهد.</p>
+${eg('<p>'+m('∫ (3x<sup>2</sup> + 2x) dx = x<sup>3</sup> + x<sup>2</sup> + C')+'.</p><p>'+m('∫<sub>0</sub><sup>2</sup> x<sup>2</sup> dx = '+F('x<sup>3</sup>','3')+' |<sub>0</sub><sup>2</sup> = '+F('8','3'))+'.</p><p>مساحت زیر '+m('y = x')+' از 0 تا 4: '+m(F('x<sup>2</sup>','2')+' |<sub>0</sub><sup>4</sup> = 8')+'.</p><p>'+m('∫<sub>0</sub><sup>π</sup> sin x dx = [−cos x]<sub>0</sub><sup>π</sup> = 1 + 1 = 2')+'.</p><p>جای‌گذاری: '+m('∫ 2x(x<sup>2</sup> + 1)<sup>3</sup> dx = '+F('(x<sup>2</sup> + 1)<sup>4</sup>','4')+' + C')+' (با '+m('u = x<sup>2</sup> + 1')+').</p>')}
+${pr(m('∫<sub>1</sub><sup>3</sup> 2x dx')+' را حساب کنید.',m('x<sup>2</sup> |<sub>1</sub><sup>3</sup> = 9 − 1 = 8'))}`}
+]},
+
+{id:'sets',t:'مجموعه، منطق و ماتریس',d:'مجموعه‌ها، گزاره‌ها و ماتریس‌ها.',c:'#6366F1',g:'{ }',lessons:[
+{id:'sets-1',t:'مجموعه‌ها',s:'اجتماع، اشتراک، تفاضل و شمارش',h:`
+<p>مجموعه گردایه‌ای از اعضای متمایز است. ${m('a ∈ A')} یعنی a عضو A است و ${m('A ⊆ B')} یعنی هر عضو A عضو B هم هست.</p>
+${tb(['عمل','نماد','معنی'],[['اجتماع',m('A ∪ B'),'اعضایی که در A یا B هستند'],['اشتراک',m('A ∩ B'),'اعضای مشترک A و B'],['تفاضل',m('A − B'),'اعضای A که در B نیستند'],['متمم',m('A′'),'اعضای مجموعه‌ی مرجع که در A نیستند']])}
+${key('شمارش',B('|A ∪ B| = |A| + |B| − |A ∩ B|',R('تعداد زیرمجموعه‌های مجموعه‌ی n‌عضوی:','2<sup>n</sup>')))}
+${eg('<p>'+m('A = {1, 2, 3, 4}')+' و '+m('B = {3, 4, 5}')+': '+m('A ∪ B = {1, 2, 3, 4, 5}')+'، '+m('A ∩ B = {3, 4}')+'، '+m('A − B = {1, 2}')+'. بررسی: '+m('4 + 3 − 2 = 5')+'.</p><p>در کلاسی با 30 دانش‌آموز، 18 نفر فوتبال و 15 نفر والیبال بازی می‌کنند و 5 نفر هر دو. تعداد کسانی که حداقل یکی را بازی می‌کنند '+m('18 + 15 − 5 = 28')+' و 2 نفر هیچ‌کدام را بازی نمی‌کنند.</p>')}
+${pr('مجموعه‌ی '+m('{a, b, c}')+' چند زیرمجموعه و چند زیرمجموعه‌ی سره دارد؟',m('2<sup>3</sup> = 8')+' زیرمجموعه. زیرمجموعه‌ی سره یعنی همه به‌جز خود مجموعه: 7.')}`},
+
+{id:'sets-2',t:'منطق ریاضی',s:'گزاره‌ها، جدول ارزش و استدلال',h:`
+<p>گزاره جمله‌ای خبری است که دقیقاً یا درست است یا نادرست. گزاره‌ها را با ${m('∧')} (و)، ${m('∨')} (یا)، ${m('¬')} (نقیض)، ${m('⇒')} (اگر… آن‌گاه) و ${m('⇔')} (اگر و فقط اگر) ترکیب می‌کنیم.</p>
+${tb(['p','q','p ∧ q','p ∨ q','p ⇒ q','p ⇔ q'],[['د','د','د','د','د','د'],['د','ن','ن','د','ن','ن'],['ن','د','ن','د','د','ن'],['ن','ن','ن','ن','د','د']])}
+<p>(د = درست، ن = نادرست). استلزام ${m('p ⇒ q')} فقط وقتی نادرست است که p درست و q نادرست باشد.</p>
+${key('هم‌ارزی‌های مهم',B('¬(p ∧ q) ≡ ¬p ∨ ¬q','¬(p ∨ q) ≡ ¬p ∧ ¬q','p ⇒ q ≡ ¬q ⇒ ¬p','¬(p ⇒ q) ≡ p ∧ ¬q')+'<p>هم‌ارزی سوم همان «عکس نقیض» است.</p>')}
+<p>عکس یک گزاره (${m('q ⇒ p')}) با خود گزاره هم‌ارز نیست. سورها: ${m('∀')} (برای هر) و ${m('∃')} (وجود دارد)؛ نقیض ${m('∀x P(x)')} برابر ${m('∃x ¬P(x)')} است.</p>
+${eg('<p>«اگر باران ببارد، زمین خیس می‌شود.» عکس نقیض آن: «اگر زمین خیس نشود، باران نباریده است.» این دو هم‌ارزند.</p>')}
+${pr('نقیض «همه‌ی دانش‌آموزان قبول شدند» چیست؟','«حداقل یک دانش‌آموز قبول نشد.» (نه «هیچ‌کس قبول نشد».)')}`},
+
+{id:'sets-3',t:'ماتریس و دترمینان',s:'ضرب ماتریس‌ها، وارون و حل دستگاه',h:`
+<p>ماتریس آرایه‌ای مستطیلی از عددهاست. ماتریس با m سطر و n ستون را ${m('m × n')} می‌گوییم. جمع، درایه‌به‌درایه است و ضرب ${m('AB')} وقتی تعریف می‌شود که تعداد ستون‌های A با تعداد سطرهای B برابر باشد (سطر در ستون).</p>
+${key('ماتریس ۲×۲',B('A = '+MX([['a','b'],['c','d']]),'det A = ad − bc','A<sup>−1</sup> = '+F('1','ad − bc')+' '+MX([['d','−b'],['−c','a']])+'     (det A ≠ 0)'))}
+${eg('<p>با '+m('A = '+MX([['1','2'],['3','4']]))+' و '+m('B = '+MX([['0','1'],['1','0']]))+':</p><p>'+m('AB = '+MX([['2','1'],['4','3']]))+' و '+m('BA = '+MX([['3','4'],['1','2']]))+'. پس '+m('AB ≠ BA')+' و ضرب ماتریس‌ها جابه‌جایی ندارد.</p><p>'+m('det A = 1 × 4 − 2 × 3 = −2')+' و '+m('A<sup>−1</sup> = '+MX([['−2','1'],[F('3','2'),'−'+F('1','2')]]))+'.</p>')}
+<h3>حل دستگاه با قاعده‌ی کرامر</h3>
+${B('x = '+F('D<sub>x</sub>','D')+' ,   y = '+F('D<sub>y</sub>','D'))}
+${eg('<p>دستگاه '+m('2x + y = 5')+' و '+m('x + 3y = 10')+': '+m('D = 6 − 1 = 5')+'، '+m('D<sub>x</sub> = 5 × 3 − 1 × 10 = 5')+'، '+m('D<sub>y</sub> = 2 × 10 − 5 × 1 = 15')+'. پس '+m('x = 1')+' و '+m('y = 3')+'. بررسی: '+m('2 + 3 = 5')+' و '+m('1 + 9 = 10')+'.</p>')}
+${pr('دترمینان '+m(MX([['5','2'],['3','1']]))+' چند است؟',m('5 × 1 − 2 × 3 = −1'))}`}
+]}
+];
+
+/* ---------- آزمون پایان هر درس (گزینه‌ی اول همیشه درست است و هنگام نمایش جابه‌جا می‌شود) ---------- */
+const T=(a,b)=>m(F(a,b));
+const QUIZ={
+'arith-1':[
+['کدام عدد گنگ است؟',[m(S('2')),m(S('9')),m('0.75'),T('1','3')],m(S('9')+' = 3')+' صحیح است، '+m('0.75')+' و '+T('1','3')+' گویا هستند. '+m(S('2'))+' مربع کامل نیست و گنگ است.'],
+['کدام عدد صحیح است ولی طبیعی نیست؟',[m('−3'),m('5'),T('1','2'),m(S('2'))],'عددهای صحیح منفی در اعداد طبیعی نیستند.'],
+['عدد '+m('0.25')+' به‌صورت کسر ساده کدام است؟',[T('1','4'),T('1','25'),T('2','5'),T('1','2')],m('0.25 = '+F('25','100')+' = '+F('1','4'))]
+],
+'arith-2':[
+['کدام عدد بر 9 بخش‌پذیر است؟',[m('738'),m('725'),m('841'),m('1234')],'مجموع ارقام 738 برابر 18 است و بر 9 بخش‌پذیر است.'],
+['کدام عدد اول است؟',[m('97'),m('91'),m('87'),m('51')],m('91 = 7 × 13')+' ، '+m('87 = 3 × 29')+' و '+m('51 = 3 × 17')+' اول نیستند.'],
+['تجزیه‌ی عدد 60 به عامل‌های اول کدام است؟',[m('2<sup>2</sup> × 3 × 5'),m('2 × 3 × 10'),m('2<sup>2</sup> × 15'),m('2 × 3<sup>2</sup> × 5')],m('4 × 3 × 5 = 60')+'؛ عامل 10 و 15 اول نیستند.']
+],
+'arith-3':[
+['ب.م.م دو عدد 24 و 36 چند است؟',[m('12'),m('6'),m('24'),m('72')],m('24 = 2<sup>3</sup>×3')+' و '+m('36 = 2<sup>2</sup>×3<sup>2</sup>')+' پس ب.م.م '+m('2<sup>2</sup>×3 = 12')+'.'],
+['ک.م.م دو عدد 4 و 6 چند است؟',[m('12'),m('24'),m('2'),m('10')],'کوچک‌ترین عدد که مضرب هر دو باشد 12 است.'],
+['ب.م.م و ک.م.م دو عدد 12 و 18 را در هم ضرب کنیم، حاصل چند می‌شود؟',[m('216'),m('36'),m('6'),m('30')],'حاصل‌ضرب ب.م.م و ک.م.م برابر حاصل‌ضرب خود عددهاست: '+m('12 × 18 = 216')+'.']
+],
+'arith-4':[
+['حاصل '+m(F('1','2')+' + '+F('1','3'))+' کدام است؟',[T('5','6'),T('2','5'),T('1','6'),T('2','6')],'مخرج مشترک 6: '+m(F('3','6')+' + '+F('2','6')+' = '+F('5','6'))],
+['حاصل '+m(F('2','3')+' ÷ '+F('4','5'))+' کدام است؟',[T('5','6'),T('8','15'),T('6','5'),T('4','9')],'تقسیم یعنی ضرب در وارون: '+m(F('2','3')+' × '+F('5','4')+' = '+F('10','12')+' = '+F('5','6'))],
+['کدام کسر بزرگ‌تر است: '+T('3','4')+' یا '+T('5','7')+'؟',[T('3','4'),T('5','7'),'مساوی‌اند','نمی‌توان مقایسه کرد'],'ضرب متقاطع: '+m('3 × 7 = 21')+' از '+m('5 × 4 = 20')+' بزرگ‌تر است.']
+],
+'arith-5':[
+['20٪ از عدد 150 چند است؟',[m('30'),m('20'),m('15'),m('3')],m(F('20','100')+' × 150 = 30')],
+['قیمتی 20٪ زیاد و بعد 20٪ کم شود. قیمت نهایی چند درصد قیمت اول است؟',['96٪','100٪','104٪','98٪'],m('1.2 × 0.8 = 0.96')],
+['4 کارگر کاری را در 12 روز انجام می‌دهند. 6 کارگر همان کار را در چند روز انجام می‌دهند؟',['8 روز','18 روز','6 روز','9 روز'],'تناسب معکوس: '+m('4 × 12 = 6 × x')+' پس '+m('x = 8')+'.']
+],
+'arith-6':[
+['حاصل '+m('2<sup>3</sup> × 2<sup>4</sup>')+' کدام است؟',[m('2<sup>7</sup>'),m('2<sup>12</sup>'),m('4<sup>7</sup>'),m('2<sup>1</sup>')],'در ضرب با پایه‌ی یکسان، توان‌ها جمع می‌شوند.'],
+['مقدار '+m('5<sup>−2</sup>')+' کدام است؟',[T('1','25'),m('−25'),m('−10'),T('1','10')],m('5<sup>−2</sup> = '+F('1','5<sup>2</sup>'))],
+['عدد 4500 در نماد علمی (با شرط '+m('1 ≤ a < 10')+') کدام است؟',[m('4.5 × 10<sup>3</sup>'),m('4.5 × 10<sup>2</sup>'),m('4.5 × 10<sup>4</sup>'),m('0.45 × 10<sup>3</sup>')],'ممیز را 3 رقم به چپ می‌بریم.']
+],
+'algebra-1':[
+['بسط '+m('(a + b)<sup>2</sup>')+' کدام است؟',[m('a<sup>2</sup> + 2ab + b<sup>2</sup>'),m('a<sup>2</sup> + b<sup>2</sup>'),m('a<sup>2</sup> + ab + b<sup>2</sup>'),m('a<sup>2</sup> − 2ab + b<sup>2</sup>')],'جمله‌ی وسط '+m('2ab')+' را نباید فراموش کرد.'],
+['تجزیه‌ی '+m('x<sup>2</sup> − 9')+' کدام است؟',[m('(x − 3)(x + 3)'),m('(x − 3)<sup>2</sup>'),m('(x + 3)<sup>2</sup>'),m('(x − 9)(x + 1)')],'اتحاد مزدوج: تفاضل دو مربع.'],
+['حاصل '+m('99<sup>2</sup>')+' با اتحاد چند می‌شود؟',[m('9801'),m('9899'),m('9701'),m('9601')],m('(100 − 1)<sup>2</sup> = 10000 − 200 + 1 = 9801')]
+],
+'algebra-2':[
+['جواب معادله‌ی '+m('3x + 7 = 22')+' کدام است؟',[m('x = 5'),m('x = 3'),m('x = 7'),m('x = '+F('29','3'))],m('3x = 15')+' پس '+m('x = 5')],
+['جواب معادله‌ی '+m('5x + 2 = 3x + 10')+' کدام است؟',[m('x = 4'),m('x = 6'),m('x = 2'),m('x = 8')],m('2x = 8')],
+['مجموع سه عدد متوالی 72 است. کوچک‌ترین آن‌ها کدام است؟',[m('23'),m('24'),m('22'),m('25')],m('x + (x + 1) + (x + 2) = 72')+' پس '+m('x = 23')]
+],
+'algebra-3':[
+['مبین معادله‌ی '+m('x<sup>2</sup> − 5x + 6 = 0')+' چند است؟',[m('1'),m('49'),m('11'),m('25')],m('Δ = 25 − 24 = 1')],
+['معادله‌ی '+m('x<sup>2</sup> + 2x + 5 = 0')+' چند ریشه‌ی حقیقی دارد؟',['ریشه‌ی حقیقی ندارد','دو ریشه‌ی حقیقی متمایز','یک ریشه‌ی مضاعف','سه ریشه'],m('Δ = 4 − 20 = −16 < 0')],
+['مجموع ریشه‌های '+m('2x<sup>2</sup> − 6x + 1 = 0')+' کدام است؟',[m('3'),m('−3'),T('1','2'),m('6')],m(F('−b','a')+' = '+F('6','2')+' = 3')]
+],
+'algebra-4':[
+['در دستگاه '+m('x + y = 10')+' و '+m('x − y = 4')+' مقدار x چند است؟',[m('7'),m('3'),m('6'),m('14')],'با جمع دو معادله '+m('2x = 14')+'.'],
+['در دستگاه '+m('2x + 3y = 12')+' و '+m('x − y = 1')+' مقدار y چند است؟',[m('2'),m('3'),m('1'),m('5')],m('x = y + 1')+' و '+m('5y = 10')],
+['اگر دو خط موازی و متمایز باشند، دستگاه آن‌ها چند جواب دارد؟',['هیچ جواب','یک جواب','دو جواب','بی‌شمار جواب'],'خط‌های موازی متمایز هیچ نقطه‌ی مشترکی ندارند.']
+],
+'algebra-5':[
+['جواب نامعادله‌ی '+m('−2x + 3 > 7')+' کدام است؟',[m('x < −2'),m('x > −2'),m('x < 2'),m('x > 2')],'تقسیم بر عدد منفی جهت را برعکس می‌کند.'],
+['جواب '+m('|x − 2| < 3')+' کدام است؟',[m('−1 < x < 5'),m('1 < x < 5'),m('x < −1')+' یا '+m('x > 5'),m('−5 < x < 1')],m('−3 < x − 2 < 3')],
+['جواب '+m('x<sup>2</sup> − 4x + 3 < 0')+' کدام است؟',[m('1 < x < 3'),m('x < 1')+' یا '+m('x > 3'),m('x < 3'),m('0 < x < 4')],'سهمی رو به بالاست و بین دو ریشه منفی است.']
+],
+'algebra-6':[
+['جمله‌ی دهم دنباله‌ی حسابی '+m('3, 7, 11, …')+' کدام است؟',[m('39'),m('43'),m('36'),m('40')],m('3 + 9 × 4 = 39')],
+['جمله‌ی پنجم دنباله‌ی هندسی '+m('2, 6, 18, …')+' کدام است؟',[m('162'),m('54'),m('486'),m('108')],m('2 × 3<sup>4</sup> = 162')],
+['مجموع عددهای 1 تا 100 چند است؟',[m('5050'),m('5000'),m('5100'),m('10100')],m(F('100','2')+'(1 + 100) = 5050')]
+],
+'algebra-7':[
+['مقدار '+m('log<sub>2</sub> 8')+' کدام است؟',[m('3'),m('4'),m('2'),m('16')],m('2<sup>3</sup> = 8')],
+['حاصل '+m('log<sub>2</sub> 4 + log<sub>2</sub> 8')+' کدام است؟',[m('5'),m('6'),m('12'),m('32')],m('2 + 3 = 5')+' (یا '+m('log<sub>2</sub> 32')+')'],
+['جواب معادله‌ی '+m('2<sup>x</sup> = 32')+' کدام است؟',[m('5'),m('4'),m('16'),m('6')],m('32 = 2<sup>5</sup>')]
+],
+'geometry-1':[
+['دو زاویه‌ی یک مثلث 50° و 60° است. زاویه‌ی سوم چند درجه است؟',['70°','80°','110°','130°'],m('180° − 110° = 70°')],
+['کدام سه عدد می‌تواند ضلع‌های یک مثلث باشد؟',[m('3 , 4 , 5'),m('2 , 3 , 6'),m('1 , 2 , 3'),m('4 , 4 , 9')],'مجموع هر دو ضلع باید از ضلع سوم بزرگ‌تر باشد.'],
+['مساحت مثلث با ضلع‌های 3 و 4 و 5 با فرمول هرون چند است؟',[m('6'),m('12'),m('10'),m('3')],m('p = 6')+' و '+m(S('6 × 3 × 2 × 1')+' = 6')]
+],
+'geometry-2':[
+['دو ضلع قائمه‌ی مثلثی 6 و 8 است. وتر چند است؟',[m('10'),m('14'),m('12'),m('7')],m(S('36 + 64')+' = 10')],
+['وتر مثلثی قائم‌الزاویه 13 و یک ضلع قائمه 5 است. ضلع دیگر چند است؟',[m('12'),m('8'),m('144'),m('18')],m('169 − 25 = 144')+' پس 12'],
+['کدام سه عدد، اندازه‌ی ضلع‌های یک مثلث قائم‌الزاویه است؟',[m('5 , 12 , 13'),m('4 , 5 , 6'),m('6 , 7 , 8'),m('2 , 3 , 4')],m('25 + 144 = 169')]
+],
+'geometry-3':[
+['مساحت ذوزنقه با قاعده‌های 6 و 10 و ارتفاع 4 چند است؟',[m('32'),m('64'),m('24'),m('40')],m(F('(6 + 10) × 4','2')+' = 32')],
+['مجموع زاویه‌های داخلی یک پنج‌ضلعی چند درجه است؟',['540°','360°','720°','900°'],m('(5 − 2) × 180° = 540°')],
+['یک شش‌ضلعی چند قطر دارد؟',[m('9'),m('6'),m('12'),m('15')],m(F('6 × 3','2')+' = 9')]
+],
+'geometry-4':[
+['محیط دایره‌ای به شعاع 7 کدام است؟',[m('14π'),m('49π'),m('7π'),m('28π')],m('2πr = 14π')],
+['مساحت دایره‌ای به شعاع 10 کدام است؟',[m('100π'),m('20π'),m('10π'),m('200π')],m('πr<sup>2</sup> = 100π')],
+['زاویه‌ی محاطی روبه‌رو به قطر دایره چند درجه است؟',['90°','180°','45°','60°'],'کمان روبه‌رو نیم‌دایره (180°) و زاویه‌ی محاطی نصف آن است.']
+],
+'geometry-5':[
+['نسبت تشابه دو مثلث 1 به 3 است. نسبت مساحت‌های آن‌ها چند است؟',['1 به 9','1 به 3','1 به 6','1 به 27'],'نسبت مساحت‌ها مربع نسبت تشابه است.'],
+['در مثلثی با خط موازی ضلع سوم، '+m('AD = 4')+'، '+m('DB = 6')+' و '+m('AE = 2')+' است. '+m('EC')+' چند است؟',[m('3'),m('2'),m('4'),m('12')],m(F('4','6')+' = '+F('2','EC'))],
+['چوبی 2 متری سایه‌ای 3 متری دارد. درختی هم‌زمان سایه‌ای 15 متری دارد. ارتفاع درخت چند متر است؟',['10','7.5','22.5','12'],m(F('2','3')+' = '+F('h','15'))]
+],
+'geometry-6':[
+['حجم مکعبی به ضلع 4 چند است؟',[m('64'),m('16'),m('48'),m('96')],m('4<sup>3</sup> = 64')],
+['حجم کره‌ای به شعاع 3 کدام است؟',[m('36π'),m('27π'),m('12π'),m('108π')],m(F('4','3')+'π × 27 = 36π')],
+['حجم مخروط با شعاع قاعده‌ی r و ارتفاع h کدام است؟',[m(F('1','3')+'πr<sup>2</sup>h'),m('πr<sup>2</sup>h'),m(F('1','2')+'πr<sup>2</sup>h'),m(F('4','3')+'πr<sup>3</sup>')],'حجم مخروط یک‌سوم حجم استوانه‌ی هم‌قاعده و هم‌ارتفاع است.']
+],
+'trig-1':[
+['مقدار '+m('sin 30°')+' کدام است؟',[T('1','2'),T(S('3'),'2'),m('1'),T(S('2'),'2')],'از جدول زاویه‌های مهم.'],
+['مقدار '+m('tan 45°')+' کدام است؟',[m('1'),m('0'),m(S('3')),T('1','2')],m('sin 45° = cos 45°')],
+['در مثلث 3 و 4 و 5، سینوس زاویه‌ی روبه‌رو به ضلع 3 کدام است؟',[T('3','5'),T('4','5'),T('3','4'),T('5','3')],'سینوس = ضلع روبه‌رو ÷ وتر.']
+],
+'trig-2':[
+['زاویه‌ی 90° چند رادیان است؟',[m(F('π','2')),m('π'),m(F('π','4')),m('2π')],m('90 × '+F('π','180')+' = '+F('π','2'))],
+['مقدار '+m('cos 120°')+' کدام است؟',[m('−'+F('1','2')),T('1','2'),m('−'+F(S('3'),'2')),T(S('3'),'2')],'در ناحیه‌ی دوم کسینوس منفی است: '+m('−cos 60°')],
+['نقطه‌ی متناظر با زاویه‌ی θ روی دایره‌ی مثلثاتی چه مختصاتی دارد؟',[m('(cos θ , sin θ)'),m('(sin θ , cos θ)'),m('(tan θ , 1)'),m('(cos θ , tan θ)')],'طول نقطه کسینوس و عرض آن سینوس است.']
+],
+'trig-3':[
+['حاصل '+m('sin<sup>2</sup>θ + cos<sup>2</sup>θ')+' کدام است؟',[m('1'),m('0'),m('2'),m('sin θ')],'اتحاد اصلی مثلثاتی.'],
+['اگر '+m('sin θ = '+F('3','5'))+' باشد، '+m('cos 2θ')+' کدام است؟',[T('7','25'),T('24','25'),m('−'+F('7','25')),T('16','25')],m('1 − 2sin<sup>2</sup>θ = 1 − '+F('18','25'))],
+['در مثلثی '+m('a = 5')+'، '+m('b = 7')+' و '+m('C = 60°')+' است. '+m('c<sup>2</sup>')+' کدام است؟',[m('39'),m('74'),m('109'),m('12')],m('25 + 49 − 2 × 35 × '+F('1','2')+' = 39')]
+],
+'functions-1':[
+['دامنه‌ی '+m('f(x) = '+F('1','x − 2'))+' کدام است؟',[m('x ≠ 2'),m('x ≠ 0'),m('x ≥ 2'),m('x > 2')],'مخرج نباید صفر شود.'],
+['اگر '+m('f(x) = x<sup>2</sup>')+' و '+m('g(x) = x + 1')+' باشد، '+m('(f ∘ g)(x)')+' کدام است؟',[m('(x + 1)<sup>2</sup>'),m('x<sup>2</sup> + 1'),m('x<sup>2</sup> + x'),m('x + 2')],m('f(g(x)) = (x + 1)<sup>2</sup>')],
+['وارون تابع '+m('f(x) = 2x + 3')+' کدام است؟',[T('x − 3','2'),T('x + 3','2'),m('2x − 3'),T('1','2x + 3')],'از '+m('y = 2x + 3')+' نتیجه می‌شود '+m('x = '+F('y − 3','2'))]
+],
+'functions-2':[
+['شیب خط گذرنده از '+m('(1, 2)')+' و '+m('(3, 8)')+' کدام است؟',[m('3'),m('2'),m('6'),T('1','3')],m(F('8 − 2','3 − 1')+' = 3')],
+['شیب خطی که بر خطی با شیب 2 عمود است کدام است؟',[m('−'+F('1','2')),T('1','2'),m('−2'),m('2')],'حاصل‌ضرب شیب‌های دو خط عمود برابر 1− است.'],
+['فاصله‌ی دو نقطه‌ی '+m('(0, 0)')+' و '+m('(3, 4)')+' کدام است؟',[m('5'),m('7'),m('25'),m(S('7'))],m(S('9 + 16')+' = 5')]
+],
+'functions-3':[
+['طول رأس سهمی '+m('y = x<sup>2</sup> − 4x + 3')+' کدام است؟',[m('2'),m('−2'),m('4'),m('1')],m('x = '+F('−b','2a')+' = '+F('4','2'))],
+['اگر ضریب '+m('x<sup>2</sup>')+' منفی باشد، سهمی چگونه باز می‌شود؟',['رو به پایین','رو به بالا','به راست','به چپ'],m('a < 0')+' یعنی رو به پایین.'],
+['بیشترین مقدار '+m('y = −x<sup>2</sup> + 6x')+' چند است؟',[m('9'),m('6'),m('3'),m('18')],'رأس در '+m('x = 3')+' است و '+m('y = −9 + 18 = 9')]
+],
+'functions-4':[
+['نمودار '+m('y = 2<sup>x</sup>')+' از کدام نقطه می‌گذرد؟',[m('(0, 1)'),m('(0, 0)'),m('(1, 0)'),m('(0, 2)')],m('2<sup>0</sup> = 1')],
+['دامنه‌ی تابع '+m('y = log<sub>a</sub> x')+' کدام است؟',[m('x > 0'),'همه‌ی عددهای حقیقی',m('x ≥ 0'),m('x < 0')],'لگاریتم فقط برای عدد مثبت تعریف می‌شود.'],
+['یک میلیون تومان با سود مرکب 10٪ سالانه، بعد از 3 سال چند تومان می‌شود؟',['1٬331٬000','1٬300٬000','1٬030٬000','1٬100٬000'],m('1000000 × 1.1<sup>3</sup>')]
+],
+'stats-1':[
+['میانه‌ی داده‌های '+m('3, 4, 5, 6, 8, 8, 9')+' کدام است؟',[m('6'),m('8'),m('5'),m('7')],'داده‌ی چهارم از هفت داده.'],
+['مد داده‌های '+m('4, 8, 6, 5, 3, 8, 9')+' کدام است؟',[m('8'),m('6'),m('9'),m('3')],'عدد 8 دو بار آمده است.'],
+['میانگین '+m('2, 4, 6, 8')+' کدام است؟',[m('5'),m('4'),m('6'),m('20')],m(F('20','4')+' = 5')]
+],
+'stats-2':[
+['انحراف معیار داده‌های '+m('2, 4, 4, 4, 5, 5, 7, 9')+' کدام است؟',[m('2'),m('4'),m('5'),m('32')],'واریانس 4 و انحراف معیار ریشه‌ی آن، یعنی 2 است.'],
+['اگر واریانس داده‌ها 16 باشد، انحراف معیار چند است؟',[m('4'),m('8'),m('256'),m('2')],'انحراف معیار ریشه‌ی دوم واریانس است.'],
+['دامنه‌ی تغییرات داده‌های '+m('3, 9, 5, 12')+' کدام است؟',[m('9'),m('12'),m('3'),m('29')],m('12 − 3 = 9')]
+],
+'stats-3':[
+['احتمال آمدن عدد زوج در پرتاب یک تاس چند است؟',[T('1','2'),T('1','3'),T('1','6'),T('2','3')],m(F('3','6'))],
+['احتمال این‌که مجموع دو تاس 7 شود چند است؟',[T('1','6'),T('1','12'),T('7','36'),T('1','7')],'6 حالت از 36 حالت.'],
+['احتمال آمدن حداقل یک شیر در سه پرتاب سکه چند است؟',[T('7','8'),T('1','8'),T('1','2'),T('3','8')],m('1 − '+F('1','8'))]
+],
+'stats-4':[
+['حاصل '+m('5!')+' کدام است؟',[m('120'),m('25'),m('60'),m('24')],m('5 × 4 × 3 × 2 × 1')],
+['انتخاب 3 نفر از 5 نفر به چند روش ممکن است؟',[m('10'),m('60'),m('15'),m('6')],m('C(5, 3) = 10')],
+['با ارقام '+m('{1, 2, 3, 4, 5}')+' چند عدد سه‌رقمی با ارقام متمایز می‌توان ساخت؟',[m('60'),m('125'),m('10'),m('20')],m('P(5, 3) = 5 × 4 × 3 = 60')]
+],
+'calculus-1':[
+['حاصل '+m('lim<sub>x→2</sub> '+F('x<sup>2</sup> − 4','x − 2'))+' کدام است؟',[m('4'),m('0'),m('2'),'وجود ندارد'],'پس از ساده کردن '+m('x + 2')+'، حد 4 است.'],
+['حاصل '+m('lim<sub>x→∞</sub> '+F('3x<sup>2</sup> + 1','x<sup>2</sup> + 5'))+' کدام است؟',[m('3'),m('0'),m('∞'),T('1','5')],'نسبت ضریب‌های بزرگ‌ترین توان.'],
+['حاصل '+m('lim<sub>x→0</sub> '+F('sin x','x'))+' کدام است؟',[m('1'),m('0'),m('∞'),m('−1')],'حد مهم مثلثاتی (x برحسب رادیان).']
+],
+'calculus-2':[
+['مشتق '+m('x<sup>3</sup>')+' کدام است؟',[m('3x<sup>2</sup>'),m('x<sup>2</sup>'),m('3x<sup>3</sup>'),T('x<sup>4</sup>','4')],m('(x<sup>n</sup>)′ = nx<sup>n−1</sup>')],
+['مشتق '+m('sin x')+' کدام است؟',[m('cos x'),m('−cos x'),m('−sin x'),m('tan x')],'از جدول مشتق‌ها.'],
+['شیب خط مماس بر '+m('y = x<sup>2</sup>')+' در '+m('x = 3')+' کدام است؟',[m('6'),m('9'),m('3'),m('2')],m('f′(x) = 2x')+' پس '+m('f′(3) = 6')]
+],
+'calculus-3':[
+['تابع '+m('f(x) = x<sup>3</sup> − 3x')+' در چه x ای مینیمم موضعی دارد؟',[m('x = 1'),m('x = −1'),m('x = 0'),m('x = 3')],m('f′(x) = 3x<sup>2</sup> − 3 = 0')+' و '+m('f″(1) = 6 > 0')],
+['اگر روی یک بازه '+m('f′(x) > 0')+' باشد، تابع روی آن بازه چگونه است؟',['صعودی','نزولی','ثابت','دارای ماکزیمم'],'مشتق مثبت یعنی تابع بالا می‌رود.'],
+['مستطیلی با محیط 40، حداکثر چه مساحتی دارد؟',[m('100'),m('400'),m('200'),m('80')],'بیشترین مساحت وقتی است که مستطیل مربع به ضلع 10 باشد.']
+],
+'calculus-4':[
+['حاصل '+m('∫ 2x dx')+' کدام است؟',[m('x<sup>2</sup> + C'),m('2x<sup>2</sup> + C'),m('x + C'),m('2 + C')],'پادمشتق '+m('x<sup>2</sup>')+' برابر '+m('2x')+' است.'],
+['حاصل '+m('∫<sub>0</sub><sup>2</sup> x<sup>2</sup> dx')+' کدام است؟',[T('8','3'),m('4'),m('8'),T('2','3')],m(F('x<sup>3</sup>','3')+' |<sub>0</sub><sup>2</sup> = '+F('8','3'))],
+['حاصل '+m('∫<sub>0</sub><sup>π</sup> sin x dx')+' کدام است؟',[m('2'),m('0'),m('1'),m('−2')],m('[−cos x]<sub>0</sub><sup>π</sup> = 1 + 1 = 2')]
+],
+'sets-1':[
+['اگر '+m('A = {1, 2, 3, 4}')+' و '+m('B = {3, 4, 5}')+' باشد، '+m('A ∩ B')+' کدام است؟',[m('{3, 4}'),m('{1, 2, 3, 4, 5}'),m('{1, 2}'),m('{5}')],'اشتراک یعنی اعضای مشترک.'],
+['با مجموعه‌های بالا ('+m('A = {1, 2, 3, 4}')+' و '+m('B = {3, 4, 5}')+') تعداد اعضای '+m('A ∪ B')+' چند است؟',[m('5'),m('7'),m('2'),m('4')],m('4 + 3 − 2 = 5')],
+['یک مجموعه‌ی سه‌عضوی چند زیرمجموعه دارد؟',[m('8'),m('6'),m('9'),m('3')],m('2<sup>3</sup> = 8')]
+],
+'sets-2':[
+['گزاره‌ی '+m('p ⇒ q')+' فقط در چه حالتی نادرست است؟',['p درست و q نادرست','p نادرست و q درست','هر دو نادرست','هر دو درست'],'اگر مقدمه درست باشد و نتیجه نادرست، استلزام نادرست است.'],
+['نقیض «همه‌ی دانش‌آموزان قبول شدند» کدام است؟',['حداقل یک دانش‌آموز قبول نشد','هیچ دانش‌آموزی قبول نشد','همه‌ی دانش‌آموزان قبول نشدند','بعضی قبول شدند'],'نقیض «برای هر» می‌شود «وجود دارد که نه».'],
+['عکس نقیض '+m('p ⇒ q')+' کدام است؟',[m('¬q ⇒ ¬p'),m('q ⇒ p'),m('¬p ⇒ ¬q'),m('¬q ⇒ p')],'عکس نقیض با خود گزاره هم‌ارز است.']
+],
+'sets-3':[
+['دترمینان ماتریس '+m(MX([['1','2'],['3','4']]))+' کدام است؟',[m('−2'),m('2'),m('10'),m('5')],m('1 × 4 − 2 × 3 = −2')],
+['آیا ضرب ماتریس‌ها همیشه جابه‌جایی دارد؟',['خیر، به‌طور کلی '+m('AB ≠ BA'),'بله، همیشه','فقط برای ماتریس‌های 2×2','فقط وقتی دترمینان صفر است'],'در مثال درس دیدیم '+m('AB')+' و '+m('BA')+' متفاوت‌اند.'],
+['با قاعده‌ی کرامر، در دستگاه '+m('2x + y = 5')+' و '+m('x + 3y = 10')+' مقدار x کدام است؟',[m('1'),m('3'),m('5'),m('2')],m('D = 5')+' و '+m('D<sub>x</sub> = 5')+' پس '+m('x = 1')]
+]
+};
+
+function quizHtml(id){
+  const Q=QUIZ[id];if(!Q)return '';
+  return `<section class="quiz" id="quiz" data-id="${id}"><h3>آزمون پایان درس</h3><p class="qs">${Q.length} پرسش چهارگزینه‌ای از همین درس. با انتخاب هر گزینه، پاسخ همان لحظه بررسی می‌شود.</p>`+
+  Q.map((x,i)=>{
+    const opts=x[1].map((t,k)=>({t,ok:k===0}));
+    for(let k=opts.length-1;k>0;k--){const j=Math.floor(Math.random()*(k+1));[opts[k],opts[j]]=[opts[j],opts[k]];}
+    return `<div class="qq" data-i="${i}"><p class="qt"><b>${i+1}.</b> ${x[0]}</p><div class="qo">${opts.map(o=>`<button type="button" class="opt" data-ok="${o.ok?1:0}">${o.t}</button>`).join('')}</div><div class="qe" hidden>${x[2]||''}</div></div>`;
+  }).join('')+`<div class="qr" id="qres" aria-live="polite" hidden></div></section>`;
+}
+function bindQuiz(id){
+  const sec=document.getElementById('quiz');if(!sec)return;
+  const total=QUIZ[id].length;
+  sec.addEventListener('click',e=>{
+    const b=e.target.closest('.opt');if(!b)return;
+    const q=b.closest('.qq');if(q.dataset.done)return;
+    q.dataset.done='1';
+    const good=b.dataset.ok==='1';
+    q.querySelectorAll('.opt').forEach(o=>{o.disabled=true;if(o.dataset.ok==='1')o.classList.add('good');});
+    if(!good)b.classList.add('bad');
+    q.dataset.res=good?'1':'0';
+    const ex=q.querySelector('.qe');
+    ex.innerHTML=`<b>${good?'درست است.':'نادرست بود. گزینه‌ی سبز پاسخ درست است.'}</b> ${ex.innerHTML}`;
+    ex.className='qe '+(good?'g':'w');ex.hidden=false;faConvert(ex);
+    const answered=sec.querySelectorAll('.qq[data-done]').length;
+    if(answered===total){
+      const score=[...sec.querySelectorAll('.qq')].filter(x=>x.dataset.res==='1').length;
+      const msg=score===total?'عالی بود! همه‌ی پاسخ‌ها درست است.':score*3>=total*2?'خوب بود. بخش‌های اشتباه را یک بار دیگر مرور کنید.':'یک بار دیگر درس را بخوانید و دوباره آزمون بدهید.';
+      const r=document.getElementById('qres');
+      r.innerHTML=`<div class="qscore"><b>${score}</b> از ${total}</div><div>${msg}</div><button type="button" class="qretry" id="qretry">آزمون دوباره</button>`;
+      r.hidden=false;faConvert(r);
+      document.getElementById('qretry').addEventListener('click',()=>{
+        sec.outerHTML=quizHtml(id);faConvert(document.getElementById('quiz'));bindQuiz(id);
+        document.getElementById('quiz').scrollIntoView({block:'start'});
+      });
+    }
+  });
+}
+
+/* ---------- ابزارهای تعاملی ---------- */
+function fmt(x){if(!isFinite(x))return '—';if(Math.abs(x)<1e-12)x=0;return String(Math.round(x*10000)/10000).replace('-','−')}
+const WIDGETS={
+quad(el){
+  el.innerHTML=`<div class="wg"><h4>حل‌کننده‌ی معادله‌ی درجه دوم</h4><div class="row" dir="ltr"><label>a <input id="qa" type="number" value="1" step="any"></label><label>b <input id="qb" type="number" value="-5" step="any"></label><label>c <input id="qc" type="number" value="6" step="any"></label></div><div class="out" id="qout" aria-live="polite"></div></div>`;
+  const run=()=>{
+    const a=parseFloat(el.querySelector('#qa').value),b=parseFloat(el.querySelector('#qb').value),c=parseFloat(el.querySelector('#qc').value);
+    const o=el.querySelector('#qout');
+    if([a,b,c].some(isNaN)){o.textContent='هر سه ضریب را به‌صورت عدد وارد کنید.';faConvert(o);return}
+    let h='';
+    if(a===0){
+      if(b===0)h=c===0?'معادله به‌ازای هر عدد درست است.':'معادله جواب ندارد.';
+      else h='چون a برابر صفر است، معادله‌ی درجه اول است: '+m('x = '+fmt(-c/b));
+    }else{
+      const D=b*b-4*a*c;
+      h='مبین: '+m('Δ = '+fmt(D))+'<br>';
+      if(D>0){const r1=(-b+Math.sqrt(D))/(2*a),r2=(-b-Math.sqrt(D))/(2*a);h+='دو ریشه‌ی حقیقی: '+m('x<sub>1</sub> = '+fmt(Math.max(r1,r2))+' ،  x<sub>2</sub> = '+fmt(Math.min(r1,r2)));}
+      else if(D===0)h+='یک ریشه‌ی مضاعف: '+m('x = '+fmt(-b/(2*a)));
+      else h+='ریشه‌ی حقیقی ندارد. ریشه‌های مختلط: '+m(fmt(-b/(2*a))+' ± '+fmt(Math.sqrt(-D)/(2*Math.abs(a)))+' i');
+      h+='<br>رأس سهمی: '+m('('+fmt(-b/(2*a))+' ، '+fmt(c-b*b/(4*a))+')');
+    }
+    o.innerHTML=h;faConvert(o);
+  };
+  el.querySelectorAll('input').forEach(i=>i.addEventListener('input',run));run();
+},
+gcd(el){
+  el.innerHTML=`<div class="wg"><h4>ماشین‌حساب ب.م.م و ک.م.م</h4><div class="row" dir="ltr"><label>a <input id="ga" type="number" value="84" min="1" max="1000000" step="1"></label><label>b <input id="gb" type="number" value="36" min="1" max="1000000" step="1"></label></div><div class="out" id="gout" aria-live="polite"></div></div>`;
+  const run=()=>{
+    const o=el.querySelector('#gout');
+    let a=parseInt(el.querySelector('#ga').value,10),b=parseInt(el.querySelector('#gb').value,10);
+    if(!(a>=1&&b>=1&&a<=1e6&&b<=1e6)){o.textContent='دو عدد صحیح بین 1 و 1٬000٬000 وارد کنید.';faConvert(o);return}
+    const A=a,Bv=b,steps=[];
+    while(b){const q=Math.floor(a/b),r=a%b;steps.push(m(a+' = '+q+' × '+b+' + '+r));a=b;b=r}
+    const g=a,l=A/g*Bv;
+    o.innerHTML='ب.م.م = '+m(String(g))+' و ک.م.م = '+m(String(l))+'<br>مراحل الگوریتم اقلیدس:<br>'+steps.join('<br>');
+    faConvert(o);
+  };
+  el.querySelectorAll('input').forEach(i=>i.addEventListener('input',run));run();
+},
+comb(el){
+  el.innerHTML=`<div class="wg"><h4>ماشین‌حساب جایگشت و ترکیب</h4><div class="row" dir="ltr"><label>n <input id="cn" type="number" value="5" min="0" max="30" step="1"></label><label>r <input id="cr" type="number" value="3" min="0" max="30" step="1"></label></div><div class="out" id="cout" aria-live="polite"></div></div>`;
+  const fact=k=>{let f=1n;for(let i=2n;i<=BigInt(k);i++)f*=i;return f};
+  const run=()=>{
+    const o=el.querySelector('#cout');
+    const n=parseInt(el.querySelector('#cn').value,10),r=parseInt(el.querySelector('#cr').value,10);
+    if(!(n>=0&&r>=0&&n<=30&&r<=n)){o.textContent='عددهای صحیح با شرط 0 ≤ r ≤ n ≤ 30 وارد کنید.';faConvert(o);return}
+    const P=fact(n)/fact(n-r),C=P/fact(r);
+    o.innerHTML=m('n! = '+fact(n))+'<br>'+m('P(n, r) = '+P)+'<br>'+m('C(n, r) = '+C);
+    faConvert(o);
+  };
+  el.querySelectorAll('input').forEach(i=>i.addEventListener('input',run));run();
+}};
+
+/* ---------- ارقام فارسی ---------- */
+function faConvert(root){
+  const w=document.createTreeWalker(root,NodeFilter.SHOW_TEXT);const nodes=[];
+  while(w.nextNode())nodes.push(w.currentNode);
+  nodes.forEach(n=>{
+    const p=n.parentNode&&n.parentNode.nodeName;if(p==='SCRIPT'||p==='STYLE'||p==='TEXTAREA')return;
+    const s=n.nodeValue;if(!/[0-9]/.test(s))return;
+    n.nodeValue=s.replace(/(\d)\.(\d)/g,'$1٫$2').replace(/[0-9]/g,d=>'۰۱۲۳۴۵۶۷۸۹'[d]);
+  });
+}
+
+/* ---------- ذخیره‌ی پیشرفت (فقط در مرورگر خود شما) ---------- */
+let done=new Set();
+try{done=new Set(JSON.parse(localStorage.getItem('riazi-yar-done')||'[]'))}catch(e){}
+const saveDone=()=>{try{localStorage.setItem('riazi-yar-done',JSON.stringify([...done]))}catch(e){}};
+
+/* ---------- مسیریابی و نمایش ---------- */
+const ALL=[];CATS.forEach(c=>c.lessons.forEach(l=>{l.cat=c;ALL.push(l)}));
+const view=document.getElementById('view');
+const norm=s=>s.replace(/ي/g,'ی').replace(/ك/g,'ک').replace(/[‌]/g,' ').toLowerCase();
+
+function cardHtml(c){
+  const n=c.lessons.length,d=c.lessons.filter(l=>done.has(l.id)).length;
+  return `<a class="card" href="#${c.id}" style="--c:${c.c}"><div class="tile">${c.g}</div><h3>${c.t}</h3><p>${c.d}</p><div class="meta"><span>${n} درس</span><span>${d} از ${n} تمام‌شده</span></div><div class="bar"><i style="width:${n?d/n*100:0}%"></i></div></a>`;
+}
+function calcPage(){
+  view.innerHTML=`<div class="crumbs"><a href="#home">خانه</a> › ماشین‌حساب</div><div id="calc-host"></div>`;
+  const host=document.getElementById('calc-host');
+  const dt=document.documentElement.getAttribute('data-theme');
+  if(dt)host.setAttribute('data-theme',dt);
+  const root=host.attachShadow({mode:'open'});
+  root.appendChild(document.getElementById('calc-tpl').content.cloneNode(true));
+  window.__mountCalc(root);
+}
+function home(){
+  view.innerHTML=`<section class="hero">
+    <div class="hero-in"><div>
+    <h1>ریاضی را قدم‌به‌قدم یاد بگیر</h1>
+    <p>از کسرها و معادله‌ها تا مثلثات، آمار، مشتق و انتگرال. هر درس توضیح ساده، فرمول، مثال حل‌شده و تمرین دارد.</p>
+    <div class="by">طراحی و ساخت: <b>صدرا فرح بخشیان</b></div></div>
+    <div class="glyphs">${CATS.map(c=>`<a href="#${c.id}" style="--c:${c.c}" aria-label="${c.t}">${c.g}</a>`).join('')}</div></div>
+    <div class="searchbox"><input id="q" type="search" placeholder="جست‌وجوی درس، مثلاً فیثاغورس یا مشتق" aria-label="جست‌وجوی درس"></div>
+    <div id="results" aria-live="polite"></div>
+  </section>
+  <h2 class="sec">دسته‌بندی درس‌ها (${ALL.length} درس در ${CATS.length} دسته)</h2>
+  <div class="grid">${CATS.map(cardHtml).join('')}</div>`;
+  const q=document.getElementById('q'),r=document.getElementById('results');
+  q.addEventListener('input',()=>{
+    const t=norm(q.value.trim());
+    if(!t){r.innerHTML='';return}
+    const hits=ALL.filter(l=>norm(l.t+' '+l.s+' '+l.cat.t).includes(t)).slice(0,8);
+    const ch=norm('ماشین حساب ماشین‌حساب حل‌کننده calculator').includes(t)?'<a href="#calculator"><b>ماشین‌حساب و حل‌کننده‌ها</b> <small>— ابزار</small></a>':'';
+    r.innerHTML=(ch||hits.length)?ch+hits.map(l=>`<a href="#${l.id}"><b>${l.t}</b> <small>— ${l.cat.t}</small></a>`).join(''):'<div style="padding:6px 4px">درسی پیدا نشد.</div>';
+    faConvert(r);
+  });
+}
+function category(c){
+  view.innerHTML=`<div class="crumbs"><a href="#home">خانه</a> › ${c.t}</div>
+  <div class="cathead" style="--c:${c.c}"><div class="tile">${c.g}</div><div><h1>${c.t}</h1><p>${c.d}</p></div></div>
+  <div class="lrows" style="--c:${c.c}">${c.lessons.map((l,i)=>`<a class="lrow${done.has(l.id)?' done':''}" href="#${l.id}"><span class="num">${done.has(l.id)?'✓':i+1}</span><span><b>${l.t}</b><span class="s">${l.s}</span></span></a>`).join('')}</div>`;
+}
+function sideHtml(cur){
+  return CATS.map(c=>`<details style="--c:${c.c}"${c===cur.cat?' open':''}><summary><span class="dot">${c.g}</span>${c.t}</summary>${c.lessons.map(x=>`<a class="sl${x===cur?' on':''}${done.has(x.id)?' ok':''}" href="#${x.id}">${x.t}</a>`).join('')}</details>`).join('');
+}
+function lesson(l){
+  const c=l.cat,i=ALL.indexOf(l),prev=ALL[i-1],next=ALL[i+1];
+  view.innerHTML=`<div class="layout" style="--c:${c.c}"><aside class="side" aria-label="فهرست درس‌ها">${sideHtml(l)}</aside><div class="main">
+  <div class="crumbs"><a href="#home">خانه</a> › <a href="#${c.id}">${c.t}</a> › ${l.t}</div>
+  <nav class="chips" aria-label="درس‌های ${c.t}">${c.lessons.map((x,k)=>`<a href="#${x.id}"${x===l?' class="on" aria-current="page"':''}>${k+1}. ${x.t}</a>`).join('')}</nav>
+  <article class="lesson"><h1>${l.t}</h1><p class="lead">${l.s}</p>${l.h}${quizHtml(l.id)}
+  <button class="donebtn${done.has(l.id)?' on':''}" id="donebtn" type="button">${done.has(l.id)?'✓ این درس را تمام کرده‌ام':'این درس را تمام کردم'}</button></article>
+  <div class="pn">${next?`<a href="#${next.id}"><small>درس بعدی ‹</small><b>${next.t}</b></a>`:'<span></span>'}${prev?`<a href="#${prev.id}"><small>› درس قبلی</small><b>${prev.t}</b></a>`:'<span></span>'}</div></div></div>`;
+  view.querySelectorAll('.widget').forEach(el=>{const f=WIDGETS[el.dataset.w];if(f)f(el)});
+  bindQuiz(l.id);
+  const b=document.getElementById('donebtn');
+  b.addEventListener('click',()=>{
+    if(done.has(l.id))done.delete(l.id);else done.add(l.id);
+    saveDone();b.classList.toggle('on',done.has(l.id));
+    const sl=view.querySelector('.side a.on');if(sl)sl.classList.toggle('ok',done.has(l.id));
+    b.textContent=done.has(l.id)?'✓ این درس را تمام کرده‌ام':'این درس را تمام کردم';
+  });
+}
+function route(){
+  const h=(location.hash||'#home').slice(1);
+  const l=ALL.find(x=>x.id===h),c=CATS.find(x=>x.id===h);
+  if(h==='calculator')calcPage();else if(l)lesson(l);else if(c)category(c);else home();
+  const inCalc=h==='calculator';
+  [['nav-calc',inCalc],['nav-less',!inCalc]].forEach(([id,on])=>{const e=document.getElementById(id);e.classList.toggle('on',on);if(on)e.setAttribute('aria-current','page');else e.removeAttribute('aria-current');});
+  const by=document.getElementById('by-line');if(by)by.hidden=inCalc;
+  faConvert(view);
+  window.scrollTo(0,0);
+}
+window.addEventListener('hashchange',route);
+route();
+</script>
+
+</body></html>
